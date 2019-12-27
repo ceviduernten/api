@@ -24,7 +24,8 @@ namespace DUR.Api.Repo.Nextcloud.Repositories
         {
             List<Event> list = new List<Event>();
             HttpClient client = _api.GetHttpClient();
-            HttpResponseMessage response = client.GetAsync("https://***REMOVED***/remote.php/dav/public-calendars/***REMOVED***?export&accept=jcal").Result;
+            string url = BuildUrl();
+            HttpResponseMessage response = client.GetAsync(url).Result;
             var result = response.Content.ReadAsStringAsync().Result;
             JArray s = (JArray)JsonConvert.DeserializeObject(result);
             if (s != null)
@@ -39,6 +40,12 @@ namespace DUR.Api.Repo.Nextcloud.Repositories
                 }
             }
             return list;
+        }
+
+        private string BuildUrl()
+        {
+            string url = "https://" + _api.GetSettings().Host + _api.GetSettings().BaseUrl + _settings.EventsCalendar + _api.GetSettings().Parameters;
+            return url;
         }
 
         private Event ConvertToEvent(JArray element)

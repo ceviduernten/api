@@ -39,6 +39,7 @@ namespace DUR.Api.Web
             services.AddCorsConfigServices();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddAutofac();
+            services.AddMemoryCache();
             services.AddMvc();
             services.Configure<MvcOptions>(options =>
             {

@@ -39,5 +39,15 @@ namespace DUR.Api.Repo.Nextcloud
 
             return _httpClient;
         }
+
+        public NextcloudInterfaceSettings GetSettings()
+        {
+            if (_settings == null)
+            {
+                return null;
+            }
+
+            return _settings;
+        }
     }
 }

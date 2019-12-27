@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using AutoMapper;
 using DUR.Api.Entities;
 using DUR.Api.Presentation.Interfaces.Presenter;
