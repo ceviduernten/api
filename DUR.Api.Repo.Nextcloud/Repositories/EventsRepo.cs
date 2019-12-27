@@ -37,7 +37,7 @@ namespace DUR.Api.Repo.Nextcloud.Repositories
                     if (type != "vevent") continue;
                     JArray element = (JArray)item[1];
                     var resEvent = ConvertToEvent(element);
-                    if (resEvent.Start > DateTime.Now.AddDays(-1))
+                    if (resEvent.End > DateTime.Now.AddDays(-1))
                     {
                         list.Add(ConvertToEvent(element));
                     }
@@ -73,6 +73,8 @@ namespace DUR.Api.Repo.Nextcloud.Repositories
             DateTime start = DateTime.Parse(startProperty.Value);
             DateTime end = DateTime.Parse(endProperty.Value);
 
+
+
             Event e = new Event
             {
                 Description = descrption,
@@ -80,10 +82,23 @@ namespace DUR.Api.Repo.Nextcloud.Repositories
                 Uid = uid,
                 Summary = summary,
                 Start = start,
-                End = end
+                End = end,
+                Type = GetType(summary)
             };
 
             return e;
+        }
+
+        private EventType GetType(string name)
+        {
+            switch (name)
+            {
+                case string a when a.ToLower().Contains("fröschli"): return EventType.FROESCHLI;
+                case string b when b.ToLower().Contains("cevi"): return EventType.JUNGSCHAR;
+                case string c when c.ToLower().Contains("ferien"): return EventType.HOLIDAY;
+                case string d when d.ToLower().Contains("jungschar"): return EventType.JUNGSCHAR;
+            }
+            return EventType.GENERAL;
         }
 
         private List<EventProperty> JArrayToObject(JArray array)

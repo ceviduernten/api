@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DUR.Api.Entities;
 using DUR.Api.Repo.Nextcloud.Interfaces;
 using DUR.Api.Services.Interfaces;
@@ -19,7 +20,7 @@ namespace DUR.Api.Services.Services
 
         public List<Event> GetCurrentEvents()
         {
-            return _repo.GetEvents();
+            return _repo.GetEvents().OrderBy(x => x.Start).ToList();
         }
     }
 }

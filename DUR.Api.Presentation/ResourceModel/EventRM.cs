@@ -1,4 +1,6 @@
 ﻿using System;
+using DUR.Api.Entities.Events;
+
 namespace DUR.Api.Presentation.ResourceModel
 {
     public class EventRM : BaseRM
@@ -9,5 +11,13 @@ namespace DUR.Api.Presentation.ResourceModel
         public string Summary { get; set; }
         public string Location { get; set; }
         public string Description { get; set; }
+        public EventType Type { get; set; }
+        public string EventType
+        {
+            get
+            {
+                return Type.ToString();
+            }
+        }
     }
 }

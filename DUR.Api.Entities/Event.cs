@@ -1,4 +1,6 @@
 ﻿using System;
+using DUR.Api.Entities.Events;
+
 namespace DUR.Api.Entities
 {
     public class Event
@@ -9,5 +11,6 @@ namespace DUR.Api.Entities
         public string Summary { get; set; }
         public string Location { get; set; }
         public string Description { get; set; }
+        public EventType Type {get; set;}
     }
 }
