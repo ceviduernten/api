@@ -22,16 +22,31 @@ namespace DUR.Api.Web.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            if (!_cache.TryGetValue("groups", out List<EventRM> events))
+            if (!_cache.TryGetValue("groups", out List<GroupRM> groups))
             {
                 var cacheEntryOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(15));
 
                 var res = _groupPresenter.GetAll();
-                events = res;
+                groups = res;
 
                 _cache.Set("groups", res, cacheEntryOptions);
             }
-            return Json(new DataJsonResult<GroupRM>(200, "Groups successfully returned", events));
+            return Json(new DataJsonResult<GroupRM>(200, "Groups successfully returned", groups));
+        }
+
+        [HttpPost]
+        public JsonResult AddGroup(GroupRM group)
+        {
+            _cache.Remove("groups");
+            var success = _groupPresenter.Add(group);
+            if (success)
+            {
+                return Json(new InfoJsonResult(200, "successfully added group"));
+            }
+            else
+            {
+                return Json(new InfoJsonResult(500, "Error on adding group"));
+            }
         }
     }
 }

@@ -26,7 +26,7 @@ namespace DUR.Api.Repo.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql(_databaseOptions.Value.Database);
+            optionsBuilder.UseNpgsql(_databaseOptions.Value.Database, x => x.MigrationsAssembly("DUR.Api.Web"));
         }
 
     }

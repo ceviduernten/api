@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using DUR.Api.Entities.Default;
+using DUR.Api.Entities;
 using DUR.Api.Repo.Database.Interfaces;
 using DUR.Api.Settings;
 using Microsoft.EntityFrameworkCore;

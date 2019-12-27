@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
-using DUR.Api.Entities;
+using DUR.Api.Entities.Default;
+using DUR.Api.Repo.Database.Interfaces;
 using DUR.Api.Services.Interfaces;
 
 namespace DUR.Api.Services.Queries

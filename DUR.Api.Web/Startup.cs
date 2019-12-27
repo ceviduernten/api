@@ -45,6 +45,7 @@ namespace DUR.Api.Web
             services.AddAutofac();
             services.AddMemoryCache();
             services.AddMvc();
+            services.AddDbContext<RepositoryContext>();
             services.Configure<MvcOptions>(options =>
             {
                 options.EnableEndpointRouting = false;

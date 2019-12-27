@@ -9,6 +9,7 @@ namespace DUR.Api.Presentation
         public static void RegisterModule(ContainerBuilder container)
         {
             container.RegisterType<EventPresenter>().As<IEventPresenter>();
+            container.RegisterType<GroupPresenter>().As<IGroupPresenter>();
         }
     }
 }

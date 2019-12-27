@@ -10,6 +10,7 @@ namespace DUR.Api.Presentation.Mapper
         {
             CreateMap<Event, EventRM>();
             CreateMap<Group, GroupRM>();
+            CreateMap<GroupRM, Group>();
         }
     }
 }

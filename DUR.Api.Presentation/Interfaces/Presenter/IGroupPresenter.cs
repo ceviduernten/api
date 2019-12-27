@@ -4,8 +4,10 @@ using DUR.Api.Presentation.ResourceModel;
 
 namespace DUR.Api.Presentation.Interfaces.Presenter
 {
-    public interface IGroupPresenter
+    public interface IGroupPresenter : IPresenter<GroupRM>
     {
-        List<GroupRM> GetAll();
+        bool DeleteById(Guid id);
+        bool Update(GroupRM entity);
+        bool Add(GroupRM entity);
     }
 }

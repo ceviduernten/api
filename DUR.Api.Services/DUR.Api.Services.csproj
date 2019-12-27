@@ -16,5 +16,6 @@
   <ItemGroup>
     <ProjectReference Include="..\DUR.Api.Entities\DUR.Api.Entities.csproj" />
     <ProjectReference Include="..\DUR.Api.Repo.Nextcloud\DUR.Api.Repo.Nextcloud.csproj" />
+    <ProjectReference Include="..\DUR.Api.Repo.Database\DUR.Api.Repo.Database.csproj" />
   </ItemGroup>
 </Project>
