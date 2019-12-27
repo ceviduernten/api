@@ -21,4 +21,7 @@
     <ProjectReference Include="..\DUR.Api.Entities\DUR.Api.Entities.csproj" />
     <ProjectReference Include="..\DUR.Api.Services\DUR.Api.Services.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="ResourceModel\GroupRM" />
+  </ItemGroup>
 </Project>

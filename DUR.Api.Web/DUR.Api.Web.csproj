@@ -35,5 +35,8 @@
     <ProjectReference Include="..\DUR.Api.Settings\DUR.Api.Settings.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\DUR.Api.Repo.Database\DUR.Api.Repo.Database.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>

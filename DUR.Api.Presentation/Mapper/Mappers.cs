@@ -9,6 +9,7 @@ namespace DUR.Api.Presentation.Mapper
         public Mappers()
         {
             CreateMap<Event, EventRM>();
+            CreateMap<Group, GroupRM>();
         }
     }
 }

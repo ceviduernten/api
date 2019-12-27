@@ -1,0 +1,202 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using DUR.Api.Entities;
+using DUR.Api.Services.Interfaces;
+
+namespace DUR.Api.Services.Services
+{
+    public abstract class DatabaseServiceBase<T> : IDatabaseService<T> where T : Base
+    {
+        protected IDatabaseUnitOfWork databaseUnitOfWork;
+        protected IQueries<T> querier;
+        private readonly ILogger _logger;
+
+        protected DatabaseServiceBase(ILogger logger)
+        {
+            _logger = logger;
+        }
+
+        public T Add(T entity, bool saveToDb)
+        {
+            try
+            {
+                querier.Add(entity);
+                if (saveToDb)
+                {
+                    databaseUnitOfWork.Save();
+                    LogHelper.Info<T>(_logger, "Added (DatabaseServiceBase)");
+                    return entity;
+                }
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error<T>(_logger, e, "Error adding (DatabaseServiceBase)");
+            }
+            return null;
+        }
+
+        public T Add(T entity)
+        {
+            return Add(entity, true);
+        }
+
+        public void Delete(T entity, bool saveToDb, bool removeFromDb)
+        {
+            try
+            {
+                querier.Delete(entity, removeFromDb);
+                if (saveToDb)
+                {
+                    databaseUnitOfWork.Save();
+                    LogHelper.Info<T>(_logger, "Deleted (DatabaseServiceBase)");
+                }
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error<T>(_logger, e, "Error on deleting (DatabaseServiceBase)");
+            }
+        }
+
+        public void Delete(T entity, bool removeFromDb = false)
+        {
+            Delete(entity, true, removeFromDb);
+        }
+
+        public bool DeleteById(int id, bool saveToDb, bool removeFromDb = false)
+        {
+            try
+            {
+                querier.DeleteById(id, removeFromDb);
+                if (saveToDb)
+                {
+                    databaseUnitOfWork.Save();
+                    LogHelper.Info<T>(_logger, "Deleted By Id (DatabaseServiceBase)");
+                }
+            }
+            catch (Exception e)
+            {
+                databaseUnitOfWork.Rollback();
+                LogHelper.Error<T>(_logger, e, "Error on deleting by id (DatabaseServiceBase)");
+                return false;
+            }
+            return true;
+        }
+
+        public bool DeleteById(int id, bool removeFromDb = false)
+        {
+            return DeleteById(id, true, removeFromDb);
+        }
+
+        public bool DeleteById(Guid id, bool saveToDb, bool removeFromDb = false)
+        {
+            try
+            {
+                querier.DeleteById(id, removeFromDb);
+                if (saveToDb)
+                {
+                    databaseUnitOfWork.Save();
+                    LogHelper.Info<T>(_logger, "Deleted By Guid (DatabaseServiceBase)");
+                }
+            }
+            catch (Exception e)
+            {
+                databaseUnitOfWork.Rollback();
+                LogHelper.Error<T>(_logger, e, "Error on deleting by guid (DatabaseServiceBase)");
+                return false;
+            }
+            return true;
+        }
+
+        public bool DeleteById(Guid id, bool removeFromDb = false)
+        {
+            return DeleteById(id, true, removeFromDb);
+        }
+
+        public List<T> GetAll()
+        {
+            return GetAllQueryable().ToList();
+        }
+
+        public List<T> GetAllIncludingDeleted()
+        {
+            return GetAllIncludingDeletedQueryable().ToList();
+        }
+
+        public IQueryable<T> GetAllQueryable()
+        {
+            try
+            {
+                return querier.GetAll();
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error<T>(_logger, e, "error getting all queryable from database");
+                return Enumerable.Empty<T>().AsQueryable();
+            }
+        }
+
+        public T GetById(int id)
+        {
+            try
+            {
+                return querier.GetById(id);
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error<T>(_logger, e, "error on getting by id");
+                return null;
+            }
+        }
+
+        public T GetById(Guid id)
+        {
+            try
+            {
+                return querier.GetById(id);
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error<T>(_logger, e, "error on getting by guid");
+                return null;
+            }
+        }
+
+        public T Update(T entity, bool saveToDb)
+        {
+            try
+            {
+                querier.Update(entity);
+                if (saveToDb)
+                {
+                    databaseUnitOfWork.Save();
+                    LogHelper.Info<T>(_logger, "updated");
+                }
+                return entity;
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error<T>(_logger, e, "updating");
+            }
+            return null;
+        }
+
+        public T Update(T entity)
+        {
+            return Update(entity, true);
+        }
+
+        private IQueryable<T> GetAllIncludingDeletedQueryable()
+        {
+            try
+            {
+                return querier.GetAllIncludingDeleted();
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error<T>(_logger, e, "error getting all queryable including deleted from database");
+                return Enumerable.Empty<T>().AsQueryable();
+            }
+        }
+    }
+}

@@ -1,9 +1,9 @@
-using System;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
 using DUR.Api.Presentation;
 using DUR.Api.Presentation.Mapper;
+using DUR.Api.Repo.Database;
 using DUR.Api.Repo.Nextcloud;
 using DUR.Api.Services;
 using DUR.Api.Settings;
@@ -33,6 +33,10 @@ namespace DUR.Api.Web
             services.AddAutoMapper(c => c.AddProfile<Mappers>(), typeof(Startup));
             services.Configure<GeneralSettings>(Configuration.GetSection("GeneralSettings"));
             services.Configure<NextcloudInterfaceSettings>(Configuration.GetSection("NextcloudInterfaceSettings"));
+            services.Configure<DatabaseOptions>(option =>
+            {
+                option.Database = Configuration.GetConnectionString("Database");
+            });
             services.AddSwaggerConfigServices();
             services.AddSingleton(Configuration);
             services.AddOptions();
@@ -69,6 +73,7 @@ namespace DUR.Api.Web
             PresenterInjector.RegisterModule(builder);
             MapperInjector.RegisterModule(builder);
             NextcloudRepositoryInjector.RegisterModule(builder);
+            DatabaseRepositoryInjector.RegisterModule(builder);
         }
     }
 }
