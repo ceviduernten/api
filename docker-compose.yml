@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  dur.api.web:
+    image: ${DOCKER_REGISTRY-}durapi
+    build:
+      context: .
+      dockerfile: DUR.Api.Web/Dockerfile

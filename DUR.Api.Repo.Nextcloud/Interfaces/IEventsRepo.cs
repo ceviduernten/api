@@ -6,6 +6,6 @@ namespace DUR.Api.Repo.Nextcloud.Interfaces
 {
     public interface IEventsRepo
     {
-        List<Event> GetEvents(DateTime? start, DateTime? end);
+        List<Event> GetEvents();
     }
 }

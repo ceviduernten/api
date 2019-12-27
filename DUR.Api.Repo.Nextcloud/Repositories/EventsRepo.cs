@@ -20,7 +20,7 @@ namespace DUR.Api.Repo.Nextcloud.Repositories
             _settings = settings;
         }
 
-        public List<Event> GetEvents(DateTime? start, DateTime? end)
+        public List<Event> GetEvents()
         {
             List<Event> list = new List<Event>();
             HttpClient client = _api.GetHttpClient();
@@ -36,7 +36,11 @@ namespace DUR.Api.Repo.Nextcloud.Repositories
                     string type = (string)item[0];
                     if (type != "vevent") continue;
                     JArray element = (JArray)item[1];
-                    list.Add(ConvertToEvent(element));
+                    var resEvent = ConvertToEvent(element);
+                    if (resEvent.Start > DateTime.Now.AddDays(-1))
+                    {
+                        list.Add(ConvertToEvent(element));
+                    }
                 }
             }
             return list;
@@ -44,7 +48,8 @@ namespace DUR.Api.Repo.Nextcloud.Repositories
 
         private string BuildUrl()
         {
-            string url = "https://" + _api.GetSettings().Host + _api.GetSettings().BaseUrl + _settings.EventsCalendar + _api.GetSettings().Parameters;
+            string parameters = _api.GetSettings().Parameters;
+            string url = "https://" + _api.GetSettings().Host + _api.GetSettings().BaseUrl + _settings.EventsCalendar + parameters;
             return url;
         }
 

@@ -19,7 +19,7 @@ namespace DUR.Api.Services.Services
 
         public List<Event> GetCurrentEvents()
         {
-            return _repo.GetEvents(null, null);
+            return _repo.GetEvents();
         }
     }
 }
