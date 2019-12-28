@@ -11,6 +11,7 @@ namespace DUR.Api.Presentation
             container.RegisterType<EventPresenter>().As<IEventPresenter>();
             container.RegisterType<GroupPresenter>().As<IGroupPresenter>();
             container.RegisterType<AppointmentPresenter>().As<IAppointmentPresenter>();
+            container.RegisterType<ContactPresenter>().As<IContactPresenter>();
         }
     }
 }

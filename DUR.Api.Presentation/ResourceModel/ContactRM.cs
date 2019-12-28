@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using DUR.Api.Entities.Contacts;
-using DUR.Api.Entities.Default;
 
-namespace DUR.Api.Entities
+namespace DUR.Api.Presentation.ResourceModel
 {
-    public class Contact : Base
+    public class ContactRM : BaseRM
     {
         public Guid IdContact { get; set; }
         public string FirstName { get; set; }
@@ -18,5 +16,12 @@ namespace DUR.Api.Entities
         public string Mail { get; set; }
 
         public ContactType Type { get; set; }
+        public string ContactType
+        {
+            get
+            {
+                return Type.ToString();
+            }
+        }
     }
 }

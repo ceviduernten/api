@@ -12,6 +12,7 @@ namespace DUR.Api.Services
             // Queries
             container.RegisterType<GroupQueries>().As<IQueries<Group>>();
             container.RegisterType<AppointmentQueries>().As<IQueries<Appointment>>();
+            container.RegisterType<ContactQueries>().As<IQueries<Contact>>();
         }
     }
 }

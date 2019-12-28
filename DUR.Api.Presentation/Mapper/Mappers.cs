@@ -13,6 +13,8 @@ namespace DUR.Api.Presentation.Mapper
             CreateMap<GroupRM, Group>();
             CreateMap<Appointment, AppointmentRM>();
             CreateMap<AppointmentRM, Appointment>();
+            CreateMap<Contact, ContactRM>();
+            CreateMap<ContactRM, Contact>();
         }
     }
 }

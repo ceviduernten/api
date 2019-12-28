@@ -12,6 +12,7 @@ namespace DUR.Api.Services
             container.RegisterType<EventService>().As<IEventService>();
             container.RegisterType<GroupService>().As<IGroupService>();
             container.RegisterType<AppointmentService>().As<IAppointmentService>();
+            container.RegisterType<ContactService>().As<IContactService>();
         }
     }
 }

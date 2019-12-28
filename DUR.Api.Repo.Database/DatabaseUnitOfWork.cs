@@ -15,6 +15,7 @@ namespace DUR.Api.Repo.Database
 
         private Repository<Group> _groupRepository;
         private Repository<Appointment> _appointmentRepository;
+        private Repository<Contact> _contactRepository;
 
         public DatabaseUnitOfWork(IOptions<DatabaseOptions> options)
         {
@@ -77,6 +78,12 @@ namespace DUR.Api.Repo.Database
         {
             _appointmentRepository ??= new Repository<Appointment>(_dataContext);
             return _appointmentRepository;
+        }
+
+        public IRepository<Contact> ContactRepository()
+        {
+            _contactRepository ??= new Repository<Contact>(_dataContext);
+            return _contactRepository;
         }
     }
 }
