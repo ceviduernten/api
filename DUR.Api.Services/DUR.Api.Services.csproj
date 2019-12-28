@@ -8,6 +8,7 @@
     <Folder Include="Interfaces\" />
     <Folder Include="Queries\" />
     <Folder Include="Services\" />
+    <Folder Include="Queries\Filters\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.1" />

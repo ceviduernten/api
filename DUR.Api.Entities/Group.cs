@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DUR.Api.Entities.Default;
 
 namespace DUR.Api.Entities
@@ -9,5 +10,8 @@ namespace DUR.Api.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public string Leaders { get; set; }
+        public string Mail { get; set; }
+
+        public List<Appointment> Appointments { get; set; }
     }
 }

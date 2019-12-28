@@ -14,6 +14,7 @@ namespace DUR.Api.Repo.Database
         private readonly IOptions<DatabaseOptions> _databaseOptions;
 
         private Repository<Group> _groupRepository;
+        private Repository<Appointment> _appointmentRepository;
 
         public DatabaseUnitOfWork(IOptions<DatabaseOptions> options)
         {
@@ -38,7 +39,7 @@ namespace DUR.Api.Repo.Database
 
         public IDatabaseUnitOfWork GetCurrent()
         {
-            _dataContext = _dataContext ?? (_dataContext = new RepositoryContext(_databaseOptions));
+            _dataContext ??= (_dataContext = new RepositoryContext(_databaseOptions));
             return this;
         }
 
@@ -68,9 +69,14 @@ namespace DUR.Api.Repo.Database
 
         public IRepository<Group> GroupRepository()
         {
-            _groupRepository = _groupRepository ?? new Repository<Group>(_dataContext);
+            _groupRepository ??= new Repository<Group>(_dataContext);
             return _groupRepository;
         }
 
+        public IRepository<Appointment> AppointmentRepository()
+        {
+            _appointmentRepository ??= new Repository<Appointment>(_dataContext);
+            return _appointmentRepository;
+        }
     }
 }

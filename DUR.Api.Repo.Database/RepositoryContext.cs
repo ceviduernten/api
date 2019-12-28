@@ -21,6 +21,7 @@ namespace DUR.Api.Repo.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new GroupConfiguration());
+            modelBuilder.ApplyConfiguration(new AppointmentConfiguration());
             base.OnModelCreating(modelBuilder);
         }
 

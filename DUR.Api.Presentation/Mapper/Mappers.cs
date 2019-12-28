@@ -9,8 +9,10 @@ namespace DUR.Api.Presentation.Mapper
         public Mappers()
         {
             CreateMap<Event, EventRM>();
-            CreateMap<Group, GroupRM>();
+            CreateMap<Group, GroupRM>().ForMember(x => x.Mail, opt => opt.Ignore());
             CreateMap<GroupRM, Group>();
+            CreateMap<Appointment, AppointmentRM>();
+            CreateMap<AppointmentRM, Appointment>();
         }
     }
 }

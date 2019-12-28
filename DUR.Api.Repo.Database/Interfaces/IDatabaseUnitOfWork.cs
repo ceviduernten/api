@@ -13,5 +13,6 @@ namespace DUR.Api.Repo.Database.Interfaces
         void Rollback();
         Guid UniqueId { get; set; }
         IRepository<Group> GroupRepository();
+        IRepository<Appointment> AppointmentRepository();
     }
 }
