@@ -10,5 +10,6 @@ namespace DUR.Api.Presentation.Interfaces.Presenter
         bool Update(AppointmentRM entity);
         bool Add(AppointmentRM entity);
         List<AppointmentRM> GetByGroup(Guid group);
+        AppointmentRM GetNextAppointment(Guid group);
     }
 }

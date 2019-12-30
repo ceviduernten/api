@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using DUR.Api.Entities;
 using DUR.Api.Presentation.Interfaces.Presenter;
@@ -43,6 +44,11 @@ namespace DUR.Api.Presentation.Presenter
             var all = _appointmentService.GetAppointmentsByGroup(group);
             var returnMap = _mapper.Map<List<Appointment>, List<AppointmentRM>>(all);
             return returnMap;
+        }
+
+        public AppointmentRM GetNextAppointment(Guid group)
+        {
+            return GetByGroup(group).OrderBy(x => x.Date).FirstOrDefault();
         }
 
         public bool Update(AppointmentRM entity)

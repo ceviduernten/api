@@ -19,6 +19,7 @@ namespace DUR.Api.Services.Services
         public List<Appointment> GetAppointmentsByGroup(Guid group)
         {
             var appointments = (querier as AppointmentQueries).GetFilteredByGroup(group).ToList();
+            appointments = appointments.Where(x => x.Date >= DateTime.Now.AddDays(-1)).ToList();
             return appointments;
         }
     }

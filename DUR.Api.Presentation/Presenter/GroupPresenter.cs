@@ -28,22 +28,33 @@ namespace DUR.Api.Presentation.Presenter
 
         public bool DeleteById(Guid id)
         {
-            throw new NotImplementedException();
+            return _groupService.DeleteById(id);
         }
 
         public override GroupRM GetBlank()
         {
-            throw new NotImplementedException();
+            return new GroupRM();
         }
 
         public bool Update(GroupRM entity)
         {
-            throw new NotImplementedException();
+            var db = _mapper.Map<GroupRM, Group>(entity);
+            var elem = _groupService.Update(db);
+            return (elem != null);
         }
 
         public override void UpdateBlank(GroupRM entity)
         {
-            throw new NotImplementedException();
+            // NOTHING TO DO HERE
+        }
+
+        public override GroupRM GetById(Guid id)
+        {
+            var entity = _groupService.GetById(id);
+            var model = _mapper.Map<Group, GroupRM>(entity);
+            UpdateBlank(model);
+            if (model != null) model.Mail = entity.Mail;
+            return model;
         }
     }
 }

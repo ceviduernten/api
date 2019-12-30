@@ -10,6 +10,7 @@ COPY DUR.Api.Presentation/DUR.Api.Presentation.csproj DUR.Api.Presentation/
 COPY DUR.Api.Entities/DUR.Api.Entities.csproj DUR.Api.Entities/
 COPY DUR.Api.Services/DUR.Api.Services.csproj DUR.Api.Services/
 COPY DUR.Api.Repo.Nextcloud/DUR.Api.Repo.Nextcloud.csproj DUR.Api.Repo.Nextcloud/
+COPY DUR.Api.Repo.Database/DUR.Api.Repo.Database.csproj DUR.Api.Repo.Database/
 COPY DUR.Api.Settings/DUR.Api.Settings.csproj DUR.Api.Settings/
 RUN dotnet restore "DUR.Api.Web/DUR.Api.Web.csproj"
 COPY . .

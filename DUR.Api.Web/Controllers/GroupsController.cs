@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DUR.Api.Presentation.Interfaces.Presenter;
 using DUR.Api.Presentation.ResourceModel;
 using DUR.Api.Web.Default;
@@ -26,7 +27,7 @@ namespace DUR.Api.Web.Controllers
             {
                 var cacheEntryOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(15));
 
-                var res = _groupPresenter.GetAll();
+                var res = _groupPresenter.GetAll().OrderBy(x => x.Name).ToList();
                 groups = res;
 
                 _cache.Set("groups", res, cacheEntryOptions);
@@ -47,6 +48,43 @@ namespace DUR.Api.Web.Controllers
             {
                 return Json(new InfoJsonResult(500, "Error on adding group"));
             }
+        }
+
+        [HttpDelete("{group}")]
+        public JsonResult DeleteGroup(Guid group)
+        {
+            _cache.Remove("groups");
+            var success = _groupPresenter.DeleteById(group);
+            if (success)
+            {
+                return Json(new InfoJsonResult(200, "successfully deleted group"));
+            }
+            else
+            {
+                return Json(new InfoJsonResult(500, "Error on deleting group"));
+            }
+        }
+
+        [HttpPatch("{IdGroup}")]
+        public JsonResult UpdateGroup(GroupRM group)
+        {
+            _cache.Remove("groups");
+            var success = _groupPresenter.Update(group);
+            if (success)
+            {
+                return Json(new InfoJsonResult(200, "successfully updated group"));
+            }
+            else
+            {
+                return Json(new InfoJsonResult(500, "Error on updating group"));
+            }
+        }
+
+        [HttpGet("{contact}")]
+        public JsonResult GetContact(Guid contact)
+        {
+            var res = _groupPresenter.GetById(contact);
+            return Json(new SingleDataJsonResult<GroupRM>(200, "contacts successfully returned", res));
         }
     }
 }
