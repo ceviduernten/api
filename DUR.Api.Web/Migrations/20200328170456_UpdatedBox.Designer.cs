@@ -3,15 +3,17 @@ using System;
 using DUR.Api.Repo.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DUR.Api.Web.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20200328170456_UpdatedBox")]
+    partial class UpdatedBox
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -230,7 +232,7 @@ namespace DUR.Api.Web.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("LocationIdStorageLocation")
+                    b.Property<Guid>("LocationIdStorageLocation")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("ModDate")
@@ -244,7 +246,7 @@ namespace DUR.Api.Web.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("integer");
 
-                    b.Property<int>("QuantityType")
+                    b.Property<int>("Vulgo")
                         .HasColumnType("integer");
 
                     b.HasKey("IdItem");
@@ -324,7 +326,8 @@ namespace DUR.Api.Web.Migrations
                     b.HasOne("DUR.Api.Entities.Stuff.StorageLocation", "Location")
                         .WithMany("Items")
                         .HasForeignKey("LocationIdStorageLocation")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -18,6 +18,7 @@
   <ItemGroup>
     <Folder Include="Configurations\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DUR.Api.Entities\DUR.Api.Entities.csproj" />

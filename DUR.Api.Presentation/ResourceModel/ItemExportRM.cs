@@ -1,0 +1,16 @@
+﻿using System;
+using DUR.Api.Entities.Stuff;
+
+namespace DUR.Api.Presentation.ResourceModel
+{
+    public class ItemExportRM
+    {
+        public Guid IdItem { get; set; }
+        public string Description { get; set; }
+        public int Quantity { get; set; }
+        public string QuantityType { get; set; }
+        public double Price { get; set; }
+        public string Location { get; set; }
+        public string Box { get; set; }
+    }
+}

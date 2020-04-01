@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using DUR.Api.Entities;
+using DUR.Api.Entities.Stuff;
 using DUR.Api.Repo.Database.Interfaces;
 using DUR.Api.Settings;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,9 @@ namespace DUR.Api.Repo.Database
         private Repository<Group> _groupRepository;
         private Repository<Appointment> _appointmentRepository;
         private Repository<Contact> _contactRepository;
+        private Repository<Box> _boxRepository;
+        private Repository<Item> _itemRepository;
+        private Repository<StorageLocation> _storageLocationRepoistory;
 
         public DatabaseUnitOfWork(IOptions<DatabaseOptions> options)
         {
@@ -84,6 +88,24 @@ namespace DUR.Api.Repo.Database
         {
             _contactRepository ??= new Repository<Contact>(_dataContext);
             return _contactRepository;
+        }
+
+        public IRepository<Box> BoxRepository()
+        {
+            _boxRepository ??= new Repository<Box>(_dataContext);
+            return _boxRepository;
+        }
+
+        public IRepository<Item> ItemRepository()
+        {
+            _itemRepository ??= new Repository<Item>(_dataContext);
+            return _itemRepository;
+        }
+
+        public IRepository<StorageLocation> StorageLocationRepository()
+        {
+            _storageLocationRepoistory ??= new Repository<StorageLocation>(_dataContext);
+            return _storageLocationRepoistory;
         }
     }
 }

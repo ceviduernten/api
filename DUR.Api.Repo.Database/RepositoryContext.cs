@@ -23,6 +23,9 @@ namespace DUR.Api.Repo.Database
             modelBuilder.ApplyConfiguration(new GroupConfiguration());
             modelBuilder.ApplyConfiguration(new AppointmentConfiguration());
             modelBuilder.ApplyConfiguration(new ContactConfiguration());
+            modelBuilder.ApplyConfiguration(new StorageLocationConfiguration());
+            modelBuilder.ApplyConfiguration(new BoxConfiguration());
+            modelBuilder.ApplyConfiguration(new ItemConfiguration());
             base.OnModelCreating(modelBuilder);
         }
 

@@ -3,15 +3,17 @@ using System;
 using DUR.Api.Repo.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DUR.Api.Web.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20200322151308_StuffEntities")]
+    partial class StuffEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,6 +62,58 @@ namespace DUR.Api.Web.Migrations
                     b.HasIndex("GroupId");
 
                     b.ToTable("Appointment");
+                });
+
+            modelBuilder.Entity("DUR.Api.Entities.Box", b =>
+                {
+                    b.Property<Guid>("IdBox")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("BoxType")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Color")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreateDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("InUse")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("LocationIdStorageLocation")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("ModDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("Producer")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("Stackable")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("WithCover")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("IdBox");
+
+                    b.HasIndex("LocationIdStorageLocation");
+
+                    b.ToTable("Box");
                 });
 
             modelBuilder.Entity("DUR.Api.Entities.Contact", b =>
@@ -153,62 +207,7 @@ namespace DUR.Api.Web.Migrations
                     b.ToTable("Group");
                 });
 
-            modelBuilder.Entity("DUR.Api.Entities.Stuff.Box", b =>
-                {
-                    b.Property<Guid>("IdBox")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("BoxType")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Color")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("CreateDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp without time zone")
-                        .HasDefaultValueSql("NOW()");
-
-                    b.Property<bool>("Deleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(false);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("InUse")
-                        .HasColumnType("boolean");
-
-                    b.Property<Guid>("LocationIdStorageLocation")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("ModDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp without time zone")
-                        .HasDefaultValueSql("NOW()");
-
-                    b.Property<string>("Producer")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Size")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("Stackable")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("WithCover")
-                        .HasColumnType("boolean");
-
-                    b.HasKey("IdBox");
-
-                    b.HasIndex("LocationIdStorageLocation");
-
-                    b.ToTable("Box");
-                });
-
-            modelBuilder.Entity("DUR.Api.Entities.Stuff.Item", b =>
+            modelBuilder.Entity("DUR.Api.Entities.Item", b =>
                 {
                     b.Property<Guid>("IdItem")
                         .ValueGeneratedOnAdd()
@@ -230,7 +229,7 @@ namespace DUR.Api.Web.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("LocationIdStorageLocation")
+                    b.Property<Guid>("LocationIdStorageLocation")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("ModDate")
@@ -244,7 +243,7 @@ namespace DUR.Api.Web.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("integer");
 
-                    b.Property<int>("QuantityType")
+                    b.Property<int>("Vulgo")
                         .HasColumnType("integer");
 
                     b.HasKey("IdItem");
@@ -256,7 +255,7 @@ namespace DUR.Api.Web.Migrations
                     b.ToTable("Item");
                 });
 
-            modelBuilder.Entity("DUR.Api.Entities.Stuff.StorageLocation", b =>
+            modelBuilder.Entity("DUR.Api.Entities.StorageLocation", b =>
                 {
                     b.Property<Guid>("IdStorageLocation")
                         .ValueGeneratedOnAdd()
@@ -306,25 +305,26 @@ namespace DUR.Api.Web.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DUR.Api.Entities.Stuff.Box", b =>
+            modelBuilder.Entity("DUR.Api.Entities.Box", b =>
                 {
-                    b.HasOne("DUR.Api.Entities.Stuff.StorageLocation", "Location")
+                    b.HasOne("DUR.Api.Entities.StorageLocation", "Location")
                         .WithMany("Boxes")
                         .HasForeignKey("LocationIdStorageLocation")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DUR.Api.Entities.Stuff.Item", b =>
+            modelBuilder.Entity("DUR.Api.Entities.Item", b =>
                 {
-                    b.HasOne("DUR.Api.Entities.Stuff.Box", "Box")
+                    b.HasOne("DUR.Api.Entities.Box", "Box")
                         .WithMany("Items")
                         .HasForeignKey("BoxIdBox");
 
-                    b.HasOne("DUR.Api.Entities.Stuff.StorageLocation", "Location")
+                    b.HasOne("DUR.Api.Entities.StorageLocation", "Location")
                         .WithMany("Items")
                         .HasForeignKey("LocationIdStorageLocation")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

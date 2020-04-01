@@ -45,7 +45,10 @@ namespace DUR.Api.Web
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddAutofac();
             services.AddMemoryCache();
-            services.AddMvc();
+            services.AddMvc().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
             services.AddDbContext<RepositoryContext>();
             services.Configure<MvcOptions>(options =>
             {

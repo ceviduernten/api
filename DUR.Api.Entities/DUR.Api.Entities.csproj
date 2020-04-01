@@ -8,5 +8,6 @@
     <Folder Include="Default\" />
     <Folder Include="Events\" />
     <Folder Include="Contacts\" />
+    <Folder Include="Stuff\" />
   </ItemGroup>
 </Project>

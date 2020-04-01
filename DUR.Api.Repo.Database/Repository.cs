@@ -3,6 +3,7 @@ using DUR.Api.Repo.Database.Interfaces;
 using DUR.Api.Entities.Default;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace DUR.Api.Repo.Database
 {
@@ -66,7 +67,7 @@ namespace DUR.Api.Repo.Database
 
         public IQueryable<T> GetAll()
         {
-            var all = DbSet.Where(o => !o.Deleted);
+            var all = DbSet.Include(DataContext.GetIncludePaths(typeof(T))).Where(o => !o.Deleted);
             return all;
         }
 
@@ -80,7 +81,13 @@ namespace DUR.Api.Repo.Database
         {
             if (id > 0)
             {
-                var entity = DbSet.Find(id);
+                var primaryKey = DataContext.Model.FindEntityType(typeof(T)).FindPrimaryKey().Properties;
+                var parameter = Expression.Parameter(typeof(T), "e");
+                var predicate = Expression.Lambda<Func<T, bool>>(Expression.Equal(Expression.PropertyOrField(parameter, primaryKey.Single().Name), Expression.Constant(id)), parameter);
+
+                var query = DbSet.AsQueryable();
+                query = query.Include(DataContext.GetIncludePaths(typeof(T)));
+                var entity = query.FirstOrDefault(predicate);
                 return !entity.Deleted ? entity : null;
             }
             else
@@ -93,7 +100,13 @@ namespace DUR.Api.Repo.Database
         {
             if (!string.IsNullOrWhiteSpace(id.ToString()))
             {
-                var entity = DbSet.Find(id);
+                var primaryKey = DataContext.Model.FindEntityType(typeof(T)).FindPrimaryKey().Properties;
+                var parameter = Expression.Parameter(typeof(T), "e");
+                var predicate = Expression.Lambda<Func<T, bool>>(Expression.Equal(Expression.PropertyOrField(parameter, primaryKey.Single().Name), Expression.Constant(id)), parameter);
+
+                var query = DbSet.AsQueryable();
+                query = query.Include(DataContext.GetIncludePaths(typeof(T)));
+                var entity = query.FirstOrDefault(predicate);
                 return !entity.Deleted ? entity : null;
             }
             else
