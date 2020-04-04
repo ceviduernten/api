@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using DUR.Api.Entities.Stuff;
 using DUR.Api.Presentation.Interfaces.Presenter;
@@ -52,6 +54,13 @@ namespace DUR.Api.Presentation.Presenter
         public override void UpdateBlank(BoxRM entity)
         {
             // NOTHING TO DO HERE
+        }
+
+        public new List<BoxListRM> GetAll()
+        {
+            var all = _boxService.GetAll().ToList();
+            var returnMap = _mapper.Map<IEnumerable<Box>, List<BoxListRM>>(all);
+            return returnMap;
         }
     }
 }

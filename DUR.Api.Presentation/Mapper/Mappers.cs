@@ -43,6 +43,9 @@ namespace DUR.Api.Presentation.Mapper
                 .ForMember(dest => dest.Price, opt => opt.MapFrom(o => o.Price))
                 .ForMember(dest => dest.Box, opt => opt.MapFrom(o => o.Box.Description))
                 .ForMember(dest => dest.Location, opt => opt.MapFrom(o => o.Location.ShortName));
+
+            CreateMap<Box, BoxListRM>()
+                .ForMember(dest => dest.Location, opt => opt.MapFrom(o => o.Location.ShortName));
         }
     }
 }
