@@ -56,7 +56,7 @@ namespace DUR.Api.Presentation.Presenter
             // NOTHING TO DO HERE
         }
 
-        public new List<BoxListRM> GetAll()
+        public List<BoxListRM> GetList()
         {
             var all = _boxService.GetAll().ToList();
             var returnMap = _mapper.Map<IEnumerable<Box>, List<BoxListRM>>(all);

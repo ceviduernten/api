@@ -19,7 +19,7 @@ namespace DUR.Api.Web.Controllers
         [HttpGet]
         public JsonResult GetList()
         {
-            var res = _boxPresenter.GetAll();
+            var res = _boxPresenter.GetList();
             return Json(new DataJsonResult<BoxListRM>(200, "boxes successfully returned", res));
         }
 
