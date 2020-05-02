@@ -2,6 +2,7 @@
 using DUR.Api.Presentation.Interfaces.Presenter;
 using DUR.Api.Presentation.ResourceModel;
 using DUR.Api.Web.Default;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DUR.Api.Web.Controllers
@@ -29,6 +30,7 @@ namespace DUR.Api.Web.Controllers
             return Json(new SingleDataJsonResult<AppointmentRM>(200, "appointment successfully returned", res));
         }
 
+        [Authorize("Scouting")]
         [HttpPost]
         public JsonResult AddAppointment(AppointmentRM appointment)
         {
@@ -43,6 +45,7 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
+        [Authorize("Scouting")]
         [HttpDelete("{appointment}")]
         public JsonResult DeleteAppointment(Guid appointment)
         {
@@ -57,6 +60,7 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
+        [Authorize("Scouting")]
         [HttpPatch("{IdAppointment}")]
         public JsonResult UpdateAppointment(AppointmentRM appointment)
         {
@@ -71,6 +75,7 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
+        [Authorize("Scouting")]
         [HttpGet("{appointment}")]
         public JsonResult GetAppointment(Guid appointment)
         {

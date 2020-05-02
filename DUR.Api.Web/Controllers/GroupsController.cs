@@ -4,6 +4,7 @@ using System.Linq;
 using DUR.Api.Presentation.Interfaces.Presenter;
 using DUR.Api.Presentation.ResourceModel;
 using DUR.Api.Web.Default;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -35,6 +36,7 @@ namespace DUR.Api.Web.Controllers
             return Json(new DataJsonResult<GroupRM>(200, "Groups successfully returned", groups));
         }
 
+        [Authorize("Admin")]
         [HttpPost]
         public JsonResult AddGroup(GroupRM group)
         {
@@ -50,6 +52,7 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
+        [Authorize("Admin")]
         [HttpDelete("{group}")]
         public JsonResult DeleteGroup(Guid group)
         {
@@ -65,6 +68,7 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
+        [Authorize("Admin")]
         [HttpPatch("{IdGroup}")]
         public JsonResult UpdateGroup(GroupRM group)
         {

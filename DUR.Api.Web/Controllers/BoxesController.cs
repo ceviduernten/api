@@ -3,10 +3,12 @@ using System.Linq;
 using DUR.Api.Presentation.Interfaces.Presenter;
 using DUR.Api.Presentation.ResourceModel;
 using DUR.Api.Web.Default;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DUR.Api.Web.Controllers
 {
+    [Authorize("All")]
     public class BoxesController : DefaultController
     {
         private readonly IBoxPresenter _boxPresenter;
@@ -23,6 +25,7 @@ namespace DUR.Api.Web.Controllers
             return Json(new DataJsonResult<BoxListRM>(200, "boxes successfully returned", res));
         }
 
+        [Authorize("Stuff")]
         [HttpPost]
         public JsonResult AddBox(BoxRM group)
         {
@@ -37,6 +40,7 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
+        [Authorize("Stuff")]
         [HttpDelete("{box}")]
         public JsonResult DeleteBox(Guid box)
         {
@@ -51,6 +55,7 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
+        [Authorize("Stuff")]
         [HttpPatch("{IdBox}")]
         public JsonResult UpdateBox(BoxRM box)
         {

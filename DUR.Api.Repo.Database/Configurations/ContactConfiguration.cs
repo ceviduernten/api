@@ -1,5 +1,4 @@
 ﻿using DUR.Api.Entities;
-using DUR.Api.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

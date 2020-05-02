@@ -16,6 +16,7 @@ namespace DUR.Api.Presentation
             container.RegisterType<BoxPresenter>().As<IBoxPresenter>();
             container.RegisterType<ItemPresenter>().As<IItemPresenter>();
             container.RegisterType<ExportPresenter>().As<IExportPresenter>();
+            container.RegisterType<UserPresenter>().As<IUserPresenter>();
         }
     }
 }

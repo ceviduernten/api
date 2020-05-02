@@ -9,5 +9,6 @@ namespace DUR.Api.Presentation.Interfaces.Presenter
         bool DeleteById(Guid id);
         bool Update(UserRM entity);
         bool Add(UserRM entity);
+        UserRM ValidateUser(UserRM entity);
     }
 }

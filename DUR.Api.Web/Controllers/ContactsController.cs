@@ -3,6 +3,7 @@ using System.Linq;
 using DUR.Api.Presentation.Interfaces.Presenter;
 using DUR.Api.Presentation.ResourceModel;
 using DUR.Api.Web.Default;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -34,6 +35,7 @@ namespace DUR.Api.Web.Controllers
             return Json(new SingleDataJsonResult<ContactGroupRM>(200, "contacts successfully returned", contacts));
         }
 
+        [Authorize("Admin")]
         [HttpGet("List")]
         public JsonResult GetList()
         {
@@ -41,6 +43,7 @@ namespace DUR.Api.Web.Controllers
             return Json(new DataJsonResult<ContactRM>(200, "contacts successfully returned", res));
         }
 
+        [Authorize("Admin")]
         [HttpPost]
         public JsonResult AddContact(ContactRM group)
         {
@@ -56,6 +59,7 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
+        [Authorize("Admin")]
         [HttpDelete("{contact}")]
         public JsonResult DeleteContact(Guid contact)
         {
@@ -71,6 +75,7 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
+        [Authorize("Admin")]
         [HttpPatch("{IdContact}")]
         public JsonResult UpdateContact(ContactRM contact)
         {
@@ -86,6 +91,7 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
+        [Authorize("Admin")]
         [HttpGet("{contact}")]
         public JsonResult GetContact(Guid contact)
         {

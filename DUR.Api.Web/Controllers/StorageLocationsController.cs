@@ -3,6 +3,7 @@ using System.Linq;
 using DUR.Api.Presentation.Interfaces.Presenter;
 using DUR.Api.Presentation.ResourceModel;
 using DUR.Api.Web.Default;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DUR.Api.Web.Controllers
@@ -23,6 +24,7 @@ namespace DUR.Api.Web.Controllers
             return Json(new DataJsonResult<StorageLocationRM>(200, "storage locations successfully returned", res));
         }
 
+        [Authorize("Stuff")]
         [HttpPost]
         public JsonResult AddContact(StorageLocationRM group)
         {
@@ -37,6 +39,7 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
+        [Authorize("Stuff")]
         [HttpDelete("{storageLocation}")]
         public JsonResult DeleteContact(Guid storageLocation)
         {
@@ -51,6 +54,7 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
+        [Authorize("Stuff")]
         [HttpPatch("{IdStorageLocation}")]
         public JsonResult UpdateStorageLocation(StorageLocationRM contact)
         {

@@ -3,6 +3,7 @@ using System.Linq;
 using DUR.Api.Presentation.Interfaces.Presenter;
 using DUR.Api.Presentation.ResourceModel;
 using DUR.Api.Web.Default;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DUR.Api.Web.Controllers
@@ -16,6 +17,7 @@ namespace DUR.Api.Web.Controllers
             _userPresenter = userPresenter;
         }
 
+        [Authorize("Admin")]
         [HttpGet]
         public JsonResult GetList()
         {
@@ -23,6 +25,21 @@ namespace DUR.Api.Web.Controllers
             return Json(new DataJsonResult<UserRM>(200, "boxes successfully returned", res));
         }
 
+        [HttpPost]
+        public JsonResult Login(UserRM user)
+        {
+            var result = _userPresenter.ValidateUser(user);
+            if (result != null)
+            {
+                return Json(new SingleDataJsonResult<UserRM>(200, "successfully added user", result));
+            }
+            else
+            {
+                return Json(new InfoJsonResult(500, "Error on adding user"));
+            }
+        }
+
+        [Authorize("Admin")]
         [HttpPost]
         public JsonResult AddUser(UserRM user)
         {
@@ -37,6 +54,7 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
+        [Authorize("Admin")]
         [HttpDelete("{user}")]
         public JsonResult DeleteUser(Guid user)
         {
@@ -51,6 +69,7 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
+        [Authorize("Admin")]
         [HttpPatch("{IdUser}")]
         public JsonResult UpdateUser(UserRM user)
         {
@@ -65,6 +84,7 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
+        [Authorize("Admin")]
         [HttpGet("{user}")]
         public JsonResult GetUser(Guid user)
         {

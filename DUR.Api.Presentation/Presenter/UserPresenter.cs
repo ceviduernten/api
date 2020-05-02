@@ -47,5 +47,18 @@ namespace DUR.Api.Presentation.Presenter
         {
             // NOTHING TO DO HERE
         }
+
+        public UserRM ValidateUser(UserRM entity)
+        {
+            var user = _mapper.Map<User>(entity);
+            string token = _userService.ValidateUser(user);
+            var db = _userService.GetByUsername(entity.LoginName);
+            entity.IdUser = db.IdUser;
+            entity.Token = token;
+            entity.Role = db.Role;
+            entity.FullName = db.FullName;
+            entity.Vulgo = db.Vulgo;
+            return entity;
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using DUR.Api.Presentation.Interfaces.Presenter;
 using DUR.Api.Presentation.ResourceModel;
 using DUR.Api.Web.Default;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DUR.Api.Web.Controllers
@@ -23,6 +24,7 @@ namespace DUR.Api.Web.Controllers
             return Json(new DataJsonResult<ItemListRM>(200, "items successfully returned", res));
         }
 
+        [Authorize("Stuff")]
         [HttpPost]
         public JsonResult AddItem(ItemRM item)
         {
@@ -37,6 +39,7 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
+        [Authorize("Stuff")]
         [HttpDelete("{item}")]
         public JsonResult DeleteItem(Guid item)
         {
@@ -51,6 +54,7 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
+        [Authorize("Stuff")]
         [HttpPatch("{IdItem}")]
         public JsonResult UpdateItem(ItemRM item)
         {
