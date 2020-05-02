@@ -9,5 +9,6 @@
     <Folder Include="Events\" />
     <Folder Include="Contacts\" />
     <Folder Include="Stuff\" />
+    <Folder Include="Admin\" />
   </ItemGroup>
 </Project>

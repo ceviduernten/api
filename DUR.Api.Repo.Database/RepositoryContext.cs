@@ -26,6 +26,7 @@ namespace DUR.Api.Repo.Database
             modelBuilder.ApplyConfiguration(new StorageLocationConfiguration());
             modelBuilder.ApplyConfiguration(new BoxConfiguration());
             modelBuilder.ApplyConfiguration(new ItemConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
             base.OnModelCreating(modelBuilder);
         }
 

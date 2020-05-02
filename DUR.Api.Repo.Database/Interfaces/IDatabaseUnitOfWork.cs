@@ -1,5 +1,6 @@
 ﻿using System;
 using DUR.Api.Entities;
+using DUR.Api.Entities.Admin;
 using DUR.Api.Entities.Stuff;
 
 namespace DUR.Api.Repo.Database.Interfaces
@@ -20,5 +21,6 @@ namespace DUR.Api.Repo.Database.Interfaces
         IRepository<Box> BoxRepository();
         IRepository<Item> ItemRepository();
         IRepository<StorageLocation> StorageLocationRepository();
+        IRepository<User> UserRepository();
     }
 }

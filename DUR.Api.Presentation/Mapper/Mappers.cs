@@ -2,6 +2,7 @@
 using DUR.Api.Presentation.ResourceModel;
 using DUR.Api.Entities;
 using DUR.Api.Entities.Stuff;
+using DUR.Api.Entities.Admin;
 
 namespace DUR.Api.Presentation.Mapper
 {
@@ -19,6 +20,9 @@ namespace DUR.Api.Presentation.Mapper
 
             CreateMap<Box, BoxRM>();
             CreateMap<BoxRM, Box>();
+
+            CreateMap<User, UserRM>();
+            CreateMap<UserRM, User>();
 
             CreateMap<Item, ItemRM>();
             CreateMap<ItemRM, Item>();

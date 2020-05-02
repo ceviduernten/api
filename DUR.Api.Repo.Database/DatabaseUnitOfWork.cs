@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using DUR.Api.Entities;
+using DUR.Api.Entities.Admin;
 using DUR.Api.Entities.Stuff;
 using DUR.Api.Repo.Database.Interfaces;
 using DUR.Api.Settings;
@@ -20,6 +21,7 @@ namespace DUR.Api.Repo.Database
         private Repository<Box> _boxRepository;
         private Repository<Item> _itemRepository;
         private Repository<StorageLocation> _storageLocationRepoistory;
+        private Repository<User> _userRepository;
 
         public DatabaseUnitOfWork(IOptions<DatabaseOptions> options)
         {
@@ -106,6 +108,12 @@ namespace DUR.Api.Repo.Database
         {
             _storageLocationRepoistory ??= new Repository<StorageLocation>(_dataContext);
             return _storageLocationRepoistory;
+        }
+
+        public IRepository<User> UserRepository()
+        {
+            _userRepository ??= new Repository<User>(_dataContext);
+            return _userRepository;
         }
     }
 }
