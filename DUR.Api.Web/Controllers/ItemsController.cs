@@ -16,6 +16,7 @@ namespace DUR.Api.Web.Controllers
             _itemPresenter = itemPresenter;
         }
 
+        [Authorize("Scouting")]
         [HttpGet]
         public JsonResult GetList()
         {
@@ -23,7 +24,7 @@ namespace DUR.Api.Web.Controllers
             return Json(new DataJsonResult<ItemListRM>(200, "items successfully returned", res));
         }
 
-        [Authorize("Stuff")]
+        [Authorize("Scouting")]
         [HttpPost]
         public JsonResult AddItem(ItemRM item)
         {
@@ -38,7 +39,7 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
-        [Authorize("Stuff")]
+        [Authorize("Scouting")]
         [HttpDelete("{item}")]
         public JsonResult DeleteItem(Guid item)
         {
@@ -53,7 +54,7 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
-        [Authorize("Stuff")]
+        [Authorize("Scouting")]
         [HttpPatch("{IdItem}")]
         public JsonResult UpdateItem(ItemRM item)
         {

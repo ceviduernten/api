@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DUR.Api.Web.Controllers
 {
-    [Authorize("All")]
     public class BoxesController : DefaultController
     {
         private readonly IBoxPresenter _boxPresenter;
@@ -17,6 +16,7 @@ namespace DUR.Api.Web.Controllers
             _boxPresenter = boxPresenter;
         }
 
+        [Authorize("Scouting")]
         [HttpGet]
         public JsonResult GetList()
         {
@@ -24,7 +24,7 @@ namespace DUR.Api.Web.Controllers
             return Json(new DataJsonResult<BoxListRM>(200, "boxes successfully returned", res));
         }
 
-        [Authorize("Stuff")]
+        [Authorize("Scouting")]
         [HttpPost]
         public JsonResult AddBox(BoxRM group)
         {
@@ -39,7 +39,7 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
-        [Authorize("Stuff")]
+        [Authorize("Scouting")]
         [HttpDelete("{box}")]
         public JsonResult DeleteBox(Guid box)
         {
@@ -54,7 +54,7 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
-        [Authorize("Stuff")]
+        [Authorize("Scouting")]
         [HttpPatch("{IdBox}")]
         public JsonResult UpdateBox(BoxRM box)
         {

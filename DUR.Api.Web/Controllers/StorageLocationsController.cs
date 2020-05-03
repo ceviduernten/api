@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DUR.Api.Web.Controllers
 {
+    [Authorize("Scouting")]
     public class StorageLocationsController : DefaultController
     {
         private readonly IStorageLocationPresenter _storageLocationPresenter;
@@ -24,7 +25,6 @@ namespace DUR.Api.Web.Controllers
             return Json(new DataJsonResult<StorageLocationRM>(200, "storage locations successfully returned", res));
         }
 
-        [Authorize("Stuff")]
         [HttpPost]
         public JsonResult AddContact(StorageLocationRM group)
         {
@@ -39,7 +39,6 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
-        [Authorize("Stuff")]
         [HttpDelete("{storageLocation}")]
         public JsonResult DeleteContact(Guid storageLocation)
         {
@@ -54,7 +53,6 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
-        [Authorize("Stuff")]
         [HttpPatch("{IdStorageLocation}")]
         public JsonResult UpdateStorageLocation(StorageLocationRM contact)
         {
