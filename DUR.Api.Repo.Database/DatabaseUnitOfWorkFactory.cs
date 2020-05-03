@@ -1,5 +1,4 @@
-﻿using System;
-using DUR.Api.Repo.Database.Interfaces;
+﻿using DUR.Api.Repo.Database.Interfaces;
 
 namespace DUR.Api.Repo.Database
 {

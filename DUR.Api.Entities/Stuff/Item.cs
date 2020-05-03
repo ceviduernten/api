@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using DUR.Api.Entities.Contacts;
 using DUR.Api.Entities.Default;
 
 namespace DUR.Api.Entities.Stuff

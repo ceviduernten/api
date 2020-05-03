@@ -1,6 +1,6 @@
 #!/bin/bash
 docker login -u $1 -p $2
-actual_version="1.1.0"
+actual_version="2.0.0"
 echo $actual_version
 docker build -f DUR.Api.Web/Dockerfile -t ceviduernten/api:$actual_version .
 docker push ceviduernten/api:$actual_version

@@ -1,6 +1,4 @@
-﻿using System;
-using DUR.Api.Web.Auth;
-using Microsoft.AspNetCore.Builder;
+﻿using DUR.Api.Web.Auth;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DUR.Api.Web.Config

@@ -36,9 +36,21 @@ namespace DUR.Api.Presentation.Presenter
             return new UserRM();
         }
 
+        public new UserRM GetById(Guid id)
+        {
+            var db = base.GetById(id);
+            db.Password = "";
+            return db;
+        }
+
         public bool Update(UserRM entity)
         {
-            var db = _mapper.Map<UserRM, User>(entity);
+            var db = _userService.GetById(entity.IdUser);
+            db.LoginName = entity.LoginName;
+            db.FullName = entity.FullName;
+            db.Vulgo = entity.Vulgo;
+            db.Mail = entity.Mail;
+            db.Role = entity.Role;
             var elem = _userService.Update(db);
             return (elem != null);
         }

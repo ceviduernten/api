@@ -1,5 +1,4 @@
-﻿using System;
-using Autofac;
+﻿using Autofac;
 using DUR.Api.Repo.Database.Interfaces;
 
 namespace DUR.Api.Repo.Database

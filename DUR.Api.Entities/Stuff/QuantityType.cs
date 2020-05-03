@@ -1,5 +1,4 @@
-﻿using System;
-namespace DUR.Api.Entities.Stuff
+﻿namespace DUR.Api.Entities.Stuff
 {
     public enum QuantityType
     {

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using DUR.Api.Presentation.Interfaces.Presenter;
 using DUR.Api.Presentation.ResourceModel;
 using DUR.Api.Web.Default;
@@ -17,7 +16,7 @@ namespace DUR.Api.Web.Controllers
             _userPresenter = userPresenter;
         }
 
-        [Authorize("Admin")]
+        //[Authorize("Admin")]
         [HttpGet]
         public JsonResult GetList()
         {
@@ -39,7 +38,7 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
-        [Authorize("Admin")]
+        //[Authorize("Admin")]
         [HttpPost]
         public JsonResult AddUser(UserRM user)
         {
