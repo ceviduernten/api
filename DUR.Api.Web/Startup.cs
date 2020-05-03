@@ -38,6 +38,8 @@ namespace DUR.Api.Web
         {
             services.AddAutoMapper(c => c.AddProfile<Mappers>(), typeof(Startup));
             services.Configure<GeneralSettings>(Configuration.GetSection("GeneralSettings"));
+            services.Configure<GlobalSettings>(Configuration.GetSection("GlobalSettings"));
+            var globalSettings = Configuration.GetSection("GlobalSettings").Get<GlobalSettings>();
             services.Configure<NextcloudInterfaceSettings>(Configuration.GetSection("NextcloudInterfaceSettings"));
             services.Configure<DatabaseOptions>(option =>
             {
@@ -59,7 +61,7 @@ namespace DUR.Api.Web
             {
                 options.EnableEndpointRouting = false;
             });
-            var key = Encoding.ASCII.GetBytes("***REMOVED***");
+            var key = Encoding.ASCII.GetBytes(globalSettings.SecureString);
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

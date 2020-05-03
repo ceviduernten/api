@@ -7,6 +7,8 @@ using DUR.Api.Entities.Admin;
 using DUR.Api.Repo.Database.Interfaces;
 using DUR.Api.Services.Interfaces;
 using DUR.Api.Services.Queries;
+using DUR.Api.Settings;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace DUR.Api.Services.Services
@@ -14,12 +16,14 @@ namespace DUR.Api.Services.Services
     public class UserService : DatabaseServiceBase<User>, IUserService
     {
         private readonly ICryptoService _cryptoService;
+        private readonly GlobalSettings _globalSettings;
 
-        public UserService(IDatabaseUnitOfWorkFactory unitOfWorkFactory, ICryptoService cryptoService)
+        public UserService(IDatabaseUnitOfWorkFactory unitOfWorkFactory, ICryptoService cryptoService, IOptions<GlobalSettings> settings)
         {
             databaseUnitOfWork = unitOfWorkFactory.Create();
             querier = new UserQueries(databaseUnitOfWork);
             _cryptoService = cryptoService;
+            _globalSettings = settings.Value;
         }
 
         public User GetByUsername(string username)
@@ -33,7 +37,7 @@ namespace DUR.Api.Services.Services
             if (success != null)
             {
                 var tokenHandler = new JwtSecurityTokenHandler();
-                var key = Encoding.ASCII.GetBytes("***REMOVED***");
+                var key = Encoding.ASCII.GetBytes(_globalSettings.SecureString);
                 var token = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(new Claim[]
