@@ -25,7 +25,7 @@ namespace DUR.Api.Web.Controllers
             return Json(new DataJsonResult<UserRM>(200, "boxes successfully returned", res));
         }
 
-        [HttpPost]
+        [HttpPost("Login")]
         public JsonResult Login(UserRM user)
         {
             var result = _userPresenter.ValidateUser(user);

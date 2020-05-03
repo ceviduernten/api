@@ -17,6 +17,7 @@ namespace DUR.Api.Services
             container.RegisterType<ItemService>().As<IItemService>();
             container.RegisterType<StorageLocationService>().As<IStorageLocationService>();
             container.RegisterType<UserService>().As<IUserService>();
+            container.RegisterType<CryptoService>().As<ICryptoService>();
         }
     }
 }

@@ -6,5 +6,6 @@ namespace DUR.Api.Services.Interfaces
     {
         string ValidateUser(User user);
         User GetByUsername(string username);
+        new User Add(User user);
     }
 }

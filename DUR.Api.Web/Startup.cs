@@ -59,7 +59,7 @@ namespace DUR.Api.Web
             {
                 options.EnableEndpointRouting = false;
             });
-            var key = Encoding.ASCII.GetBytes("test");
+            var key = Encoding.ASCII.GetBytes("***REMOVED***");
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -90,7 +90,8 @@ namespace DUR.Api.Web
             }
 
             app.AddSwaggerConfig();
-            app.UseAuthorization();
+            //app.UseAuthorization();
+            app.UseAuthentication();
             app.AddCorsConfig();
             app.UseHttpsRedirection();
             app.AddRouteConfig();

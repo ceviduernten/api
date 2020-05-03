@@ -53,11 +53,14 @@ namespace DUR.Api.Presentation.Presenter
             var user = _mapper.Map<User>(entity);
             string token = _userService.ValidateUser(user);
             var db = _userService.GetByUsername(entity.LoginName);
-            entity.IdUser = db.IdUser;
             entity.Token = token;
-            entity.Role = db.Role;
-            entity.FullName = db.FullName;
-            entity.Vulgo = db.Vulgo;
+            if (db != null)
+            {
+                entity.Role = db.Role;
+                entity.FullName = db.FullName;
+                entity.Vulgo = db.Vulgo;
+                entity.IdUser = db.IdUser;
+            }
             return entity;
         }
     }
