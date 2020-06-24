@@ -11,6 +11,8 @@ namespace DUR.Api.Entities
         public string Description { get; set; }
         public string Leaders { get; set; }
         public string Mail { get; set; }
+        public string MailLeaders { get; set; }
+        public string NumberNotification { get; set; }
 
         public List<Appointment> Appointments { get; set; }
     }
