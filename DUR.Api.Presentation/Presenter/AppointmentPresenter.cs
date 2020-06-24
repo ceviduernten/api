@@ -13,11 +13,13 @@ namespace DUR.Api.Presentation.Presenter
     {
         private readonly IAppointmentService _appointmentService;
         private readonly IMapper _mapper;
+        private readonly IGroupMailService _groupMailService;
 
-        public AppointmentPresenter(IMapper mapper, IAppointmentService appointmentService) : base(appointmentService, mapper)
+        public AppointmentPresenter(IMapper mapper, IAppointmentService appointmentService, IGroupMailService groupMailService) : base(appointmentService, mapper)
         {
             _appointmentService = appointmentService;
             _mapper = mapper;
+            _groupMailService = groupMailService;
         }
 
         public bool Add(AppointmentRM entity)
@@ -25,6 +27,11 @@ namespace DUR.Api.Presentation.Presenter
             var model = _mapper.Map<Appointment>(entity);
             var result = _appointmentService.Add(model);
             var success = result != null;
+            if (success)
+            {
+                _groupMailService.InformGroup(result);
+                _groupMailService.InformLeaders(result);
+            }
             return success;
         }
 

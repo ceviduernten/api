@@ -18,6 +18,8 @@ namespace DUR.Api.Services
             container.RegisterType<StorageLocationService>().As<IStorageLocationService>();
             container.RegisterType<UserService>().As<IUserService>();
             container.RegisterType<CryptoService>().As<ICryptoService>();
+            container.RegisterType<MailService>().As<IMailService>();
+            container.RegisterType<GroupMailService>().As<IGroupMailService>();
         }
     }
 }

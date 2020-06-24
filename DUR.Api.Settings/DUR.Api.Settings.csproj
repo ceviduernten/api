@@ -7,4 +7,16 @@
   <ItemGroup>
     <Compile Remove="Class1.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Templates\" />
+    <Folder Include="Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Templates\MailTemplate.html" />
+    <None Remove="Images\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\MailTemplate.html" />
+    <EmbeddedResource Include="Images\Logo.png" />
+  </ItemGroup>
 </Project>

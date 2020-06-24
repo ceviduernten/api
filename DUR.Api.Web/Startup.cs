@@ -38,6 +38,7 @@ namespace DUR.Api.Web
         {
             services.AddAutoMapper(c => c.AddProfile<Mappers>(), typeof(Startup));
             services.Configure<GeneralSettings>(Configuration.GetSection("GeneralSettings"));
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
             services.Configure<GlobalSettings>(Configuration.GetSection("GlobalSettings"));
             var globalSettings = Configuration.GetSection("GlobalSettings").Get<GlobalSettings>();
             services.Configure<NextcloudInterfaceSettings>(Configuration.GetSection("NextcloudInterfaceSettings"));
