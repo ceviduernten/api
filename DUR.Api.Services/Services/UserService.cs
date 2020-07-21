@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using DUR.Api.Entities.Admin;
+using DUR.Api.Infrastructure.Interfaces;
 using DUR.Api.Repo.Database.Interfaces;
 using DUR.Api.Services.Interfaces;
 using DUR.Api.Services.Queries;
@@ -18,7 +19,7 @@ namespace DUR.Api.Services.Services
         private readonly ICryptoService _cryptoService;
         private readonly GlobalSettings _globalSettings;
 
-        public UserService(IDatabaseUnitOfWorkFactory unitOfWorkFactory, ICryptoService cryptoService, IOptions<GlobalSettings> settings)
+        public UserService(IDatabaseUnitOfWorkFactory unitOfWorkFactory, ICryptoService cryptoService, IOptions<GlobalSettings> settings, IApplicationLogger logger) : base(logger)
         {
             databaseUnitOfWork = unitOfWorkFactory.Create();
             querier = new UserQueries(databaseUnitOfWork);

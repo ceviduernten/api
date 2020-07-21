@@ -12,12 +12,13 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.5" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.6.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.6" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DUR.Api.Entities\DUR.Api.Entities.csproj" />
     <ProjectReference Include="..\DUR.Api.Repo.Nextcloud\DUR.Api.Repo.Nextcloud.csproj" />
     <ProjectReference Include="..\DUR.Api.Repo.Database\DUR.Api.Repo.Database.csproj" />
+    <ProjectReference Include="..\DUR.Api.Infrastructure\DUR.Api.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

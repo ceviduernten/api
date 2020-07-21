@@ -24,7 +24,7 @@ namespace DUR.Api.Web.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            if (!_cache.TryGetValue("groups", out List<GroupRM> groups))
+            if (!_cache.TryGetValue("groups", out List<GroupListRM> groups))
             {
                 var cacheEntryOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(15));
 
@@ -33,7 +33,7 @@ namespace DUR.Api.Web.Controllers
 
                 _cache.Set("groups", res, cacheEntryOptions);
             }
-            return Json(new DataJsonResult<GroupRM>(200, "Groups successfully returned", groups));
+            return Json(new DataJsonResult<GroupListRM>(200, "Groups successfully returned", groups));
         }
 
         [Authorize("Admin")]

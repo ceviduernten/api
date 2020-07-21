@@ -9,5 +9,6 @@ namespace DUR.Api.Presentation.Interfaces.Presenter
         bool DeleteById(Guid id);
         bool Update(GroupRM entity);
         bool Add(GroupRM entity);
+        List<GroupListRM> GetAll();
     }
 }

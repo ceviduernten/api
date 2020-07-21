@@ -18,7 +18,7 @@ namespace DUR.Api.Web.Config
                 {
                     Title = "Cevi Dürnten API",
                     Version = "v1",
-                    TermsOfService = new Uri("https://rizag.ch/impressum"),
+                    TermsOfService = new Uri("https://ceviduernten.ch/impressum"),
                     Contact = new OpenApiContact
                     {
                         Email = "development@ceviduernten.ch",

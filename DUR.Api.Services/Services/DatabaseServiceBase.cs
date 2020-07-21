@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DUR.Api.Entities.Default;
+using DUR.Api.Infrastructure.Interfaces;
 using DUR.Api.Repo.Database.Interfaces;
 using DUR.Api.Services.Interfaces;
 
@@ -11,10 +12,11 @@ namespace DUR.Api.Services.Services
     {
         protected IDatabaseUnitOfWork databaseUnitOfWork;
         protected IQueries<T> querier;
+        private readonly IApplicationLogger _logger;
 
-        protected DatabaseServiceBase()
+        protected DatabaseServiceBase(IApplicationLogger logger)
         {
-            //_logger = logger;
+            _logger = logger;
         }
 
         public T Add(T entity, bool saveToDb)
@@ -25,13 +27,13 @@ namespace DUR.Api.Services.Services
                 if (saveToDb)
                 {
                     databaseUnitOfWork.Save();
-                    //LogHelper.Info<T>(_logger, "Added (DatabaseServiceBase)");
+                    _logger.LogInformation<T>("Added (DatabaseServiceBase)");
                     return entity;
                 }
             }
             catch (Exception e)
             {
-                //LogHelper.Error<T>(_logger, e, "Error adding (DatabaseServiceBase)");
+                _logger.LogError<T>(e, "Error adding (DatabaseServiceBase)");
             }
             return null;
         }
@@ -49,12 +51,12 @@ namespace DUR.Api.Services.Services
                 if (saveToDb)
                 {
                     databaseUnitOfWork.Save();
-                    //LogHelper.Info<T>(_logger, "Deleted (DatabaseServiceBase)");
+                    _logger.LogInformation<T>("Deleted (DatabaseServiceBase)");
                 }
             }
             catch (Exception e)
             {
-                //LogHelper.Error<T>(_logger, e, "Error on deleting (DatabaseServiceBase)");
+                _logger.LogError<T>(e, "Error on deleting (DatabaseServiceBase)");
             }
         }
 
@@ -71,13 +73,13 @@ namespace DUR.Api.Services.Services
                 if (saveToDb)
                 {
                     databaseUnitOfWork.Save();
-                    //LogHelper.Info<T>(_logger, "Deleted By Id (DatabaseServiceBase)");
+                    _logger.LogInformation<T>("Deleted By Id (DatabaseServiceBase)");
                 }
             }
             catch (Exception e)
             {
                 databaseUnitOfWork.Rollback();
-                //LogHelper.Error<T>(_logger, e, "Error on deleting by id (DatabaseServiceBase)");
+                _logger.LogError<T>(e, "Error on deleting by id (DatabaseServiceBase)");
                 return false;
             }
             return true;
@@ -96,13 +98,13 @@ namespace DUR.Api.Services.Services
                 if (saveToDb)
                 {
                     databaseUnitOfWork.Save();
-                    //LogHelper.Info<T>(_logger, "Deleted By Guid (DatabaseServiceBase)");
+                    _logger.LogInformation<T>("Deleted By Guid (DatabaseServiceBase)");
                 }
             }
             catch (Exception e)
             {
                 databaseUnitOfWork.Rollback();
-                //LogHelper.Error<T>(_logger, e, "Error on deleting by guid (DatabaseServiceBase)");
+                _logger.LogError<T>(e, "Error on deleting by guid (DatabaseServiceBase)");
                 return false;
             }
             return true;
@@ -131,7 +133,7 @@ namespace DUR.Api.Services.Services
             }
             catch (Exception e)
             {
-                //LogHelper.Error<T>(_logger, e, "error getting all queryable from database");
+                _logger.LogError<T>(e, "error getting all queryable from database");
                 return Enumerable.Empty<T>().AsQueryable();
             }
         }
@@ -144,7 +146,7 @@ namespace DUR.Api.Services.Services
             }
             catch (Exception e)
             {
-                //LogHelper.Error<T>(_logger, e, "error on getting by id");
+                _logger.LogError<T>(e, "error on getting by id");
                 return null;
             }
         }
@@ -157,7 +159,7 @@ namespace DUR.Api.Services.Services
             }
             catch (Exception e)
             {
-                //LogHelper.Error<T>(_logger, e, "error on getting by guid");
+                _logger.LogError<T>(e, "error on getting by guid");
                 return null;
             }
         }
@@ -170,13 +172,12 @@ namespace DUR.Api.Services.Services
                 if (saveToDb)
                 {
                     databaseUnitOfWork.Save();
-                    //LogHelper.Info<T>(_logger, "updated");
                 }
                 return entity;
             }
             catch (Exception e)
             {
-                //LogHelper.Error<T>(_logger, e, "updating");
+                _logger.LogError<T>(e, "error on updating");
             }
             return null;
         }
@@ -194,7 +195,7 @@ namespace DUR.Api.Services.Services
             }
             catch (Exception e)
             {
-                //LogHelper.Error<T>(_logger, e, "error getting all queryable including deleted from database");
+                _logger.LogError<T>(e, "error getting all queryable including deleted from database");
                 return Enumerable.Empty<T>().AsQueryable();
             }
         }

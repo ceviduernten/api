@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authorization;
 using DUR.Api.Web.Auth;
+using DUR.Api.Infrastructure;
 
 namespace DUR.Api.Web
 {
@@ -108,6 +109,7 @@ namespace DUR.Api.Web
             MapperInjector.RegisterModule(builder);
             NextcloudRepositoryInjector.RegisterModule(builder);
             DatabaseRepositoryInjector.RegisterModule(builder);
+            InfrastructureInjector.RegisterModule(builder);
         }
 
         private static void UpdateDatabase(IApplicationBuilder app)

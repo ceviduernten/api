@@ -16,7 +16,7 @@ namespace DUR.Api.Web.Controllers
             _userPresenter = userPresenter;
         }
 
-        //[Authorize("Admin")]
+        [Authorize("Admin")]
         [HttpGet]
         public JsonResult GetList()
         {
@@ -38,7 +38,7 @@ namespace DUR.Api.Web.Controllers
             }
         }
 
-        //[Authorize("Admin")]
+        [Authorize("Admin")]
         [HttpPost]
         public JsonResult AddUser(UserRM user)
         {

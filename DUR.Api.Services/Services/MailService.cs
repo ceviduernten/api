@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Text;
+using DUR.Api.Infrastructure.Interfaces;
 using DUR.Api.Services.Interfaces;
 using DUR.Api.Settings;
 using Microsoft.Extensions.Options;
@@ -13,10 +14,12 @@ namespace DUR.Api.Services.Services
     public class MailService : IMailService
     {
         private readonly MailSettings _settings;
+        private readonly IApplicationLogger _logger;
 
-        public MailService(IOptions<MailSettings> settings)
+        public MailService(IOptions<MailSettings> settings, IApplicationLogger logger)
         {
             _settings = settings.Value;
+            _logger = logger;
         }
 
         private void BuildMailMessage(MailMessage message, string messageBody)
@@ -47,7 +50,7 @@ namespace DUR.Api.Services.Services
             }
             catch (Exception ex)
             {
-                // Do nothing at the moment
+                _logger.LogError(ex, "Error on building mail");
             }
         }
 
@@ -76,6 +79,7 @@ namespace DUR.Api.Services.Services
             catch (Exception ex)
             {
                 success = false;
+                _logger.LogError(ex, "Error on sending mail");
             }
             return success;
         }
@@ -105,6 +109,7 @@ namespace DUR.Api.Services.Services
             catch (Exception ex)
             {
                 success = false;
+                _logger.LogError(ex, "Error on sending mail");
             }
             return success;
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using DUR.Api.Entities;
+using DUR.Api.Infrastructure.Interfaces;
 using DUR.Api.Services.Interfaces;
 
 namespace DUR.Api.Services.Services
@@ -9,11 +10,13 @@ namespace DUR.Api.Services.Services
     {
         private readonly IMailService _mailService;
         private readonly IGroupService _groupService;
+        private readonly IApplicationLogger _logger;
 
-        public GroupMailService(IMailService mailService, IGroupService groupService)
+        public GroupMailService(IMailService mailService, IGroupService groupService, IApplicationLogger logger)
         {
             _mailService = mailService;
             _groupService = groupService;
+            _logger = logger;
         }
 
         public bool InformGroup(Appointment appointment)
@@ -21,7 +24,7 @@ namespace DUR.Api.Services.Services
             Group group = _groupService.GetById(appointment.GroupId);
             if (group == null)
             {
-                // TODO LOG HERE
+                _logger.LogError("No group found with id " + appointment.GroupId);
                 return false;
             }
 
@@ -44,7 +47,7 @@ namespace DUR.Api.Services.Services
             Group group = _groupService.GetById(appointment.GroupId);
             if (group == null)
             {
-                // TODO LOG HERE
+                _logger.LogError("No group found with id " + appointment.GroupId);
                 return false;
             }
 
