@@ -99,6 +99,11 @@ namespace DUR.Api.Web
             app.AddCorsConfig();
             app.UseHttpsRedirection();
             app.AddRouteConfig();
+
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor | Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto
+            });
         }
 
         public void ConfigureContainer(ContainerBuilder builder)

@@ -1,16 +1,22 @@
 ﻿using System;
+using System.Linq;
+using System.Net;
 using DUR.Api.Infrastructure.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Serilog.Context;
 
 namespace DUR.Api.Infrastructure
 {
     public class ApplicationLogger : IApplicationLogger
     {
         private readonly ILogger _logger;
+        private readonly IHttpContextAccessor _context;
 
-        public ApplicationLogger(ILogger<ApplicationLogger> logger)
+        public ApplicationLogger(ILogger<ApplicationLogger> logger, IHttpContextAccessor context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public void LogCritical(string message)
@@ -159,12 +165,34 @@ namespace DUR.Api.Infrastructure
 
         private void SetCustomProperties()
         {
-            // FOR ADDITIONAL USE
+            LogContext.PushProperty("IP", GetIpAddress());
+            LogContext.PushProperty("CurrentUser", GetCurrentUser());
         }
 
         private string AddType<T>(string message)
         {
             return (message + "T = typeof " + typeof(T).Name);
+        }
+
+        private string GetIpAddress()
+        {
+            IPAddress remoteIpAddress = _context.HttpContext.Connection.RemoteIpAddress;
+            string result = "";
+            if (remoteIpAddress != null)
+            {
+                if (remoteIpAddress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetworkV6)
+                {
+                    remoteIpAddress = System.Net.Dns.GetHostEntry(remoteIpAddress).AddressList.First(x => x.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork);
+                }
+                result = remoteIpAddress.ToString();
+            }
+            return result;
+        }
+
+        private string GetCurrentUser()
+        {
+            // TODO IMPLEMENTATION HERE
+            return "TODO-USER";
         }
     }
 }
