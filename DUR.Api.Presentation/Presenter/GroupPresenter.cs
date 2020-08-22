@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using DUR.Api.Entities;
 using DUR.Api.Presentation.Interfaces.Presenter;
@@ -55,6 +57,13 @@ namespace DUR.Api.Presentation.Presenter
             UpdateBlank(model);
             if (model != null) model.Mail = entity.Mail;
             return model;
+        }
+
+        List<GroupListRM> IGroupPresenter.GetAll()
+        {
+            var all = _groupService.GetAll().ToList();
+            var returnMap = _mapper.Map<IEnumerable<Group>, List<GroupListRM>>(all);
+            return returnMap;
         }
     }
 }

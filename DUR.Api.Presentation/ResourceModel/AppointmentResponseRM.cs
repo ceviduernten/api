@@ -7,7 +7,7 @@ namespace DUR.Api.Presentation.ResourceModel
     {
         public Guid IdAppointment { get; set; }
         public string Name { get; set; }
-        public string Reason { get; set; }
+        public string Message { get; set; }
         public AppointmentResponseType Type { get; set; } 
     }
 }

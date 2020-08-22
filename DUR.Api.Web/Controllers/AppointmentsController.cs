@@ -82,5 +82,33 @@ namespace DUR.Api.Web.Controllers
             var res = _appointmentPresenter.GetById(appointment);
             return Json(new SingleDataJsonResult<AppointmentRM>(200, "appointment successfully returned", res));
         }
+
+        [HttpPost("Signon")]
+        public JsonResult SignOnForAppointment(AppointmentResponseRM appointment)
+        {
+            var success = _appointmentPresenter.SignOnForAppointment(appointment);
+            if (success)
+            {
+                return Json(new InfoJsonResult(200, "successfully added signon for appointment"));
+            }
+            else
+            {
+                return Json(new InfoJsonResult(500, "Error on signon for appointment"));
+            }
+        }
+
+        [HttpPost("Signoff")]
+        public JsonResult SignOffForAppointment(AppointmentResponseRM appointment)
+        {
+            var success = _appointmentPresenter.SignOffForAppointment(appointment);
+            if (success)
+            {
+                return Json(new InfoJsonResult(200, "successfully added signoff for appointment"));
+            }
+            else
+            {
+                return Json(new InfoJsonResult(500, "Error on signoff for appointment"));
+            }
+        }
     }
 }

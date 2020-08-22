@@ -58,6 +58,18 @@ namespace DUR.Api.Presentation.Presenter
             return GetByGroup(group).OrderBy(x => x.Date).FirstOrDefault();
         }
 
+        public bool SignOffForAppointment(AppointmentResponseRM response)
+        {
+            var res = _mapper.Map<AppointmentResponse>(response);
+            return _groupMailService.SignOff(res);
+        }
+
+        public bool SignOnForAppointment(AppointmentResponseRM response)
+        {
+            var res = _mapper.Map<AppointmentResponse>(response);
+            return _groupMailService.SignOn(res);
+        }
+
         public bool Update(AppointmentRM entity)
         {
             var db = _mapper.Map<AppointmentRM, Appointment>(entity);
