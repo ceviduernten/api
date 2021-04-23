@@ -54,7 +54,7 @@ namespace DUR.Api.Web
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddAutofac();
             services.AddMemoryCache();
-            services.AddMvc().AddNewtonsoftJson(options =>
+            services.AddControllers().AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });

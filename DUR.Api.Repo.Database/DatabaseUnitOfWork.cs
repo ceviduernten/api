@@ -3,6 +3,7 @@ using System.Linq;
 using DUR.Api.Entities;
 using DUR.Api.Entities.Admin;
 using DUR.Api.Entities.Stuff;
+using DUR.Api.Entities.Easter;
 using DUR.Api.Repo.Database.Interfaces;
 using DUR.Api.Settings;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,9 @@ namespace DUR.Api.Repo.Database
         private Repository<Item> _itemRepository;
         private Repository<StorageLocation> _storageLocationRepoistory;
         private Repository<User> _userRepository;
+        private Repository<HuntCity> _huntCityRepository;
+        private Repository<HuntLocation> _huntLocationRepository;
+        private Repository<AppointmentResponse> _appointmentResponseRepository;
 
         public DatabaseUnitOfWork(IOptions<DatabaseOptions> options)
         {
@@ -114,6 +118,24 @@ namespace DUR.Api.Repo.Database
         {
             _userRepository ??= new Repository<User>(_dataContext);
             return _userRepository;
+        }
+
+        public IRepository<HuntLocation> HuntLocationRepository()
+        {
+            _huntLocationRepository ??= new Repository<HuntLocation>(_dataContext);
+            return _huntLocationRepository;
+        }
+
+        public IRepository<HuntCity> HuntCityRepository()
+        {
+            _huntCityRepository ??= new Repository<HuntCity>(_dataContext);
+            return _huntCityRepository;
+        }
+
+        public IRepository<AppointmentResponse> AppointmentResponseRepository()
+        {
+            _appointmentResponseRepository ??= new Repository<AppointmentResponse>(_dataContext);
+            return _appointmentResponseRepository;
         }
     }
 }

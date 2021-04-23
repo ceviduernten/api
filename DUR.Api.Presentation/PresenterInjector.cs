@@ -17,6 +17,8 @@ namespace DUR.Api.Presentation
             container.RegisterType<ItemPresenter>().As<IItemPresenter>();
             container.RegisterType<ExportPresenter>().As<IExportPresenter>();
             container.RegisterType<UserPresenter>().As<IUserPresenter>();
+            container.RegisterType<HuntLocationPresenter>().As<IHuntLocationPresenter>();
+            container.RegisterType<HuntCityPresenter>().As<IHuntCityPresenter>();
         }
     }
 }

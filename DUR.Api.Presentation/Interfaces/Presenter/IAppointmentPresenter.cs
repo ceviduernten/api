@@ -13,5 +13,6 @@ namespace DUR.Api.Presentation.Interfaces.Presenter
         AppointmentRM GetNextAppointment(Guid group);
         bool SignOffForAppointment(AppointmentResponseRM response);
         bool SignOnForAppointment(AppointmentResponseRM response);
+        List<AppointmentResponseListRM> GetResponsesByAppointment(Guid appointment);
     }
 }

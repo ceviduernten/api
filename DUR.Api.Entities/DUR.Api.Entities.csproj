@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,5 +10,6 @@
     <Folder Include="Contacts\" />
     <Folder Include="Stuff\" />
     <Folder Include="Admin\" />
+    <Folder Include="Easter\" />
   </ItemGroup>
 </Project>

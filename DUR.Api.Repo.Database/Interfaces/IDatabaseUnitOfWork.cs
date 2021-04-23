@@ -2,6 +2,7 @@
 using DUR.Api.Entities;
 using DUR.Api.Entities.Admin;
 using DUR.Api.Entities.Stuff;
+using DUR.Api.Entities.Easter;
 
 namespace DUR.Api.Repo.Database.Interfaces
 {
@@ -22,5 +23,8 @@ namespace DUR.Api.Repo.Database.Interfaces
         IRepository<Item> ItemRepository();
         IRepository<StorageLocation> StorageLocationRepository();
         IRepository<User> UserRepository();
+        IRepository<HuntCity> HuntCityRepository();
+        IRepository<HuntLocation> HuntLocationRepository();
+        IRepository<AppointmentResponse> AppointmentResponseRepository();
     }
 }

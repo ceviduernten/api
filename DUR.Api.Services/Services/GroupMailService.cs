@@ -68,7 +68,7 @@ namespace DUR.Api.Services.Services
 
         public bool SignOff(AppointmentResponse response)
         {
-            Appointment appointment = _appointmentService.GetById(response.IdAppointment);
+            Appointment appointment = _appointmentService.GetById(response.AppointmentId);
             Group group = _groupService.GetById(appointment.GroupId);
             if (group == null)
             {
@@ -92,7 +92,7 @@ namespace DUR.Api.Services.Services
 
         public bool SignOn(AppointmentResponse response)
         {
-            Appointment appointment = _appointmentService.GetById(response.IdAppointment);
+            Appointment appointment = _appointmentService.GetById(response.AppointmentId);
             Group group = _groupService.GetById(appointment.GroupId);
             if (group == null)
             {

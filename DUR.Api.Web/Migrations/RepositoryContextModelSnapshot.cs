@@ -15,9 +15,9 @@ namespace DUR.Api.Web.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
-                .HasAnnotation("ProductVersion", "3.1.3")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63)
+                .HasAnnotation("ProductVersion", "5.0.4")
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
             modelBuilder.Entity("DUR.Api.Entities.Admin.User", b =>
                 {
@@ -106,6 +106,46 @@ namespace DUR.Api.Web.Migrations
                     b.ToTable("Appointment");
                 });
 
+            modelBuilder.Entity("DUR.Api.Entities.AppointmentResponse", b =>
+                {
+                    b.Property<Guid>("IdAppointmentResponse")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AppointmentId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreateDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Message")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("ModDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IdAppointmentResponse");
+
+                    b.HasIndex("AppointmentId");
+
+                    b.ToTable("AppointmentResponse");
+                });
+
             modelBuilder.Entity("DUR.Api.Entities.Contact", b =>
                 {
                     b.Property<Guid>("IdContact")
@@ -157,6 +197,96 @@ namespace DUR.Api.Web.Migrations
                     b.HasKey("IdContact");
 
                     b.ToTable("Contact");
+                });
+
+            modelBuilder.Entity("DUR.Api.Entities.Easter.HuntCity", b =>
+                {
+                    b.Property<Guid>("IdHuntCity")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreateDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<DateTime>("ModDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("StartLocationLat")
+                        .HasColumnType("text");
+
+                    b.Property<string>("StartLocationLong")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Zip")
+                        .HasColumnType("text");
+
+                    b.Property<int>("ZoomLevel")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IdHuntCity");
+
+                    b.ToTable("HuntCity");
+                });
+
+            modelBuilder.Entity("DUR.Api.Entities.Easter.HuntLocation", b =>
+                {
+                    b.Property<Guid>("IdHuntLocation")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreateDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("HuntCityIdHuntCity")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsFound")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Latitude")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Longitude")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("ModDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("IdHuntLocation");
+
+                    b.HasIndex("HuntCityIdHuntCity");
+
+                    b.ToTable("HuntLocation");
                 });
 
             modelBuilder.Entity("DUR.Api.Entities.Group", b =>
@@ -354,6 +484,30 @@ namespace DUR.Api.Web.Migrations
                         .HasForeignKey("GroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Group");
+                });
+
+            modelBuilder.Entity("DUR.Api.Entities.AppointmentResponse", b =>
+                {
+                    b.HasOne("DUR.Api.Entities.Appointment", "Appointment")
+                        .WithMany("Responses")
+                        .HasForeignKey("AppointmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Appointment");
+                });
+
+            modelBuilder.Entity("DUR.Api.Entities.Easter.HuntLocation", b =>
+                {
+                    b.HasOne("DUR.Api.Entities.Easter.HuntCity", "HuntCity")
+                        .WithMany("Locations")
+                        .HasForeignKey("HuntCityIdHuntCity")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("HuntCity");
                 });
 
             modelBuilder.Entity("DUR.Api.Entities.Stuff.Box", b =>
@@ -363,6 +517,8 @@ namespace DUR.Api.Web.Migrations
                         .HasForeignKey("LocationIdStorageLocation")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Location");
                 });
 
             modelBuilder.Entity("DUR.Api.Entities.Stuff.Item", b =>
@@ -375,6 +531,37 @@ namespace DUR.Api.Web.Migrations
                         .WithMany("Items")
                         .HasForeignKey("LocationIdStorageLocation")
                         .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Box");
+
+                    b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("DUR.Api.Entities.Appointment", b =>
+                {
+                    b.Navigation("Responses");
+                });
+
+            modelBuilder.Entity("DUR.Api.Entities.Easter.HuntCity", b =>
+                {
+                    b.Navigation("Locations");
+                });
+
+            modelBuilder.Entity("DUR.Api.Entities.Group", b =>
+                {
+                    b.Navigation("Appointments");
+                });
+
+            modelBuilder.Entity("DUR.Api.Entities.Stuff.Box", b =>
+                {
+                    b.Navigation("Items");
+                });
+
+            modelBuilder.Entity("DUR.Api.Entities.Stuff.StorageLocation", b =>
+                {
+                    b.Navigation("Boxes");
+
+                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }

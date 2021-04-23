@@ -23,6 +23,13 @@ namespace DUR.Api.Web.Controllers
             return Json(new DataJsonResult<AppointmentRM>(200, "appointments successfully returned", res));
         }
 
+        [HttpGet("{appointment}/Responses")]
+        public JsonResult GetResponsesByAppointment(Guid appointment)
+        {
+            var res = _appointmentPresenter.GetResponsesByAppointment(appointment);
+            return Json(new DataJsonResult<AppointmentResponseListRM>(200, "responses successfully returned", res));
+        }
+
         [HttpGet("{group}/next")]
         public JsonResult GetNext(Guid group)
         {

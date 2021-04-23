@@ -3,6 +3,7 @@ using DUR.Api.Presentation.ResourceModel;
 using DUR.Api.Entities;
 using DUR.Api.Entities.Stuff;
 using DUR.Api.Entities.Admin;
+using DUR.Api.Entities.Easter;
 
 namespace DUR.Api.Presentation.Mapper
 {
@@ -16,12 +17,20 @@ namespace DUR.Api.Presentation.Mapper
             CreateMap<GroupRM, Group>();
             CreateMap<Appointment, AppointmentRM>();
             CreateMap<AppointmentRM, Appointment>();
-            CreateMap<AppointmentResponseRM, AppointmentResponse>();
+            CreateMap<AppointmentResponse, AppointmentResponseListRM>();
+            CreateMap<AppointmentResponseRM, AppointmentResponse>()
+                .ForMember(dest => dest.AppointmentId, opt => opt.MapFrom(o => o.IdAppointment));
             CreateMap<Contact, ContactRM>();
             CreateMap<ContactRM, Contact>();
 
             CreateMap<Box, BoxRM>();
             CreateMap<BoxRM, Box>();
+
+            CreateMap<HuntLocation, HuntLocationRM>();
+            CreateMap<HuntLocationRM, HuntLocation>();
+            CreateMap<HuntLocation, HuntLocationListRM>();
+            CreateMap<HuntCity, HuntCityRM>();
+            CreateMap<HuntCityRM, HuntCity>();
 
             CreateMap<User, UserRM>();
             CreateMap<UserRM, User>();

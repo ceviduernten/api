@@ -22,11 +22,14 @@ namespace DUR.Api.Repo.Database
         {
             modelBuilder.ApplyConfiguration(new GroupConfiguration());
             modelBuilder.ApplyConfiguration(new AppointmentConfiguration());
+            modelBuilder.ApplyConfiguration(new AppointmentResponseConfiguration());
             modelBuilder.ApplyConfiguration(new ContactConfiguration());
             modelBuilder.ApplyConfiguration(new StorageLocationConfiguration());
             modelBuilder.ApplyConfiguration(new BoxConfiguration());
             modelBuilder.ApplyConfiguration(new ItemConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new EasterCityConfiguration());
+            modelBuilder.ApplyConfiguration(new EasterLocationConfiguration());
             base.OnModelCreating(modelBuilder);
         }
 

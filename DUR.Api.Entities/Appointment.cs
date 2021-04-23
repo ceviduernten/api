@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DUR.Api.Entities.Default;
 
 namespace DUR.Api.Entities
@@ -13,5 +14,6 @@ namespace DUR.Api.Entities
 
         public Guid GroupId { get; set; }
         public Group Group { get; set; }
+        public List<AppointmentResponse> Responses { get; set; }
     }
 }

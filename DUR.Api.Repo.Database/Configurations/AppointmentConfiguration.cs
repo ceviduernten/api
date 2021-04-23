@@ -15,6 +15,7 @@ namespace DUR.Api.Repo.Database.Configurations
             builder.Property(e => e.CreateDate).HasDefaultValueSql("NOW()").ValueGeneratedOnAdd();
             builder.Property(e => e.ModDate).HasDefaultValueSql("NOW()").ValueGeneratedOnAdd();
             builder.HasOne(e => e.Group).WithMany(b => b.Appointments).HasForeignKey(e => e.GroupId);
+            builder.HasMany(c => c.Responses).WithOne(e => e.Appointment);
         }
     }
 }

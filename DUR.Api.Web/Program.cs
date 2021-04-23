@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Sinks.Slack;
+using Serilog.Sinks.Slack.Models;
 
 namespace DUR.Api.Web
 {

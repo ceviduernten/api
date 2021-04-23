@@ -7,5 +7,6 @@
         }
 
         public string EventsCalendar { get; set; }
+        public string ServiceHash { get; set; }
     }
 }
