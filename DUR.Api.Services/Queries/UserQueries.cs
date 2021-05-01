@@ -1,6 +1,4 @@
-﻿using System;
-using DUR.Api.Entities;
-using DUR.Api.Entities.Admin;
+﻿using DUR.Api.Entities.Admin;
 using DUR.Api.Repo.Database.Interfaces;
 
 namespace DUR.Api.Services.Queries

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using DUR.Api.Services.Interfaces;
+using System;
 using System.Security.Cryptography;
 using System.Text;
-using DUR.Api.Services.Interfaces;
 
 namespace DUR.Api.Services.Services
 {

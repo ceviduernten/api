@@ -1,9 +1,6 @@
-﻿using System;
-using DUR.Api.Presentation.Interfaces.Presenter;
-using DUR.Api.Presentation.ResourceModel;
+﻿using DUR.Api.Presentation.Interfaces.Presenter;
 using DUR.Api.Settings;
 using DUR.Api.Web.Default;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 

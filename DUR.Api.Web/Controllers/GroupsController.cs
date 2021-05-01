@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DUR.Api.Presentation.Interfaces.Presenter;
+﻿using DUR.Api.Presentation.Interfaces.Presenter;
 using DUR.Api.Presentation.ResourceModel;
 using DUR.Api.Web.Default;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DUR.Api.Web.Controllers
 {

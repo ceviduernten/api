@@ -1,6 +1,6 @@
-﻿using System;
+﻿using DUR.Api.Entities.Default;
+using System;
 using System.Collections.Generic;
-using DUR.Api.Entities.Default;
 
 namespace DUR.Api.Entities.Easter
 {

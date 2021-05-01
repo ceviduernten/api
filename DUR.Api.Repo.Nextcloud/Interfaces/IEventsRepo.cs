@@ -1,6 +1,5 @@
-﻿using System;
+﻿using DUR.Api.Entities;
 using System.Collections.Generic;
-using DUR.Api.Entities;
 
 namespace DUR.Api.Repo.Nextcloud.Interfaces
 {

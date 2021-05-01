@@ -1,5 +1,4 @@
-﻿using System;
-namespace DUR.Api.Entities
+﻿namespace DUR.Api.Entities
 {
     public enum AppointmentResponseType
     {

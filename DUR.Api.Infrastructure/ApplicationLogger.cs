@@ -1,10 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Net;
-using DUR.Api.Infrastructure.Interfaces;
+﻿using DUR.Api.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Serilog.Context;
+using System;
+using System.Linq;
+using System.Net;
 
 namespace DUR.Api.Infrastructure
 {

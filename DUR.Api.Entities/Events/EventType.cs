@@ -1,5 +1,4 @@
-﻿using System;
-namespace DUR.Api.Entities.Events
+﻿namespace DUR.Api.Entities.Events
 {
     public enum EventType
     {

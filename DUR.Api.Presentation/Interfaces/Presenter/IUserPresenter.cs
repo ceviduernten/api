@@ -1,5 +1,5 @@
-﻿using System;
-using DUR.Api.Presentation.ResourceModel;
+﻿using DUR.Api.Presentation.ResourceModel;
+using System;
 
 namespace DUR.Api.Presentation.Interfaces.Presenter
 {

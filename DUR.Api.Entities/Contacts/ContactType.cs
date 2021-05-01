@@ -1,5 +1,4 @@
-﻿using System;
-namespace DUR.Api.Entities.Contacts
+﻿namespace DUR.Api.Entities.Contacts
 {
     public enum ContactType
     {

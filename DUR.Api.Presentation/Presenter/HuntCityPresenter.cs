@@ -1,10 +1,10 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using DUR.Api.Entities.Easter;
 using DUR.Api.Presentation.Interfaces.Presenter;
 using DUR.Api.Presentation.ResourceModel;
 using DUR.Api.Services.Interfaces;
 using Microsoft.Extensions.Caching.Memory;
+using System;
 
 namespace DUR.Api.Presentation.Presenter
 {

@@ -1,6 +1,6 @@
-﻿using System;
-using DUR.Api.Entities.Contacts;
+﻿using DUR.Api.Entities.Contacts;
 using DUR.Api.Entities.Default;
+using System;
 
 namespace DUR.Api.Entities
 {

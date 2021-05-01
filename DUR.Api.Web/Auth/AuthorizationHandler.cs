@@ -1,9 +1,9 @@
-﻿using System;
+﻿using DUR.Api.Entities.Admin;
+using Microsoft.AspNetCore.Authorization;
+using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using DUR.Api.Entities.Admin;
-using Microsoft.AspNetCore.Authorization;
 
 namespace DUR.Api.Web.Auth
 {

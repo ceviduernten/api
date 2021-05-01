@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using DUR.Api.Entities;
+﻿using DUR.Api.Entities;
 using DUR.Api.Entities.Events;
 using DUR.Api.Repo.Nextcloud.Interfaces;
 using DUR.Api.Settings;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
 
 namespace DUR.Api.Repo.Nextcloud.Repositories
 {

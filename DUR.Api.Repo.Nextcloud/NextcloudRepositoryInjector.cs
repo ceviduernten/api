@@ -1,5 +1,4 @@
-﻿using System;
-using Autofac;
+﻿using Autofac;
 using DUR.Api.Repo.Nextcloud.Interfaces;
 
 namespace DUR.Api.Repo.Nextcloud

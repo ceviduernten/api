@@ -1,5 +1,4 @@
-﻿using System;
-using DUR.Api.Repo.Nextcloud.Interfaces;
+﻿using DUR.Api.Repo.Nextcloud.Interfaces;
 
 namespace DUR.Api.Repo.Nextcloud.Repositories
 {

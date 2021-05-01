@@ -1,5 +1,4 @@
-﻿using DUR.Api.Entities;
-using DUR.Api.Entities.Stuff;
+﻿using DUR.Api.Entities.Stuff;
 using DUR.Api.Infrastructure.Interfaces;
 using DUR.Api.Repo.Database.Interfaces;
 using DUR.Api.Services.Interfaces;

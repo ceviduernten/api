@@ -1,5 +1,3 @@
-using System;
-using System.IO;
 using Autofac.Extensions.DependencyInjection;
 using DUR.Api.Settings;
 using Microsoft.AspNetCore.Hosting;
@@ -8,6 +6,8 @@ using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Sinks.Slack;
 using Serilog.Sinks.Slack.Models;
+using System;
+using System.IO;
 
 namespace DUR.Api.Web
 {

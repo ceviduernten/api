@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DUR.Api.Entities;
+﻿using DUR.Api.Entities;
 using DUR.Api.Infrastructure.Interfaces;
 using DUR.Api.Repo.Database.Interfaces;
 using DUR.Api.Services.Interfaces;
 using DUR.Api.Services.Queries;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DUR.Api.Services.Services
 {

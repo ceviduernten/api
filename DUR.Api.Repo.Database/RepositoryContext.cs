@@ -1,8 +1,8 @@
-﻿using System;
-using DUR.Api.Repo.Database.Configurations;
+﻿using DUR.Api.Repo.Database.Configurations;
 using DUR.Api.Settings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System;
 
 namespace DUR.Api.Repo.Database
 {

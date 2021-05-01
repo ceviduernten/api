@@ -1,5 +1,4 @@
-﻿using System;
-using DUR.Api.Entities;
+﻿using DUR.Api.Entities;
 
 namespace DUR.Api.Services.Interfaces
 {

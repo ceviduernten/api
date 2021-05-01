@@ -1,5 +1,4 @@
-﻿using System;
-namespace DUR.Api.Entities.Admin
+﻿namespace DUR.Api.Entities.Admin
 {
     public enum Role
     {

@@ -1,5 +1,5 @@
-﻿using System;
-using DUR.Api.Entities.Contacts;
+﻿using DUR.Api.Entities.Contacts;
+using System;
 
 namespace DUR.Api.Presentation.ResourceModel
 {

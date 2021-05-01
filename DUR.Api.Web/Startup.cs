@@ -1,14 +1,16 @@
-using System.Text;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using AutoMapper;
+using DUR.Api.Infrastructure;
 using DUR.Api.Presentation;
 using DUR.Api.Presentation.Mapper;
 using DUR.Api.Repo.Database;
 using DUR.Api.Repo.Nextcloud;
 using DUR.Api.Services;
 using DUR.Api.Settings;
+using DUR.Api.Web.Auth;
 using DUR.Api.Web.Config;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -17,11 +19,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Authorization;
-using DUR.Api.Web.Auth;
-using DUR.Api.Infrastructure;
+using System.Text;
 
 namespace DUR.Api.Web
 {

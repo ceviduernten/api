@@ -1,6 +1,6 @@
-﻿using System;
+﻿using DUR.Api.Entities;
+using System;
 using System.Linq;
-using DUR.Api.Entities;
 
 namespace DUR.Api.Services.Queries.Filters
 {

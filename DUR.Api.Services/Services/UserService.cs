@@ -1,9 +1,4 @@
-﻿using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using DUR.Api.Entities.Admin;
+﻿using DUR.Api.Entities.Admin;
 using DUR.Api.Infrastructure.Interfaces;
 using DUR.Api.Repo.Database.Interfaces;
 using DUR.Api.Services.Interfaces;
@@ -11,6 +6,11 @@ using DUR.Api.Services.Queries;
 using DUR.Api.Settings;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
+using System.Text;
 
 namespace DUR.Api.Services.Services
 {

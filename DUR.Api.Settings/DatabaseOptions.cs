@@ -1,5 +1,4 @@
-﻿using System;
-namespace DUR.Api.Settings
+﻿namespace DUR.Api.Settings
 {
     public class DatabaseOptions
     {

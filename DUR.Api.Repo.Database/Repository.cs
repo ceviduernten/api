@@ -1,7 +1,7 @@
-﻿using System;
+﻿using DUR.Api.Entities.Default;
 using DUR.Api.Repo.Database.Interfaces;
-using DUR.Api.Entities.Default;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Linq.Expressions;
 

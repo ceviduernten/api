@@ -1,5 +1,4 @@
 ﻿using System;
-using DUR.Api.Entities.Events;
 
 namespace DUR.Api.Presentation.ResourceModel
 {

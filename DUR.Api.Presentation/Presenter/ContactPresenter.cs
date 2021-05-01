@@ -1,11 +1,11 @@
-﻿using System;
-using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using DUR.Api.Entities;
 using DUR.Api.Entities.Contacts;
 using DUR.Api.Presentation.Interfaces.Presenter;
 using DUR.Api.Presentation.ResourceModel;
 using DUR.Api.Services.Interfaces;
+using System;
+using System.Linq;
 
 namespace DUR.Api.Presentation.Presenter
 {

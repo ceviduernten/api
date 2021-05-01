@@ -1,5 +1,5 @@
-﻿using System;
-using DUR.Api.Entities.Admin;
+﻿using DUR.Api.Entities.Admin;
+using System;
 
 namespace DUR.Api.Presentation.ResourceModel
 {

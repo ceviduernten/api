@@ -1,9 +1,9 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using DUR.Api.Entities.Admin;
 using DUR.Api.Presentation.Interfaces.Presenter;
 using DUR.Api.Presentation.ResourceModel;
 using DUR.Api.Services.Interfaces;
+using System;
 
 namespace DUR.Api.Presentation.Presenter
 {

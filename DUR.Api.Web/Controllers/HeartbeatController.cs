@@ -1,7 +1,7 @@
-﻿using System.Net.Http;
-using DUR.Api.Web.Default;
+﻿using DUR.Api.Web.Default;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace DUR.Api.Web.Controllers
 {

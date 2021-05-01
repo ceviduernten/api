@@ -1,13 +1,13 @@
-﻿using System;
-using System.Linq;
-using DUR.Api.Entities;
+﻿using DUR.Api.Entities;
 using DUR.Api.Entities.Admin;
-using DUR.Api.Entities.Stuff;
 using DUR.Api.Entities.Easter;
+using DUR.Api.Entities.Stuff;
 using DUR.Api.Repo.Database.Interfaces;
 using DUR.Api.Settings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System;
+using System.Linq;
 
 namespace DUR.Api.Repo.Database
 {

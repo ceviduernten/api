@@ -1,7 +1,7 @@
-﻿using System.Text;
-using DUR.Api.Entities;
+﻿using DUR.Api.Entities;
 using DUR.Api.Infrastructure.Interfaces;
 using DUR.Api.Services.Interfaces;
+using System.Text;
 
 namespace DUR.Api.Services.Services
 {

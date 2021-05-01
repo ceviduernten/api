@@ -1,6 +1,4 @@
-﻿using System;
-using DUR.Api.Entities;
-using DUR.Api.Entities.Easter;
+﻿using DUR.Api.Entities.Easter;
 using DUR.Api.Repo.Database.Interfaces;
 
 namespace DUR.Api.Services.Queries
