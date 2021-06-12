@@ -8,5 +8,7 @@ namespace DUR.Api.Presentation.ResourceModel
         public string Name { get; set; }
         public string Description { get; set; }
         public string Leaders { get; set; }
+        public string MailLeaders { get; set; }
+        public string NumberNotification { get; set; }
     }
 }
