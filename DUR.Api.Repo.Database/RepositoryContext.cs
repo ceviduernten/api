@@ -16,6 +16,7 @@ namespace DUR.Api.Repo.Database
         {
             _contextDb = Guid.NewGuid();
             _databaseOptions = options;
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
