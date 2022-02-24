@@ -12,6 +12,8 @@ namespace DUR.Api.Presentation.Mapper
         public Mappers()
         {
             CreateMap<Event, EventRM>();
+            CreateMap<KoolEvent, KoolEventRM>()
+                .ForMember(dest => dest.Title, opt => opt.MapFrom(k => k.Summary));
             CreateMap<Group, GroupRM>();
             CreateMap<Group, GroupListRM>();
             CreateMap<GroupRM, Group>();

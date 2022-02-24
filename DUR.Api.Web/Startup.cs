@@ -5,6 +5,7 @@ using DUR.Api.Presentation;
 using DUR.Api.Presentation.Mapper;
 using DUR.Api.Repo.Database;
 using DUR.Api.Repo.Nextcloud;
+using DUR.Api.Repo.Kool;
 using DUR.Api.Services;
 using DUR.Api.Settings;
 using DUR.Api.Web.Auth;
@@ -42,6 +43,7 @@ namespace DUR.Api.Web
             services.Configure<GlobalSettings>(Configuration.GetSection("GlobalSettings"));
             var globalSettings = Configuration.GetSection("GlobalSettings").Get<GlobalSettings>();
             services.Configure<NextcloudInterfaceSettings>(Configuration.GetSection("NextcloudInterfaceSettings"));
+            services.Configure<KoolInterfaceSettings>(Configuration.GetSection("KoolInterfaceSettings"));
             services.Configure<DatabaseOptions>(option =>
             {
                 option.Database = Configuration.GetConnectionString("Database");
@@ -112,6 +114,7 @@ namespace DUR.Api.Web
             PresenterInjector.RegisterModule(builder);
             MapperInjector.RegisterModule(builder);
             NextcloudRepositoryInjector.RegisterModule(builder);
+            KoolRepositoryInjector.RegisterModule(builder);
             DatabaseRepositoryInjector.RegisterModule(builder);
             InfrastructureInjector.RegisterModule(builder);
         }

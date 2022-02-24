@@ -9,6 +9,7 @@ namespace DUR.Api.Services
         public static void RegisterModule(ContainerBuilder container)
         {
             container.RegisterType<EventService>().As<IEventService>();
+            container.RegisterType<KoolEventService>().As<IKoolEventService>();
             container.RegisterType<GroupService>().As<IGroupService>();
             container.RegisterType<AppointmentService>().As<IAppointmentService>();
             container.RegisterType<ContactService>().As<IContactService>();
