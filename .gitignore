@@ -352,3 +352,4 @@ MigrationBackup/
 # Custom Excludes
 *log*
 appsettings.Development.json
+docker-compose.override.yml
