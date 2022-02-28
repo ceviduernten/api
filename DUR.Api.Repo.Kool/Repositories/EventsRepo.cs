@@ -8,6 +8,7 @@ using DUR.Api.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Linq;
 
 namespace DUR.Api.Repo.Kool.Repositories
 {
@@ -22,19 +23,19 @@ namespace DUR.Api.Repo.Kool.Repositories
 
         public List<KoolEvent> GetEvents()
         {
-            List<KoolEvent> list = new List<KoolEvent>();
+            List<KoolReservation> reservations = new List<KoolReservation>();
             HttpClient client = _api.GetHttpClient();
             var url = BuildUrl(_settings.AllKoolEventsCalender);
             HttpResponseMessage response = client.GetAsync(url).Result;
             var result = response.Content.ReadAsStringAsync().Result;
             var calendar = Calendar.Load(result);
-            ConvertCalenderEvents(list, calendar);
-            return list;
+            ConvertCalenderEvents(reservations, calendar);
+            return ParseEvents(reservations);
         }
 
-        public List<KoolEvent> GetReservations()
+        public List<KoolReservation> GetReservations()
         {
-            List<KoolEvent> list = new List<KoolEvent>();
+            List<KoolReservation> list = new List<KoolReservation>();
             HttpClient client = _api.GetHttpClient();
             var url = BuildUrl(_settings.ReservationEventsCalender);
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -44,11 +45,27 @@ namespace DUR.Api.Repo.Kool.Repositories
             return list;
         }
 
-        private void ConvertCalenderEvents(List<KoolEvent> koolEvents, Calendar calendar)
+        private List<KoolEvent> ParseEvents(IEnumerable<KoolReservation> koolReservations)
+        {
+            var events = koolReservations.GroupBy(k => new { k.Summary, k.Start }).Select(group => new KoolEvent
+            {
+                Description = group.First().Description,
+                Location = group.First().Location,
+                Uid = group.First().Uid,
+                Rooms = group.Select(x => x.Room).ToList(),
+                Summary = group.Key.Summary,
+                Start = group.Key.Start,
+                End = group.First().End,
+                Type = group.First().Type
+            });
+            return events.ToList();
+        }
+
+        private void ConvertCalenderEvents(List<KoolReservation> koolReservations, Calendar calendar)
         {
             foreach(var calenderEvent in calendar.Events)
             {
-                koolEvents.Add(ConvertToEvent(calenderEvent));
+                koolReservations.Add(ConvertToEvent(calenderEvent));
             }
         }
 
@@ -58,7 +75,7 @@ namespace DUR.Api.Repo.Kool.Repositories
             return url;
         }
 
-        private KoolEvent ConvertToEvent(CalendarEvent element)
+        private KoolReservation ConvertToEvent(CalendarEvent element)
         {
             DateTime start = DateTime.ParseExact(element.Start.ToString(), "MM/dd/yyyy HH:mm:ss UTC", System.Globalization.CultureInfo.InvariantCulture);
             DateTime end = DateTime.ParseExact(element.End.ToString(), "MM/dd/yyyy HH:mm:ss UTC", System.Globalization.CultureInfo.InvariantCulture);
@@ -77,7 +94,7 @@ namespace DUR.Api.Repo.Kool.Repositories
                 summary = summary.GetStringBetweenIndexes(element.Summary.IndexOf(":") + 2, element.Summary.Length);
             }
 
-            KoolEvent e = new KoolEvent
+            KoolReservation e = new KoolReservation
             {
                 Description = element.Description,
                 Location = location,
@@ -92,14 +109,14 @@ namespace DUR.Api.Repo.Kool.Repositories
             return e;
         }
 
-        private KoolEventType GetType(KoolEvent koolEvent)
+        private KoolType GetType(KoolReservation koolEvent)
         {
             if (koolEvent != null && (koolEvent.Description.Contains(_settings.KoolUsername) || koolEvent.Description.Contains("Cevi") || koolEvent.Description.Contains("cevi")))
             {
-                return KoolEventType.CEVI;
+                return KoolType.CEVI;
             }
 
-            return KoolEventType.ALL;
+            return KoolType.ALL;
         }
     }
 }

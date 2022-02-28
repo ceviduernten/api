@@ -7,24 +7,24 @@ using System.Collections.Generic;
 
 namespace DUR.Api.Presentation.Presenter
 {
-    public class KoolEventPresenter : IKoolEventPresenter
+    public class KoolPresenter : IKoolPresenter
     {
-        private readonly IKoolEventService _koolEventService;
+        private readonly IKoolService _koolEventService;
         private readonly IMapper _mapper;
 
-        public KoolEventPresenter(IKoolEventService koolEventService, IMapper mapper)
+        public KoolPresenter(IKoolService koolEventService, IMapper mapper)
         {
             _mapper = mapper;
             _koolEventService = koolEventService;
         }
 
-        public List<KoolEventRM> GetReservations()
+        public List<KoolReservationRM> GetReservations()
         {
             var events = _koolEventService.GetReservations();
-            return _mapper.Map<List<KoolEvent>, List<KoolEventRM>>(events);
+            return _mapper.Map<List<KoolReservation>, List<KoolReservationRM>>(events);
         }
 
-        List<KoolEventRM> IKoolEventPresenter.GetEvents()
+        public List<KoolEventRM> GetEvents()
         {
             var events = _koolEventService.GetEvents();
             return _mapper.Map<List<KoolEvent>, List<KoolEventRM>>(events);

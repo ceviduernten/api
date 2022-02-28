@@ -8,14 +8,14 @@ using System.Collections.Generic;
 
 namespace DUR.Api.Web.Controllers
 {
-    public class KoolEventsController : DefaultController
+    public class KoolController : DefaultController
     {
-        private readonly IKoolEventPresenter _koolEventPresenter;
+        private readonly IKoolPresenter _koolPresenter;
         private readonly IMemoryCache _cache;
 
-        public KoolEventsController(IKoolEventPresenter koolEventPresenter, IMemoryCache cache)
+        public KoolController(IKoolPresenter koolPresenter, IMemoryCache cache)
         {
-            _koolEventPresenter = koolEventPresenter;
+            _koolPresenter = koolPresenter;
             _cache = cache;
         }
 
@@ -26,10 +26,10 @@ namespace DUR.Api.Web.Controllers
             {
                 var cacheEntryOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromHours(4));
 
-                var res = _koolEventPresenter.GetEvents();
+                var res = _koolPresenter.GetEvents();
                 events = res;
 
-                _cache.Set("events", res, cacheEntryOptions);
+                _cache.Set("koolevents", res, cacheEntryOptions);
             }
             return Json(new DataJsonResult<KoolEventRM>(200, "Events successfully returned", events));
         }
@@ -37,16 +37,16 @@ namespace DUR.Api.Web.Controllers
         [HttpGet("reservations")]
         public JsonResult GetReservations()
         {
-            if (!_cache.TryGetValue("koolreservations", out List<KoolEventRM> events))
+            if (!_cache.TryGetValue("koolreservations", out List<KoolReservationRM> events))
             {
                 var cacheEntryOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromHours(4));
 
-                var res = _koolEventPresenter.GetReservations();
+                var res = _koolPresenter.GetReservations();
                 events = res;
 
-                _cache.Set("events", res, cacheEntryOptions);
+                _cache.Set("koolreservations", res, cacheEntryOptions);
             }
-            return Json(new DataJsonResult<KoolEventRM>(200, "Events successfully returned", events));
+            return Json(new DataJsonResult<KoolReservationRM>(200, "Events successfully returned", events));
         }
     }
 }

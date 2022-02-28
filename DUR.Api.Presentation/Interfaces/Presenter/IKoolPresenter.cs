@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace DUR.Api.Presentation.Interfaces.Presenter
 {
-    public interface IKoolEventPresenter
+    public interface IKoolPresenter
     {
         List<KoolEventRM> GetEvents();
-        List<KoolEventRM> GetReservations();
+        List<KoolReservationRM> GetReservations();
     }
 }

@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace DUR.Api.Services.Services
 {
-    public class KoolEventService : IKoolEventService
+    public class KoolService : IKoolService
     {
         private readonly IKoolEventsRepo _koolEventsRepo;
 
-        public KoolEventService(IKoolUnitOfWorkFactory koolUnitOfWorkFactory)
+        public KoolService(IKoolUnitOfWorkFactory koolUnitOfWorkFactory)
         {
 
             IKoolUnitOfWork _koolUnitOfWork = koolUnitOfWorkFactory.Create();
@@ -23,7 +23,7 @@ namespace DUR.Api.Services.Services
             return _koolEventsRepo.GetEvents().OrderBy(x => x.Start).ToList();
         }
 
-        public List<KoolEvent> GetReservations()
+        public List<KoolReservation> GetReservations()
         {
             return _koolEventsRepo.GetReservations().OrderBy(x => x.Start).ToList();
         }

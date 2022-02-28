@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DUR.Api.Presentation.ResourceModel
 {
-    public class KoolEventRM : BaseRM
+    public class KoolReservationRM : BaseRM
     {
         public string Uid { get; set; }
         public DateTime Start { get; set; }
@@ -12,7 +12,7 @@ namespace DUR.Api.Presentation.ResourceModel
         public string Title { get; set; }
         public string Location { get; set; }
         public KoolType Type { get; set; }
-        public List<string> Rooms { get; set; }
+        public string Room { get; set; }
         public string EventType
         {
             get

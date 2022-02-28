@@ -6,6 +6,6 @@ namespace DUR.Api.Repo.Kool.Interfaces
     public interface IKoolEventsRepo
     {
         List<KoolEvent> GetEvents();
-        List<KoolEvent> GetReservations();
+        List<KoolReservation> GetReservations();
     }
 }
