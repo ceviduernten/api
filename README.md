@@ -26,7 +26,8 @@ ship that data from different systems to the clients and ensure the business log
   "GeneralSettings": {
     "EventsCalendar": "Id_of_Nextcloud_Calendar",
     "ServiceHash": "Some Random Hash",
-    "GroupName": "Name of your cevi group, for example Cevi Trüllikon"
+    "GroupName": "Name of your cevi group, for example Cevi Trüllikon",
+    "ReservationMail": "mail for reservations"
   },
   "LogSettings": {
     "LogPath": "log.txt",

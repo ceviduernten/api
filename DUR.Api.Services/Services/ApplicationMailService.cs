@@ -3,6 +3,7 @@ using DUR.Api.Entities.Kool;
 using DUR.Api.Infrastructure.Interfaces;
 using DUR.Api.Services.Interfaces;
 using DUR.Api.Settings;
+using Microsoft.Extensions.Options;
 
 namespace DUR.Api.Services.Services;
 
@@ -10,11 +11,13 @@ public class ApplicationMailService : IApplicationMailService
 {
     private readonly IApplicationLogger _logger;
     private readonly IMailService _mailService;
+    private readonly GeneralSettings _generalSettings;
 
-    public ApplicationMailService(IMailService mailService, IApplicationLogger logger)
+    public ApplicationMailService(IMailService mailService, IApplicationLogger logger, IOptions<GeneralSettings> generalSettings)
     {
         _mailService = mailService;
         _logger = logger;
+        _generalSettings = generalSettings.Value;
     }
 
     public bool InformAboutReservation(Reservation reservation)
@@ -27,7 +30,7 @@ public class ApplicationMailService : IApplicationMailService
         var messageForRequester = GetReservationMessage(reservation, true);
         var messageForAktuar = GetReservationMessage(reservation);
 
-        var success = _mailService.SendMail(subject, messageForAktuar, "***REMOVED***", "Raumreservation",
+        var success = _mailService.SendMail(subject, messageForAktuar, _generalSettings.ReservationMail, "Raumreservation",
             FooterType.GENERAL);
         if (success)
             success = _mailService.SendMail(subject, messageForRequester, reservation.Mail, "Raumreservation",
