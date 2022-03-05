@@ -1,13 +1,16 @@
 # api
+
 API of ceviduernten.ch
 
-Cevi Duernten has different applications and client in place who all consume different data.
-The api is responsible to ship that data from different systems to the clients and ensure the business logic for it.
+Cevi Duernten has different applications and client in place who all consume different data. The api is responsible to
+ship that data from different systems to the clients and ensure the business logic for it.
 
 ## Swagger Documation
+
 [Swagger Documentation](https://api.ceviduernten.ch/swagger)
 
 ## Inital dev setup
+
 - Install postgres db on your pc or use one on a server
 - Add custom appsettings.Development.json for local programming
 
@@ -22,7 +25,9 @@ The api is responsible to ship that data from different systems to the clients a
   },
   "GeneralSettings": {
     "EventsCalendar": "Id_of_Nextcloud_Calendar",
-    "ServiceHash": "Some Random Hash"
+    "ServiceHash": "Some Random Hash",
+    "GroupName": "Name of your cevi group, for example Cevi Trüllikon",
+    "ReservationMail": "mail for reservations"
   },
   "LogSettings": {
     "LogPath": "log.txt",
@@ -49,9 +54,11 @@ The api is responsible to ship that data from different systems to the clients a
 }
 
 ```
+
 - Start to develop with Visual Studio, Visual Studio Code or Rider (Jetbrains)
 
 ## Setup on the production
+
 - Install docker, if it's not already installed
 - Install docker-compose, if it's not already installed
 - Setup custom docker-compose.yml on the server

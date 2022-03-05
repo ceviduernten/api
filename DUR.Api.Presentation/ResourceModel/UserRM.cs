@@ -1,24 +1,18 @@
-﻿using DUR.Api.Entities.Admin;
-using System;
+﻿using System;
+using DUR.Api.Entities.Admin;
 
-namespace DUR.Api.Presentation.ResourceModel
+namespace DUR.Api.Presentation.ResourceModel;
+
+public class UserRM : BaseRM
 {
-    public class UserRM : BaseRM
-    {
-        public Guid IdUser { get; set; }
-        public string LoginName { get; set; }
-        public string FullName { get; set; }
-        public string Vulgo { get; set; }
-        public string Password { get; set; }
-        public string Mail { get; set; }
-        public Role Role { get; set; }
-        public string Token { get; set; }
-        public string RoleString
-        {
-            get
-            {
-                return Role.ToString();
-            }
-        }
-    }
+    public Guid IdUser { get; set; }
+    public string LoginName { get; set; }
+    public string FullName { get; set; }
+    public string Vulgo { get; set; }
+    public string Password { get; set; }
+    public string Mail { get; set; }
+    public Role Role { get; set; }
+    public string Token { get; set; }
+
+    public string RoleString => Role.ToString();
 }

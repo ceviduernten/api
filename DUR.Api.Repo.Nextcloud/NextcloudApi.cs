@@ -1,53 +1,47 @@
-﻿using DUR.Api.Repo.Nextcloud.Interfaces;
-using DUR.Api.Settings;
-using System;
+﻿using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using DUR.Api.Repo.Nextcloud.Interfaces;
+using DUR.Api.Settings;
 
-namespace DUR.Api.Repo.Nextcloud
+namespace DUR.Api.Repo.Nextcloud;
+
+public class NextcloudApi : INextcloudApi
 {
-    public class NextcloudApi : INextcloudApi
+    private HttpClient _httpClient;
+    private readonly NextcloudInterfaceSettings _settings;
+
+    public NextcloudApi(NextcloudInterfaceSettings settings)
     {
-        private HttpClient _httpClient;
-        private NextcloudInterfaceSettings _settings;
+        _settings = settings;
+        TryAndSetService();
+    }
 
-        public NextcloudApi(NextcloudInterfaceSettings settings)
+    public HttpClient GetHttpClient()
+    {
+        if (_httpClient == null) return null;
+
+        return _httpClient;
+    }
+
+    public NextcloudInterfaceSettings GetSettings()
+    {
+        if (_settings == null) return null;
+
+        return _settings;
+    }
+
+    private void TryAndSetService()
+    {
+        try
         {
-            _settings = settings;
-            TryAndSetService();
+            _httpClient = new HttpClient();
+            _httpClient.BaseAddress = new Uri("https://" + _settings.Host);
+            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
-
-        private void TryAndSetService()
+        catch (Exception e)
         {
-            try
-            {
-                _httpClient = new HttpClient();
-                _httpClient.BaseAddress = new System.Uri("https://" + _settings.Host);
-                _httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
-        public HttpClient GetHttpClient()
-        {
-            if (_httpClient == null)
-            {
-                return null;
-            }
-
-            return _httpClient;
-        }
-
-        public NextcloudInterfaceSettings GetSettings()
-        {
-            if (_settings == null)
-            {
-                return null;
-            }
-
-            return _settings;
+            throw e;
         }
     }
 }

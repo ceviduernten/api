@@ -1,11 +1,6 @@
-﻿namespace DUR.Api.Settings
-{
-    public class DatabaseOptions
-    {
-        public DatabaseOptions()
-        {
+﻿namespace DUR.Api.Settings;
 
-        }
-        public string Database { get; set; }
-    }
+public class DatabaseOptions
+{
+    public string Database { get; set; }
 }

@@ -1,10 +1,9 @@
 ﻿using DUR.Api.Settings;
 
-namespace DUR.Api.Repo.Nextcloud.Interfaces
+namespace DUR.Api.Repo.Nextcloud.Interfaces;
+
+public interface INextcloudUnitOfWork
 {
-    public interface INextcloudUnitOfWork
-    {
-        INextcloudUnitOfWork GetCurrent(NextcloudInterfaceSettings nextcloudInterfaceSettings, GeneralSettings settings);
-        IEventsRepo EventsRepo();
-    }
+    INextcloudUnitOfWork GetCurrent(NextcloudInterfaceSettings nextcloudInterfaceSettings, GeneralSettings settings);
+    IEventsRepo EventsRepo();
 }

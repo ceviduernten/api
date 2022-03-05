@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Remove="Newtonsoft.Json"/>
+        <None Remove="Autofac.Extensions.DependencyInjection"/>
+        <None Remove="Microsoft.Extensions.Options"/>
+        <None Remove="Microsoft.Extensions.DependencyInjection.Abstractions"/>
+        <None Remove="Interfaces\"/>
+        <None Remove="Repositories\"/>
+        <None Remove="Ical.Net"/>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0"/>
+        <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0"/>
+        <PackageReference Include="Ical.Net" Version="4.2.0"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Interfaces\"/>
+        <Folder Include="Repositories\"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\DUR.Api.Settings\DUR.Api.Settings.csproj"/>
+        <ProjectReference Include="..\DUR.Api.Entities\DUR.Api.Entities.csproj"/>
+        <ProjectReference Include="..\DUR.Api.Infrastructure\DUR.Api.Infrastructure.csproj"/>
+    </ItemGroup>
+</Project>

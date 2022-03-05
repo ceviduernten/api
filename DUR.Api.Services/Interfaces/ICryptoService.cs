@@ -1,11 +1,10 @@
-﻿namespace DUR.Api.Services.Interfaces
+﻿namespace DUR.Api.Services.Interfaces;
+
+public interface ICryptoService
 {
-    public interface ICryptoService
-    {
-		string CreatePasswordHash(string pwd);
+    string CreatePasswordHash(string pwd);
 
-		string CreatePasswordHash(string pwd, string salt);
+    string CreatePasswordHash(string pwd, string salt);
 
-		bool Validate(string password, string passwordHash);
-	}
+    bool Validate(string password, string passwordHash);
 }

@@ -1,8 +1,7 @@
-﻿namespace DUR.Api.Entities
+﻿namespace DUR.Api.Entities;
+
+public enum AppointmentResponseType
 {
-    public enum AppointmentResponseType
-    {
-        SIGNON = 1,
-        SIGNOFF = 2
-    }
+    SIGNON = 1,
+    SIGNOFF = 2
 }

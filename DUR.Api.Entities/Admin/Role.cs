@@ -1,10 +1,9 @@
-﻿namespace DUR.Api.Entities.Admin
+﻿namespace DUR.Api.Entities.Admin;
+
+public enum Role
 {
-    public enum Role
-    {
-        ADMIN = 10,
-        STUFF_LEADER = 20,
-        SCOUTING_LEADER = 30,
-        READONLY = 40
-    }
+    ADMIN = 10,
+    STUFF_LEADER = 20,
+    SCOUTING_LEADER = 30,
+    READONLY = 40
 }

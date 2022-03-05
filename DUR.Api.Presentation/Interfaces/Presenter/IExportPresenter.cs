@@ -1,12 +1,11 @@
-﻿using DUR.Api.Presentation.ResourceModel;
-using System;
+﻿using System;
+using DUR.Api.Presentation.ResourceModel;
 
-namespace DUR.Api.Presentation.Interfaces.Presenter
+namespace DUR.Api.Presentation.Interfaces.Presenter;
+
+public interface IExportPresenter
 {
-    public interface IExportPresenter
-    {
-        ExportRM<ItemExportRM> GetWholeInventory();
-        ExportRM<BoxRM> GetAllBoxes();
-        ExportRM<ItemExportRM> GetInventoryByLocation(Guid location);
-    }
+    ExportRM<ItemExportRM> GetWholeInventory();
+    ExportRM<BoxRM> GetAllBoxes();
+    ExportRM<ItemExportRM> GetInventoryByLocation(Guid location);
 }

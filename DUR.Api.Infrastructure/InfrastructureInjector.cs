@@ -1,13 +1,12 @@
 ﻿using Autofac;
 using DUR.Api.Infrastructure.Interfaces;
 
-namespace DUR.Api.Infrastructure
+namespace DUR.Api.Infrastructure;
+
+public static class InfrastructureInjector
 {
-    public static class InfrastructureInjector
+    public static void RegisterModule(ContainerBuilder container)
     {
-        public static void RegisterModule(ContainerBuilder container)
-        {
-            container.RegisterType<ApplicationLogger>().As<IApplicationLogger>().SingleInstance();
-        }
+        container.RegisterType<ApplicationLogger>().As<IApplicationLogger>().SingleInstance();
     }
 }

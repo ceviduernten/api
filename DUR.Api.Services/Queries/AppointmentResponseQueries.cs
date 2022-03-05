@@ -1,13 +1,12 @@
 ﻿using DUR.Api.Entities;
 using DUR.Api.Repo.Database.Interfaces;
 
-namespace DUR.Api.Services.Queries
+namespace DUR.Api.Services.Queries;
+
+public class AppointmentResponseQueries : DatabaseBaseQueries<AppointmentResponse>
 {
-    public class AppointmentResponseQueries : DatabaseBaseQueries<AppointmentResponse>
+    public AppointmentResponseQueries(IDatabaseUnitOfWork unitOfWork) : base(unitOfWork)
     {
-        public AppointmentResponseQueries(IDatabaseUnitOfWork unitOfWork) : base(unitOfWork)
-        {
-            _repository = unitOfWork.AppointmentResponseRepository();
-        }
+        _repository = unitOfWork.AppointmentResponseRepository();
     }
 }

@@ -1,7 +1,5 @@
-﻿namespace DUR.Api.Presentation.ResourceModel
+﻿namespace DUR.Api.Presentation.ResourceModel;
+
+public abstract class BaseRM
 {
-    public abstract class BaseRM
-    {
-        
-    }
 }

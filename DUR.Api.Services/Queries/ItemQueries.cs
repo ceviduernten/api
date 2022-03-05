@@ -1,13 +1,12 @@
 ﻿using DUR.Api.Entities.Stuff;
 using DUR.Api.Repo.Database.Interfaces;
 
-namespace DUR.Api.Services.Queries
+namespace DUR.Api.Services.Queries;
+
+public class ItemQueries : DatabaseBaseQueries<Item>
 {
-    public class ItemQueries : DatabaseBaseQueries<Item>
+    public ItemQueries(IDatabaseUnitOfWork unitOfWork) : base(unitOfWork)
     {
-        public ItemQueries(IDatabaseUnitOfWork unitOfWork) : base(unitOfWork)
-        {
-            _repository = unitOfWork.ItemRepository();
-        }
+        _repository = unitOfWork.ItemRepository();
     }
 }

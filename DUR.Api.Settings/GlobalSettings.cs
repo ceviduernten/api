@@ -1,11 +1,6 @@
-﻿namespace DUR.Api.Settings
-{
-    public class GlobalSettings
-    {
-        public GlobalSettings()
-        {
-        }
+﻿namespace DUR.Api.Settings;
 
-        public string SecureString { get; set; }
-    }
+public class GlobalSettings
+{
+    public string SecureString { get; set; }
 }

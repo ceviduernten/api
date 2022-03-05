@@ -1,17 +1,16 @@
-﻿using DUR.Api.Presentation.ResourceModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using DUR.Api.Presentation.ResourceModel;
 
-namespace DUR.Api.Presentation.Interfaces.Presenter
+namespace DUR.Api.Presentation.Interfaces.Presenter;
+
+public interface IHuntLocationPresenter : IPresenter<HuntLocationRM>
 {
-    public interface IHuntLocationPresenter : IPresenter<HuntLocationRM>
-    {
-        bool DeleteById(Guid id);
-        bool Update(HuntLocationRM entity);
-        bool Found(Guid id);
-        bool Add(HuntLocationRM entity);
-        List<HuntLocationListRM> GetList();
-        List<HuntLocationListRM> GetAllActiveList();
-        bool ActivateAllLocations();
-    }
+    bool DeleteById(Guid id);
+    bool Update(HuntLocationRM entity);
+    bool Found(Guid id);
+    bool Add(HuntLocationRM entity);
+    List<HuntLocationListRM> GetList();
+    List<HuntLocationListRM> GetAllActiveList();
+    bool ActivateAllLocations();
 }

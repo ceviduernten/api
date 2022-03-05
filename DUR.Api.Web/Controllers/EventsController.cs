@@ -1,37 +1,37 @@
-﻿using DUR.Api.Presentation.Interfaces.Presenter;
+﻿using System;
+using System.Collections.Generic;
+using DUR.Api.Presentation.Interfaces.Presenter;
 using DUR.Api.Presentation.ResourceModel;
 using DUR.Api.Web.Default;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
-using System;
-using System.Collections.Generic;
 
-namespace DUR.Api.Web.Controllers
+namespace DUR.Api.Web.Controllers;
+
+public class EventsController : DefaultController
 {
-    public class EventsController : DefaultController
+    private readonly IMemoryCache _cache;
+    private readonly IEventPresenter _eventPresenter;
+
+    public EventsController(IEventPresenter eventPresenter, IMemoryCache cache)
     {
-        private readonly IEventPresenter _eventPresenter;
-        private readonly IMemoryCache _cache;
+        _eventPresenter = eventPresenter;
+        _cache = cache;
+    }
 
-        public EventsController(IEventPresenter eventPresenter, IMemoryCache cache)
+    [HttpGet]
+    public JsonResult Get()
+    {
+        if (!_cache.TryGetValue("events", out List<EventRM> events))
         {
-            _eventPresenter = eventPresenter;
-            _cache = cache;
+            var cacheEntryOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(15));
+
+            var res = _eventPresenter.GetEvents();
+            events = res;
+
+            _cache.Set("events", res, cacheEntryOptions);
         }
 
-        [HttpGet]
-        public JsonResult Get()
-        {
-            if (!_cache.TryGetValue("events", out List<EventRM> events))
-            {
-                var cacheEntryOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(15));
-
-                var res = _eventPresenter.GetEvents();
-                events = res;
-
-                _cache.Set("events", res, cacheEntryOptions);
-            }
-            return Json(new DataJsonResult<EventRM>(200, "Events successfully returned", events));
-        }
+        return Json(new DataJsonResult<EventRM>(200, "Events successfully returned", events));
     }
 }

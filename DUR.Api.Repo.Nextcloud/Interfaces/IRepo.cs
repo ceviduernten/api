@@ -1,7 +1,5 @@
-﻿namespace DUR.Api.Repo.Nextcloud.Interfaces
-{
-    public interface IRepo
-    {
+﻿namespace DUR.Api.Repo.Nextcloud.Interfaces;
 
-    }
+public interface IRepo
+{
 }

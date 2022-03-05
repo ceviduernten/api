@@ -4,14 +4,13 @@ using DUR.Api.Repo.Database.Interfaces;
 using DUR.Api.Services.Interfaces;
 using DUR.Api.Services.Queries;
 
-namespace DUR.Api.Services.Services
+namespace DUR.Api.Services.Services;
+
+public class ItemService : DatabaseServiceBase<Item>, IItemService
 {
-    public class ItemService : DatabaseServiceBase<Item>, IItemService
+    public ItemService(IDatabaseUnitOfWorkFactory unitOfWorkFactory, IApplicationLogger logger) : base(logger)
     {
-        public ItemService(IDatabaseUnitOfWorkFactory unitOfWorkFactory, IApplicationLogger logger) : base(logger)
-        {
-            databaseUnitOfWork = unitOfWorkFactory.Create();
-            querier = new ItemQueries(databaseUnitOfWork);
-        }
+        databaseUnitOfWork = unitOfWorkFactory.Create();
+        querier = new ItemQueries(databaseUnitOfWork);
     }
 }

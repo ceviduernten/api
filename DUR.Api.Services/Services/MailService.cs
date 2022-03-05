@@ -1,117 +1,141 @@
-﻿using DUR.Api.Infrastructure.Interfaces;
-using DUR.Api.Services.Interfaces;
-using DUR.Api.Settings;
-using Microsoft.Extensions.Options;
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Text;
+using DUR.Api.Infrastructure.Interfaces;
+using DUR.Api.Services.Interfaces;
+using DUR.Api.Settings;
+using Microsoft.Extensions.Options;
 
-namespace DUR.Api.Services.Services
+namespace DUR.Api.Services.Services;
+
+public class MailService : IMailService
 {
-    public class MailService : IMailService
+    private readonly GeneralSettings _generalSettings;
+    private readonly IApplicationLogger _logger;
+    private readonly MailSettings _settings;
+
+    public MailService(IOptions<MailSettings> settings, IApplicationLogger logger,
+        IOptions<GeneralSettings> generalSettings)
     {
-        private readonly MailSettings _settings;
-        private readonly IApplicationLogger _logger;
+        _settings = settings.Value;
+        _logger = logger;
+        _generalSettings = generalSettings.Value;
+    }
 
-        public MailService(IOptions<MailSettings> settings, IApplicationLogger logger)
+    public bool SendMail(string subject, string messageBody, string recipient, string header, FooterType type)
+    {
+        var success = false;
+        var message = new MailMessage(_settings.SenderAddress, recipient)
         {
-            _settings = settings.Value;
-            _logger = logger;
+            Subject = _generalSettings.GroupName + " | " + subject,
+            SubjectEncoding = Encoding.UTF8,
+            BodyEncoding = Encoding.Unicode,
+            IsBodyHtml = true
+        };
+        BuildMailMessage(message, messageBody, header, type);
+        var client = new SmtpClient(_settings.Host, _settings.HostPort)
+        {
+            EnableSsl = true,
+            Timeout = 500000000,
+            Credentials = new NetworkCredential(_settings.HostUsername, _settings.HostPassword)
+        };
+        try
+        {
+            client.Send(message);
+            success = true;
+        }
+        catch (Exception ex)
+        {
+            success = false;
+            _logger.LogError(ex, "Error on sending mail");
         }
 
-        private void BuildMailMessage(MailMessage message, string messageBody)
+        return success;
+    }
+
+    public bool SendMailInNameof(string subject, string messageBody, string recipient, string sender, string header,
+        FooterType type)
+    {
+        var success = true;
+        var message = new MailMessage(sender, recipient)
         {
-            Stream htmlStream = null;
-            Stream logoStream = null;
-
-            message.Headers.Add("Content-Type", "content=text/html; charset=\"UTF-8\"");
-
-            try
-            {
-                var resourceAssembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().Name == "DUR.Api.Settings");
-
-                htmlStream = resourceAssembly.GetManifestResourceStream("DUR.Api.Settings.Templates.MailTemplate.html");
-                var reader = new StreamReader(htmlStream);
-                var body = reader.ReadToEnd().Replace("%MAIN_CONTENT%", messageBody);
-
-                var altView = AlternateView.CreateAlternateViewFromString(body, Encoding.UTF8, MediaTypeNames.Text.Html);
-                message.AlternateViews.Add(altView);
-                message.IsBodyHtml = true;
-
-                logoStream = resourceAssembly.GetManifestResourceStream("DUR.Api.Settings.Images.Logo.png");
-                var logo = new LinkedResource(logoStream, "image/png")
-                {
-                    ContentId = "Logo.png"
-                };
-                altView.LinkedResources.Add(logo);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error on building mail");
-            }
+            Subject = _generalSettings.GroupName + " | " + subject,
+            SubjectEncoding = Encoding.UTF8,
+            BodyEncoding = Encoding.UTF8,
+            IsBodyHtml = true
+        };
+        BuildMailMessage(message, messageBody, header, type);
+        var client = new SmtpClient(_settings.Host, _settings.HostPort)
+        {
+            EnableSsl = true,
+            Timeout = 500000000,
+            Credentials = new NetworkCredential(_settings.HostUsername, _settings.HostPassword)
+        };
+        try
+        {
+            client.Send(message);
+            success = true;
+        }
+        catch (Exception ex)
+        {
+            success = false;
+            _logger.LogError(ex, "Error on sending mail");
         }
 
-        public bool SendMail(string subject, string messageBody, string recipient)
-        {
-            bool success = false;
-            MailMessage message = new MailMessage(_settings.SenderAddress, recipient)
-            {
-                Subject = subject,
-                SubjectEncoding = Encoding.UTF8,
-                BodyEncoding = Encoding.Unicode,
-                IsBodyHtml = true
-            };
-            BuildMailMessage(message, messageBody);
-            SmtpClient client = new SmtpClient(_settings.Host, _settings.HostPort)
-            {
-                EnableSsl = true,
-                Timeout = 500000000,
-                Credentials = new System.Net.NetworkCredential(_settings.HostUsername, _settings.HostPassword)
-            };
-            try
-            {
-                client.Send(message);
-                success = true;
-            }
-            catch (Exception ex)
-            {
-                success = false;
-                _logger.LogError(ex, "Error on sending mail");
-            }
-            return success;
-        }
+        return success;
+    }
 
-        public bool SendMailInNameof(string subject, string messageBody, string recipient, string sender)
+    private void BuildMailMessage(MailMessage message, string messageBody, string header, FooterType type)
+    {
+        Stream htmlStream = null;
+        Stream logoStream = null;
+
+        message.Headers.Add("Content-Type", "content=text/html; charset=\"UTF-8\"");
+
+        try
         {
-            bool success = true;
-            MailMessage message = new MailMessage(sender, recipient)
+            var resourceAssembly = AppDomain.CurrentDomain.GetAssemblies()
+                .FirstOrDefault(a => a.GetName().Name == "DUR.Api.Settings");
+
+            htmlStream = resourceAssembly.GetManifestResourceStream("DUR.Api.Settings.Templates.MailTemplate.html");
+            var reader = new StreamReader(htmlStream);
+            var body = reader.ReadToEnd().Replace("%MAIN_CONTENT%", messageBody);
+            body = body.Replace("%HEADER%", header.ToUpper());
+            body = body.Replace("%FOOTER%", GetFooter(type));
+            body = body.Replace("%GROUP%", _generalSettings.GroupName.ToUpper());
+
+            var altView = AlternateView.CreateAlternateViewFromString(body, Encoding.UTF8, MediaTypeNames.Text.Html);
+            message.AlternateViews.Add(altView);
+            message.IsBodyHtml = true;
+
+            logoStream = resourceAssembly.GetManifestResourceStream("DUR.Api.Settings.Images.Logo.png");
+            var logo = new LinkedResource(logoStream, "image/png")
             {
-                Subject = subject,
-                SubjectEncoding = Encoding.UTF8,
-                BodyEncoding = Encoding.UTF8,
-                IsBodyHtml = true
+                ContentId = "Logo.png"
             };
-            BuildMailMessage(message, messageBody);
-            SmtpClient client = new SmtpClient(_settings.Host, _settings.HostPort)
-            {
-                EnableSsl = true,
-                Timeout = 500000000,
-                Credentials = new System.Net.NetworkCredential(_settings.HostUsername, _settings.HostPassword)
-            };
-            try
-            {
-                client.Send(message);
-                success = true;
-            }
-            catch (Exception ex)
-            {
-                success = false;
-                _logger.LogError(ex, "Error on sending mail");
-            }
-            return success;
+            altView.LinkedResources.Add(logo);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error on building mail");
+        }
+    }
+
+    private string GetFooter(FooterType type)
+    {
+        switch (type)
+        {
+            case FooterType.GENERAL:
+                return "DIESES MAIL WURDE AUTOMATISCH VERSCHICKT.";
+            case FooterType.APPOINTMENT:
+                return
+                    "DIESES MAIL WURDE AUTOMATISCH VERSCHICKT. FRAGEN RICHTEN SIE BITTE AN DIE ENTSPRECHENDEN GRUPPENLEITER ODER AN DIE ABTEILUNGSLEITUNG UNTER AL@CEVIDUERNTEN.CH";
+            default:
+                return "";
         }
     }
 }

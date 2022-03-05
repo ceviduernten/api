@@ -4,14 +4,13 @@ using DUR.Api.Repo.Database.Interfaces;
 using DUR.Api.Services.Interfaces;
 using DUR.Api.Services.Queries;
 
-namespace DUR.Api.Services.Services
+namespace DUR.Api.Services.Services;
+
+public class BoxService : DatabaseServiceBase<Box>, IBoxService
 {
-    public class BoxService : DatabaseServiceBase<Box>, IBoxService
+    public BoxService(IDatabaseUnitOfWorkFactory unitOfWorkFactory, IApplicationLogger logger) : base(logger)
     {
-        public BoxService(IDatabaseUnitOfWorkFactory unitOfWorkFactory, IApplicationLogger logger) : base(logger)
-        {
-            databaseUnitOfWork = unitOfWorkFactory.Create();
-            querier = new BoxQueries(databaseUnitOfWork);
-        }
+        databaseUnitOfWork = unitOfWorkFactory.Create();
+        querier = new BoxQueries(databaseUnitOfWork);
     }
 }

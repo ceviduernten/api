@@ -1,13 +1,7 @@
-﻿namespace DUR.Api.Settings
+﻿namespace DUR.Api.Settings;
+
+public class LogSettings
 {
-    public class LogSettings
-    {
-        public LogSettings()
-        {
-
-        }
-
-        public string LogPath { get; set; }
-        public string SlackUrl { get; set; }
-    }
+    public string LogPath { get; set; }
+    public string SlackUrl { get; set; }
 }

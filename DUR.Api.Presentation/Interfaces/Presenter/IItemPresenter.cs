@@ -1,14 +1,13 @@
-﻿using DUR.Api.Presentation.ResourceModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using DUR.Api.Presentation.ResourceModel;
 
-namespace DUR.Api.Presentation.Interfaces.Presenter
+namespace DUR.Api.Presentation.Interfaces.Presenter;
+
+public interface IItemPresenter : IPresenter<ItemRM>
 {
-    public interface IItemPresenter : IPresenter<ItemRM>
-    {
-        bool DeleteById(Guid id);
-        bool Update(ItemRM entity);
-        bool Add(ItemRM entity);
-        new List<ItemListRM> GetAll();
-    }
+    bool DeleteById(Guid id);
+    bool Update(ItemRM entity);
+    bool Add(ItemRM entity);
+    new List<ItemListRM> GetAll();
 }

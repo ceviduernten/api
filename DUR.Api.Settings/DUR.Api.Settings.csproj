@@ -1,22 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Class1.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Templates\" />
-    <Folder Include="Images\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Templates\MailTemplate.html" />
-    <None Remove="Images\Logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Templates\MailTemplate.html" />
-    <EmbeddedResource Include="Images\Logo.png" />
-  </ItemGroup>
+    <ItemGroup>
+        <Compile Remove="Class1.cs"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Templates\"/>
+        <Folder Include="Images\"/>
+    </ItemGroup>
+    <ItemGroup>
+        <None Remove="Templates\MailTemplate.html"/>
+        <None Remove="Images\Logo.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Include="Templates\MailTemplate.html"/>
+        <EmbeddedResource Include="Images\Logo.png"/>
+    </ItemGroup>
 </Project>

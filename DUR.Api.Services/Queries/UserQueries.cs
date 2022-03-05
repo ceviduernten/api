@@ -1,13 +1,12 @@
 ﻿using DUR.Api.Entities.Admin;
 using DUR.Api.Repo.Database.Interfaces;
 
-namespace DUR.Api.Services.Queries
+namespace DUR.Api.Services.Queries;
+
+public class UserQueries : DatabaseBaseQueries<User>
 {
-    public class UserQueries : DatabaseBaseQueries<User>
+    public UserQueries(IDatabaseUnitOfWork unitOfWork) : base(unitOfWork)
     {
-        public UserQueries(IDatabaseUnitOfWork unitOfWork) : base(unitOfWork)
-        {
-            _repository = unitOfWork.UserRepository();
-        }
+        _repository = unitOfWork.UserRepository();
     }
 }

@@ -2,17 +2,16 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DUR.Api.Repo.Database.Configurations
+namespace DUR.Api.Repo.Database.Configurations;
+
+public class ContactConfiguration : IEntityTypeConfiguration<Contact>
 {
-    public class ContactConfiguration : IEntityTypeConfiguration<Contact>
+    public void Configure(EntityTypeBuilder<Contact> builder)
     {
-        public void Configure(EntityTypeBuilder<Contact> builder)
-        {
-            builder.HasKey(e => e.IdContact);
-            builder.Property(e => e.IdContact).ValueGeneratedOnAdd().IsRequired();
-            builder.Property(e => e.Deleted).HasDefaultValue(false);
-            builder.Property(e => e.CreateDate).HasDefaultValueSql("NOW()").ValueGeneratedOnAdd();
-            builder.Property(e => e.ModDate).HasDefaultValueSql("NOW()").ValueGeneratedOnAdd();
-        }
+        builder.HasKey(e => e.IdContact);
+        builder.Property(e => e.IdContact).ValueGeneratedOnAdd().IsRequired();
+        builder.Property(e => e.Deleted).HasDefaultValue(false);
+        builder.Property(e => e.CreateDate).HasDefaultValueSql("NOW()").ValueGeneratedOnAdd();
+        builder.Property(e => e.ModDate).HasDefaultValueSql("NOW()").ValueGeneratedOnAdd();
     }
 }
