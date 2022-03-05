@@ -1,14 +1,13 @@
 ﻿using DUR.Api.Repo.Kool.Interfaces;
 
-namespace DUR.Api.Repo.Kool.Repositories
-{
-    public class RepoBase : IRepo
-    {
-        protected IKoolApi _api;
+namespace DUR.Api.Repo.Kool.Repositories;
 
-        public RepoBase(IKoolApi api)
-        {
-            _api = api;
-        }
+public class RepoBase : IRepo
+{
+    protected IKoolApi _api;
+
+    public RepoBase(IKoolApi api)
+    {
+        _api = api;
     }
 }

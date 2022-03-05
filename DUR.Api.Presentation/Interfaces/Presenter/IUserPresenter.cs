@@ -1,13 +1,12 @@
-﻿using DUR.Api.Presentation.ResourceModel;
-using System;
+﻿using System;
+using DUR.Api.Presentation.ResourceModel;
 
-namespace DUR.Api.Presentation.Interfaces.Presenter
+namespace DUR.Api.Presentation.Interfaces.Presenter;
+
+public interface IUserPresenter : IPresenter<UserRM>
 {
-    public interface IUserPresenter : IPresenter<UserRM>
-    {
-        bool DeleteById(Guid id);
-        bool Update(UserRM entity);
-        bool Add(UserRM entity);
-        UserRM ValidateUser(UserRM entity);
-    }
+    bool DeleteById(Guid id);
+    bool Update(UserRM entity);
+    bool Add(UserRM entity);
+    UserRM ValidateUser(UserRM entity);
 }

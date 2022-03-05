@@ -1,9 +1,8 @@
 ﻿using DUR.Api.Entities.Easter;
 
-namespace DUR.Api.Services.Interfaces
+namespace DUR.Api.Services.Interfaces;
+
+public interface IHuntLocationService : IDatabaseService<HuntLocation>
 {
-    public interface IHuntLocationService : IDatabaseService<HuntLocation>
-    {
-        bool ActivateAllLocations();
-    }
+    bool ActivateAllLocations();
 }

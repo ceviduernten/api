@@ -1,11 +1,10 @@
-﻿using DUR.Api.Settings;
-using System.Net.Http;
+﻿using System.Net.Http;
+using DUR.Api.Settings;
 
-namespace DUR.Api.Repo.Kool.Interfaces
+namespace DUR.Api.Repo.Kool.Interfaces;
+
+public interface IKoolApi
 {
-    public interface IKoolApi
-    {
-        HttpClient GetHttpClient();
-        KoolInterfaceSettings GetSettings();
-    }
+    HttpClient GetHttpClient();
+    KoolInterfaceSettings GetSettings();
 }

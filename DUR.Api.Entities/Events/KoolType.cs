@@ -1,8 +1,7 @@
-﻿namespace DUR.Api.Entities.Events
+﻿namespace DUR.Api.Entities.Events;
+
+public enum KoolType
 {
-    public enum KoolType
-    {
-        ALL = 1,
-        CEVI = 2,
-    }
+    ALL = 1,
+    CEVI = 2
 }

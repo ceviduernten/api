@@ -1,13 +1,7 @@
-﻿namespace DUR.Api.Settings
+﻿namespace DUR.Api.Settings;
+
+public class KoolInterfaceSettings
 {
-    public class KoolInterfaceSettings
-    {
-        public KoolInterfaceSettings()
-        {
-
-        }
-
-        public string Host { get; set; }
-        public string BaseUrl { get; set; }
-    }
+    public string Host { get; set; }
+    public string BaseUrl { get; set; }
 }

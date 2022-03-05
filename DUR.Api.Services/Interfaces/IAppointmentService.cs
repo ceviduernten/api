@@ -1,11 +1,10 @@
-﻿using DUR.Api.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using DUR.Api.Entities;
 
-namespace DUR.Api.Services.Interfaces
+namespace DUR.Api.Services.Interfaces;
+
+public interface IAppointmentService : IDatabaseService<Appointment>
 {
-    public interface IAppointmentService : IDatabaseService<Appointment>
-    {
-        List<Appointment> GetAppointmentsByGroup(Guid group);
-    }
+    List<Appointment> GetAppointmentsByGroup(Guid group);
 }

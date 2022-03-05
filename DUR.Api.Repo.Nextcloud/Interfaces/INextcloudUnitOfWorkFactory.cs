@@ -1,8 +1,7 @@
-﻿namespace DUR.Api.Repo.Nextcloud.Interfaces
+﻿namespace DUR.Api.Repo.Nextcloud.Interfaces;
+
+public interface INextcloudUnitOfWorkFactory
 {
-    public interface INextcloudUnitOfWorkFactory
-    {
-        INextcloudUnitOfWork Create();
-        INextcloudUnitOfWork New();
-    }
+    INextcloudUnitOfWork Create();
+    INextcloudUnitOfWork New();
 }

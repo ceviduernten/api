@@ -1,23 +1,22 @@
-﻿using DUR.Api.Entities;
+﻿using System;
+using System.Linq;
+using DUR.Api.Entities;
 using DUR.Api.Repo.Database.Interfaces;
 using DUR.Api.Services.Queries.Filters;
-using System;
-using System.Linq;
 
-namespace DUR.Api.Services.Queries
+namespace DUR.Api.Services.Queries;
+
+public class AppointmentQueries : DatabaseBaseQueries<Appointment>
 {
-    public class AppointmentQueries : DatabaseBaseQueries<Appointment>
+    public AppointmentQueries(IDatabaseUnitOfWork unitOfWork) : base(unitOfWork)
     {
-        public AppointmentQueries(IDatabaseUnitOfWork unitOfWork) : base(unitOfWork)
-        {
-            _repository = unitOfWork.AppointmentRepository();
-        }
+        _repository = unitOfWork.AppointmentRepository();
+    }
 
-        public IQueryable<Appointment> GetFilteredByGroup(Guid group)
-        {
-            IQueryable<Appointment> appointments = _repository.GetAll().AsQueryable();
-            appointments = appointments.FilterByGroup(group);
-            return appointments;
-        }
+    public IQueryable<Appointment> GetFilteredByGroup(Guid group)
+    {
+        var appointments = _repository.GetAll().AsQueryable();
+        appointments = appointments.FilterByGroup(group);
+        return appointments;
     }
 }

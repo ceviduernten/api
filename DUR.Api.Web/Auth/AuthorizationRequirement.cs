@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 
-namespace DUR.Api.Web.Auth
+namespace DUR.Api.Web.Auth;
+
+public class AuthorizationRequirement : IAuthorizationRequirement
 {
-    public class AuthorizationRequirement : IAuthorizationRequirement
+    public AuthorizationRequirement(string permission)
     {
-        public string Permission { get; private set; }
-        public AuthorizationRequirement(string permission)
-        {
-            this.Permission = permission;
-        }
+        Permission = permission;
     }
+
+    public string Permission { get; }
 }

@@ -1,10 +1,9 @@
 ﻿using DUR.Api.Settings;
 
-namespace DUR.Api.Repo.Kool.Interfaces
+namespace DUR.Api.Repo.Kool.Interfaces;
+
+public interface IKoolUnitOfWork
 {
-    public interface IKoolUnitOfWork
-    {
-        IKoolUnitOfWork GetCurrent(KoolInterfaceSettings nextcloudInterfaceSettings, GeneralSettings settings);
-        IKoolEventsRepo EventsRepo();
-    }
+    IKoolUnitOfWork GetCurrent(KoolInterfaceSettings nextcloudInterfaceSettings, GeneralSettings settings);
+    IKoolEventsRepo EventsRepo();
 }

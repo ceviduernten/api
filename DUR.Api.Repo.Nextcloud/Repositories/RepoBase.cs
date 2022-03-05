@@ -1,14 +1,13 @@
 ﻿using DUR.Api.Repo.Nextcloud.Interfaces;
 
-namespace DUR.Api.Repo.Nextcloud.Repositories
-{
-    public class RepoBase : IRepo
-    {
-        protected INextcloudApi _api;
+namespace DUR.Api.Repo.Nextcloud.Repositories;
 
-        public RepoBase(INextcloudApi api)
-        {
-            _api = api;
-        }
+public class RepoBase : IRepo
+{
+    protected INextcloudApi _api;
+
+    public RepoBase(INextcloudApi api)
+    {
+        _api = api;
     }
 }

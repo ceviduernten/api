@@ -1,10 +1,9 @@
-﻿namespace DUR.Api.Entities.Events
+﻿namespace DUR.Api.Entities.Events;
+
+public enum EventType
 {
-    public enum EventType
-    {
-        JUNGSCHAR = 1,
-        FROESCHLI = 2,
-        HOLIDAY = 3,
-        GENERAL = 4
-    }
+    JUNGSCHAR = 1,
+    FROESCHLI = 2,
+    HOLIDAY = 3,
+    GENERAL = 4
 }

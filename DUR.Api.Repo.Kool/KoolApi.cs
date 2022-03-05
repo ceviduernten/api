@@ -1,52 +1,45 @@
-﻿using DUR.Api.Repo.Kool.Interfaces;
-using DUR.Api.Settings;
-using System;
+﻿using System;
 using System.Net.Http;
+using DUR.Api.Repo.Kool.Interfaces;
+using DUR.Api.Settings;
 
-namespace DUR.Api.Repo.Kool
+namespace DUR.Api.Repo.Kool;
+
+public class KoolApi : IKoolApi
 {
-    public class KoolApi : IKoolApi
+    private HttpClient _httpClient;
+    private readonly KoolInterfaceSettings _settings;
+
+    public KoolApi(KoolInterfaceSettings settings)
     {
-        private HttpClient _httpClient;
-        private KoolInterfaceSettings _settings;
+        _settings = settings;
+        TryAndSetService();
+    }
 
-        public KoolApi(KoolInterfaceSettings settings)
+    public HttpClient GetHttpClient()
+    {
+        if (_httpClient == null) return null;
+
+        return _httpClient;
+    }
+
+    public KoolInterfaceSettings GetSettings()
+    {
+        if (_settings == null) return null;
+
+        return _settings;
+    }
+
+    private void TryAndSetService()
+    {
+        try
         {
-            _settings = settings;
-            TryAndSetService();
+            _httpClient = new HttpClient();
+            _httpClient.BaseAddress = new Uri("https://" + _settings.Host);
         }
-
-        private void TryAndSetService()
+        catch (Exception e)
         {
-            try
-            {
-                _httpClient = new HttpClient();
-                _httpClient.BaseAddress = new System.Uri("https://" + _settings.Host);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
-        public HttpClient GetHttpClient()
-        {
-            if (_httpClient == null)
-            {
-                return null;
-            }
-
-            return _httpClient;
-        }
-
-        public KoolInterfaceSettings GetSettings()
-        {
-            if (_settings == null)
-            {
-                return null;
-            }
-
-            return _settings;
+            throw e;
         }
     }
 }

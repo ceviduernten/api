@@ -1,11 +1,9 @@
-﻿using System;
-namespace DUR.Api.Infrastructure
+﻿namespace DUR.Api.Infrastructure;
+
+public static class StringExtensions
 {
-    public static class StringExtensions
+    public static string GetStringBetweenIndexes(this string str, int startIndex, int endIndex)
     {
-        public static string GetStringBetweenIndexes(this string str, int startIndex, int endIndex)
-        {
-            return str.Substring(startIndex, endIndex - startIndex);
-        }
+        return str.Substring(startIndex, endIndex - startIndex);
     }
 }

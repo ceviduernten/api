@@ -1,10 +1,9 @@
-﻿using DUR.Api.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using DUR.Api.Entities;
 
-namespace DUR.Api.Services.Interfaces
+namespace DUR.Api.Services.Interfaces;
+
+public interface IEventService
 {
-    public interface IEventService
-    {
-        List<Event> GetCurrentEvents();
-    }
+    List<Event> GetCurrentEvents();
 }

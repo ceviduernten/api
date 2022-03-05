@@ -1,8 +1,7 @@
-﻿namespace DUR.Api.Repo.Database.Interfaces
+﻿namespace DUR.Api.Repo.Database.Interfaces;
+
+public interface IDatabaseUnitOfWorkFactory
 {
-    public interface IDatabaseUnitOfWorkFactory
-    {
-        IDatabaseUnitOfWork Create();
-        IDatabaseUnitOfWork New();
-    }
+    IDatabaseUnitOfWork Create();
+    IDatabaseUnitOfWork New();
 }

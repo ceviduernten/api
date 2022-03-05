@@ -1,12 +1,11 @@
-﻿using DUR.Api.Presentation.ResourceModel;
-using System;
+﻿using System;
+using DUR.Api.Presentation.ResourceModel;
 
-namespace DUR.Api.Presentation.Interfaces.Presenter
+namespace DUR.Api.Presentation.Interfaces.Presenter;
+
+public interface IStorageLocationPresenter : IPresenter<StorageLocationRM>
 {
-    public interface IStorageLocationPresenter : IPresenter<StorageLocationRM>
-    {
-        bool DeleteById(Guid id);
-        bool Update(StorageLocationRM entity);
-        bool Add(StorageLocationRM entity);
-    }
+    bool DeleteById(Guid id);
+    bool Update(StorageLocationRM entity);
+    bool Add(StorageLocationRM entity);
 }

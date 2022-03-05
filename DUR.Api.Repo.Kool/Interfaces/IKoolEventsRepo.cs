@@ -1,12 +1,10 @@
-﻿using DUR.Api.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DUR.Api.Entities.Kool;
 
-namespace DUR.Api.Repo.Kool.Interfaces
+namespace DUR.Api.Repo.Kool.Interfaces;
+
+public interface IKoolEventsRepo
 {
-    public interface IKoolEventsRepo
-    {
-        List<KoolEvent> GetEvents();
-        List<KoolReservation> GetReservations();
-    }
+    List<KoolEvent> GetEvents();
+    List<KoolReservation> GetReservations();
 }

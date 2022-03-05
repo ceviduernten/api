@@ -1,11 +1,8 @@
 ﻿using DUR.Api.Entities.Kool;
 
-namespace DUR.Api.Services.Interfaces
+namespace DUR.Api.Services.Interfaces;
+
+public interface IApplicationMailService
 {
-    public interface IApplicationMailService
-    {
-        bool InformAboutReservation(Reservation reservation);
-    }
+    bool InformAboutReservation(Reservation reservation);
 }
-
-

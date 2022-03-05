@@ -1,14 +1,8 @@
-﻿namespace DUR.Api.Settings
+﻿namespace DUR.Api.Settings;
+
+public class NextcloudInterfaceSettings
 {
-    public class NextcloudInterfaceSettings
-    {
-        public NextcloudInterfaceSettings()
-        {
-
-        }
-
-        public string Host { get; set; }
-        public string BaseUrl { get; set; }
-        public string Parameters { get; set; }
-    }
+    public string Host { get; set; }
+    public string BaseUrl { get; set; }
+    public string Parameters { get; set; }
 }

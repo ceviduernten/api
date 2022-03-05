@@ -1,8 +1,7 @@
-﻿namespace DUR.Api.Repo.Kool.Interfaces
+﻿namespace DUR.Api.Repo.Kool.Interfaces;
+
+public interface IKoolUnitOfWorkFactory
 {
-    public interface IKoolUnitOfWorkFactory
-    {
-        IKoolUnitOfWork Create();
-        IKoolUnitOfWork New();
-    }
+    IKoolUnitOfWork Create();
+    IKoolUnitOfWork New();
 }

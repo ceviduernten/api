@@ -1,11 +1,10 @@
-﻿using DUR.Api.Settings;
-using System.Net.Http;
+﻿using System.Net.Http;
+using DUR.Api.Settings;
 
-namespace DUR.Api.Repo.Nextcloud.Interfaces
+namespace DUR.Api.Repo.Nextcloud.Interfaces;
+
+public interface INextcloudApi
 {
-    public interface INextcloudApi
-    {
-        HttpClient GetHttpClient();
-        NextcloudInterfaceSettings GetSettings();
-    }
+    HttpClient GetHttpClient();
+    NextcloudInterfaceSettings GetSettings();
 }

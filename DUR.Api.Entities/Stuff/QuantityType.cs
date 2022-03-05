@@ -1,10 +1,9 @@
-﻿namespace DUR.Api.Entities.Stuff
+﻿namespace DUR.Api.Entities.Stuff;
+
+public enum QuantityType
 {
-    public enum QuantityType
-    {
-        STK = 1,
-        LITER = 2,
-        METER = 3,
-        KISTEN = 4
-    }
+    STK = 1,
+    LITER = 2,
+    METER = 3,
+    KISTEN = 4
 }
