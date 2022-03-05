@@ -1,27 +1,27 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Mapper\" />
-    <Folder Include="Presenter\" />
-    <Folder Include="ResourceModel\" />
-    <Folder Include="Interfaces\Mapper\" />
-    <Folder Include="Interfaces\Presenter\" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DUR.Api.Entities\DUR.Api.Entities.csproj" />
-    <ProjectReference Include="..\DUR.Api.Services\DUR.Api.Services.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="ResourceModel\GroupRM" />
-  </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Interfaces\"/>
+        <Folder Include="Mapper\"/>
+        <Folder Include="Presenter\"/>
+        <Folder Include="ResourceModel\"/>
+        <Folder Include="Interfaces\Mapper\"/>
+        <Folder Include="Interfaces\Presenter\"/>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0"/>
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\DUR.Api.Entities\DUR.Api.Entities.csproj"/>
+        <ProjectReference Include="..\DUR.Api.Services\DUR.Api.Services.csproj"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Remove="ResourceModel\GroupRM"/>
+    </ItemGroup>
 </Project>

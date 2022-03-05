@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Default\" />
-    <Folder Include="Events\" />
-    <Folder Include="Contacts\" />
-    <Folder Include="Stuff\" />
-    <Folder Include="Admin\" />
-    <Folder Include="Easter\" />
-  </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Default\"/>
+        <Folder Include="Events\"/>
+        <Folder Include="Contacts\"/>
+        <Folder Include="Stuff\"/>
+        <Folder Include="Admin\"/>
+        <Folder Include="Easter\"/>
+    </ItemGroup>
 </Project>
