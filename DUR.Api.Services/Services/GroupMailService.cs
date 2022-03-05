@@ -2,6 +2,7 @@
 using DUR.Api.Infrastructure.Interfaces;
 using DUR.Api.Services.Interfaces;
 using System.Text;
+using DUR.Api.Settings;
 
 namespace DUR.Api.Services.Services
 {
@@ -35,10 +36,10 @@ namespace DUR.Api.Services.Services
                 return true;
             }
 
-            string subject = string.Format("Cevi Dürnten | Chästlizettel der Gruppe " + group.Name + " für den " + appointment.Date.ToString("dd.MM.yyyy"));
+            string subject = string.Format("Chästlizettel der Gruppe " + group.Name + " für den " + appointment.Date.ToString("dd.MM.yyyy"));
             string message = GetInfos(appointment, group, false);
 
-            bool success = _mailService.SendMail(subject, message, group.Mail);
+            bool success = _mailService.SendMail(subject, message, group.Mail, "CHÄSTLIZETTEL", FooterType.GENERAL);
 
             return success;
         }
@@ -58,10 +59,10 @@ namespace DUR.Api.Services.Services
                 return true;
             }
 
-            string subject = string.Format("Cevi Dürnten | Chästlizettel der Gruppe " + group.Name + " für den " + appointment.Date.ToString("dd.MM.yyyy"));
+            string subject = string.Format("Chästlizettel der Gruppe " + group.Name + " für den " + appointment.Date.ToString("dd.MM.yyyy"));
             string message = GetInfos(appointment, group, true);
 
-            bool success = _mailService.SendMail(subject, message, group.MailLeaders);
+            bool success = _mailService.SendMail(subject, message, group.MailLeaders, "CHÄSTLIZETTEL", FooterType.GENERAL);
 
             return success;
         }
@@ -82,10 +83,10 @@ namespace DUR.Api.Services.Services
                 return true;
             }
 
-            string subject = string.Format("Cevi Dürnten | Abmeldung für den " + appointment.Date.ToString("dd.MM.yyyy"));
+            string subject = string.Format("Abmeldung für den " + appointment.Date.ToString("dd.MM.yyyy"));
             string message = GetAppointmentResponseMessage(appointment, group, response);
 
-            bool success = _mailService.SendMail(subject, message, group.MailLeaders);
+            bool success = _mailService.SendMail(subject, message, group.MailLeaders,"CHÄSTLIZETTEL", FooterType.GENERAL);
 
             return success;
         }
@@ -106,10 +107,10 @@ namespace DUR.Api.Services.Services
                 return true;
             }
 
-            string subject = string.Format("Cevi Dürnten | Anmeldung für den " + appointment.Date.ToString("dd.MM.yyyy"));
+            string subject = string.Format("Anmeldung für den " + appointment.Date.ToString("dd.MM.yyyy"));
             string message = GetAppointmentResponseMessage(appointment, group, response);
 
-            bool success = _mailService.SendMail(subject, message, group.MailLeaders);
+            bool success = _mailService.SendMail(subject, message, group.MailLeaders, "CHÄSTLIZETTEL", FooterType.GENERAL);
 
             return success;
         }

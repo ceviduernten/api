@@ -20,6 +20,7 @@ namespace DUR.Api.Services
             container.RegisterType<CryptoService>().As<ICryptoService>();
             container.RegisterType<MailService>().As<IMailService>();
             container.RegisterType<GroupMailService>().As<IGroupMailService>();
+            container.RegisterType<ApplicationMailService>().As<IApplicationMailService>();
             container.RegisterType<HuntLocationService>().As<IHuntLocationService>();
             container.RegisterType<HuntCityService>().As<IHuntCityService>();
             container.RegisterType<AppointmentResponseService>().As<IAppointmentResponseService>();

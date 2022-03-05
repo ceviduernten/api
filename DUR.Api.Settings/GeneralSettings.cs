@@ -11,5 +11,6 @@
         public string ReservationEventsCalender { get; set; }
         public string ServiceHash { get; set; }
         public string KoolUsername { get; set; }
+        public string GroupName { get; set; }
     }
 }

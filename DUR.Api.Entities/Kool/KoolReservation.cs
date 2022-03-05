@@ -1,10 +1,9 @@
-﻿using DUR.Api.Entities.Events;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using DUR.Api.Entities.Events;
 
-namespace DUR.Api.Entities
+namespace DUR.Api.Entities.Kool
 {
-    public class KoolEvent
+    public class KoolReservation 
     {
         public string Uid { get; set; }
         public DateTime Start { get; set; }
@@ -13,6 +12,6 @@ namespace DUR.Api.Entities
         public string Location { get; set; }
         public string Description { get; set; }
         public KoolType Type {get; set;}
-        public List<string> Rooms { get; set; }
+        public string Room { get; set; }
     }
 }

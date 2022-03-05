@@ -2,6 +2,7 @@
 using DUR.Api.Entities;
 using DUR.Api.Entities.Admin;
 using DUR.Api.Entities.Easter;
+using DUR.Api.Entities.Kool;
 using DUR.Api.Entities.Stuff;
 using DUR.Api.Presentation.ResourceModel;
 
@@ -44,6 +45,8 @@ namespace DUR.Api.Presentation.Mapper
 
             CreateMap<StorageLocation, StorageLocationRM>();
             CreateMap<StorageLocationRM, StorageLocation>();
+
+            CreateMap<ReservationRM, Reservation>();
 
             CreateMap<Item, ItemExportRM>()
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(o => o.Description))

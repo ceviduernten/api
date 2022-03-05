@@ -7,5 +7,6 @@ namespace DUR.Api.Presentation.Interfaces.Presenter
     {
         List<KoolEventRM> GetEvents();
         List<KoolReservationRM> GetReservations();
+        bool Add(ReservationRM entity);
     }
 }

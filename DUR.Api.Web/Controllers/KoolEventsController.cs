@@ -1,13 +1,15 @@
 ﻿using DUR.Api.Presentation.Interfaces.Presenter;
 using DUR.Api.Presentation.ResourceModel;
 using DUR.Api.Web.Default;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace DUR.Api.Web.Controllers
 {
+    [Authorize("Scouting")]
     public class KoolController : DefaultController
     {
         private readonly IKoolPresenter _koolPresenter;
@@ -47,6 +49,20 @@ namespace DUR.Api.Web.Controllers
                 _cache.Set("koolreservations", res, cacheEntryOptions);
             }
             return Json(new DataJsonResult<KoolReservationRM>(200, "Events successfully returned", events));
+        }
+        
+        [HttpPost("reservations")]
+        public JsonResult AddReservation(ReservationRM reservation)
+        {
+            var success = _koolPresenter.Add(reservation);
+            if (success)
+            {
+                return Json(new InfoJsonResult(200, "successfully added reservation"));
+            }
+            else
+            {
+                return Json(new InfoJsonResult(500, "Error on adding reservation"));
+            }
         }
     }
 }

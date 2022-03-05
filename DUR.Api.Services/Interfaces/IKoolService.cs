@@ -1,5 +1,6 @@
 ﻿using DUR.Api.Entities;
 using System.Collections.Generic;
+using DUR.Api.Entities.Kool;
 
 namespace DUR.Api.Services.Interfaces
 {

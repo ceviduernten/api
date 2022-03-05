@@ -15,14 +15,16 @@ namespace DUR.Api.Services.Services
     {
         private readonly MailSettings _settings;
         private readonly IApplicationLogger _logger;
+        private readonly GeneralSettings _generalSettings;
 
-        public MailService(IOptions<MailSettings> settings, IApplicationLogger logger)
+        public MailService(IOptions<MailSettings> settings, IApplicationLogger logger, IOptions<GeneralSettings> generalSettings)
         {
             _settings = settings.Value;
             _logger = logger;
+            _generalSettings = generalSettings.Value;
         }
 
-        private void BuildMailMessage(MailMessage message, string messageBody)
+        private void BuildMailMessage(MailMessage message, string messageBody, string header, FooterType type)
         {
             Stream htmlStream = null;
             Stream logoStream = null;
@@ -36,6 +38,9 @@ namespace DUR.Api.Services.Services
                 htmlStream = resourceAssembly.GetManifestResourceStream("DUR.Api.Settings.Templates.MailTemplate.html");
                 var reader = new StreamReader(htmlStream);
                 var body = reader.ReadToEnd().Replace("%MAIN_CONTENT%", messageBody);
+                body = body.Replace("%HEADER%", header.ToUpper());
+                body = body.Replace("%FOOTER%", GetFooter(type));
+                body = body.Replace("%GROUP%", _generalSettings.GroupName.ToUpper());
 
                 var altView = AlternateView.CreateAlternateViewFromString(body, Encoding.UTF8, MediaTypeNames.Text.Html);
                 message.AlternateViews.Add(altView);
@@ -54,17 +59,17 @@ namespace DUR.Api.Services.Services
             }
         }
 
-        public bool SendMail(string subject, string messageBody, string recipient)
+        public bool SendMail(string subject, string messageBody, string recipient, string header, FooterType type)
         {
             bool success = false;
             MailMessage message = new MailMessage(_settings.SenderAddress, recipient)
             {
-                Subject = subject,
+                Subject = _generalSettings.GroupName + " | " + subject,
                 SubjectEncoding = Encoding.UTF8,
                 BodyEncoding = Encoding.Unicode,
                 IsBodyHtml = true
             };
-            BuildMailMessage(message, messageBody);
+            BuildMailMessage(message, messageBody, header, type);
             SmtpClient client = new SmtpClient(_settings.Host, _settings.HostPort)
             {
                 EnableSsl = true,
@@ -84,17 +89,17 @@ namespace DUR.Api.Services.Services
             return success;
         }
 
-        public bool SendMailInNameof(string subject, string messageBody, string recipient, string sender)
+        public bool SendMailInNameof(string subject, string messageBody, string recipient, string sender, string header, FooterType type)
         {
             bool success = true;
             MailMessage message = new MailMessage(sender, recipient)
             {
-                Subject = subject,
+                Subject = _generalSettings.GroupName + " | " + subject,
                 SubjectEncoding = Encoding.UTF8,
                 BodyEncoding = Encoding.UTF8,
                 IsBodyHtml = true
             };
-            BuildMailMessage(message, messageBody);
+            BuildMailMessage(message, messageBody, header, type);
             SmtpClient client = new SmtpClient(_settings.Host, _settings.HostPort)
             {
                 EnableSsl = true,
@@ -112,6 +117,19 @@ namespace DUR.Api.Services.Services
                 _logger.LogError(ex, "Error on sending mail");
             }
             return success;
+        }
+
+        private string GetFooter(FooterType type)
+        {
+            switch (type)
+            {
+                case FooterType.GENERAL:
+                    return "DIESES MAIL WURDE AUTOMATISCH VERSCHICKT.";
+                case FooterType.APPOINTMENT:
+                    return "DIESES MAIL WURDE AUTOMATISCH VERSCHICKT. FRAGEN RICHTEN SIE BITTE AN DIE ENTSPRECHENDEN GRUPPENLEITER ODER AN DIE ABTEILUNGSLEITUNG UNTER AL@CEVIDUERNTEN.CH";
+                default:
+                    return "";
+            }
         }
     }
 }

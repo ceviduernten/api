@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Linq;
+using DUR.Api.Entities.Kool;
 
 namespace DUR.Api.Repo.Kool.Repositories
 {
@@ -52,7 +53,7 @@ namespace DUR.Api.Repo.Kool.Repositories
                 Description = group.First().Description,
                 Location = group.First().Location,
                 Uid = group.First().Uid,
-                Rooms = group.Select(x => x.Room).ToList(),
+                Rooms = group.Select((x, index) => group.ToList()[index].Location + " " + x.Room).ToList(),
                 Summary = group.Key.Summary,
                 Start = group.Key.Start,
                 End = group.First().End,
