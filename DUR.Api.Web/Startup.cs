@@ -77,6 +77,7 @@ public class Startup
             {
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateLifetime = false,
                 ValidateIssuer = false,
                 ValidateAudience = false
             };
