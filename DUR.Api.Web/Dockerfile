@@ -7,12 +7,12 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0-bullseye-slim AS build
 WORKDIR /src
 COPY DUR.Api.Web/DUR.Api.Web.csproj DUR.Api.Web/
 COPY DUR.Api.Presentation/DUR.Api.Presentation.csproj DUR.Api.Presentation/
+COPY DUR.Api.Services.Finance/DUR.Api.Services.Finance.csproj DUR.Api.Services.Financial/
 COPY DUR.Api.Entities/DUR.Api.Entities.csproj DUR.Api.Entities/
 COPY DUR.Api.Services/DUR.Api.Services.csproj DUR.Api.Services/
 COPY DUR.Api.Repo.Nextcloud/DUR.Api.Repo.Nextcloud.csproj DUR.Api.Repo.Nextcloud/
 COPY DUR.Api.Repo.Database/DUR.Api.Repo.Database.csproj DUR.Api.Repo.Database/
 COPY DUR.Api.Repo.Kool/DUR.Api.Repo.Kool.csproj DUR.Api.Repo.Kool/
-COPY DUR.Api.Services.Financial/DUR.Api.Services.Financial.csproj DUR.Api.Services.Financial/
 COPY DUR.Api.Settings/DUR.Api.Settings.csproj DUR.Api.Settings/
 RUN dotnet restore "DUR.Api.Web/DUR.Api.Web.csproj"
 COPY . .
