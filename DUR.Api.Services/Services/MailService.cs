@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -26,7 +27,7 @@ public class MailService : IMailService
         _generalSettings = generalSettings.Value;
     }
 
-    public bool SendMail(string subject, string messageBody, string recipient, string header, FooterType type)
+    public bool SendMail(string subject, string messageBody, string recipient, string header, FooterType type, Attachment attachment = null)
     {
         var success = false;
         var message = new MailMessage(_settings.SenderAddress, recipient)
@@ -37,6 +38,10 @@ public class MailService : IMailService
             IsBodyHtml = true
         };
         BuildMailMessage(message, messageBody, header, type);
+        if (attachment != null)
+        {
+            message.Attachments.Add(attachment);
+        }
         var client = new SmtpClient(_settings.Host, _settings.HostPort)
         {
             EnableSsl = true,

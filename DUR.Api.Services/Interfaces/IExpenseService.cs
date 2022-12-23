@@ -1,8 +1,9 @@
-﻿using DUR.Api.Entities.Financial;
+﻿using System.Threading.Tasks;
+using DUR.Api.Entities.Financial;
 
 namespace DUR.Api.Services.Interfaces;
 
 public interface IExpenseService : IDatabaseService<Expense>
 {
-    void AddExpense(Expense expense);
+    Task AddExpense(Expense expense);
 }

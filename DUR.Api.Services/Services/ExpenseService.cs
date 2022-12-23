@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Net.Mail;
+using System.Threading.Tasks;
 using DUR.Api.Entities.Financial;
 using DUR.Api.Infrastructure.Interfaces;
 using DUR.Api.Repo.Database.Interfaces;
@@ -12,21 +15,34 @@ public class ExpenseService : DatabaseServiceBase<Expense>, IExpenseService
 {
     private readonly IApplicationMailService _applicationMailService;
     private readonly IExpenseGenerator _expenseGenerator;
+    private readonly IExpenseUploader _expenseUploader;
 
     public ExpenseService(IExpenseGenerator expenseGenerator, IApplicationMailService applicationMailService,
-        IDatabaseUnitOfWorkFactory unitOfWorkFactory, IApplicationLogger logger) : base(logger)
+        IDatabaseUnitOfWorkFactory unitOfWorkFactory, IApplicationLogger logger, IExpenseUploader expenseUploader) : base(logger)
     {
         _expenseGenerator = expenseGenerator;
         _applicationMailService = applicationMailService;
+        _expenseUploader = expenseUploader;
         databaseUnitOfWork = unitOfWorkFactory.Create();
         querier = new ExpenseQueries(databaseUnitOfWork);
     }
 
 
-    public void AddExpense(Expense expense)
+    public async Task AddExpense(Expense expense)
     {
         var pdfStream = new MemoryStream();
-        _expenseGenerator.GenerateExpensePdf(expense, pdfStream);
-        _applicationMailService.InformAboutExpense(expense);
+        var dbExpense = Add(expense);
+        var fileName = BuildFileName(dbExpense);
+        _expenseGenerator.GenerateExpensePdf(dbExpense, pdfStream);
+        await _expenseUploader.UploadExpense(fileName, pdfStream);
+        pdfStream.Position = 0;
+        var attachment = new Attachment(pdfStream, new System.Net.Mime.ContentType("application/pdf"));
+        attachment.ContentDisposition!.FileName = fileName;
+        _applicationMailService.InformAboutExpense(dbExpense, attachment);
+    }
+
+    private static string BuildFileName(Expense expense)
+    {
+        return expense.Id.ToString("N") + "_" + expense.LastName + "_" + expense.FirstName + "_" + DateTime.Now.ToShortDateString() + ".pdf";
     }
 }

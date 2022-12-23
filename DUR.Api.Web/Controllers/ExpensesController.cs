@@ -1,4 +1,5 @@
-﻿using DUR.Api.Presentation.Interfaces.Presenter;
+﻿using System.Threading.Tasks;
+using DUR.Api.Presentation.Interfaces.Presenter;
 using DUR.Api.Presentation.ResourceModel;
 using DUR.Api.Web.Default;
 using Microsoft.AspNetCore.Authorization;
@@ -16,9 +17,9 @@ public class ExpensesController : DefaultController
         _expensePresenter = expensePresenter;
     }
 
-    public JsonResult AddExpense(ExpenseRM expense)
+    public async Task<JsonResult> AddExpense(ExpenseRM expense)
     {
-        var success = _expensePresenter.Add(expense);
+        var success = await _expensePresenter.Add(expense);
         if (success)
             return Json(new InfoJsonResult(200, "successfully added expense"));
         return Json(new InfoJsonResult(500, "Error on adding expense"));

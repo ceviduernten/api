@@ -5,21 +5,22 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Remove="Class1.cs"/>
+        <Compile Remove="Class1.cs" />
     </ItemGroup>
     <ItemGroup>
-        <Folder Include="Templates\"/>
-        <Folder Include="Images\"/>
+        <Folder Include="Templates\" />
+        <Folder Include="Images\" />
     </ItemGroup>
     <ItemGroup>
-        <None Remove="Templates\MailTemplate.html"/>
-        <None Remove="Images\Logo.png"/>
-        <None Update="Images\Logo_black.png">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
+        <None Remove="Templates\MailTemplate.html" />
+        <None Remove="Images\Logo.png" />
     </ItemGroup>
     <ItemGroup>
-        <EmbeddedResource Include="Templates\MailTemplate.html"/>
-        <EmbeddedResource Include="Images\Logo.png"/>
+        <EmbeddedResource Include="Templates\MailTemplate.html" />
+        <EmbeddedResource Include="Images\Logo.png" />
+        <None Remove="Images\Logo_black.png" />
+        <EmbeddedResource Include="Images\Logo_black.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
     </ItemGroup>
 </Project>

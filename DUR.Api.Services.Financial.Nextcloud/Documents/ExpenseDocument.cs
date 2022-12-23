@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using DUR.Api.Entities.Financial;
 using DUR.Api.Services.Financial.Extensions;
 using QuestPDF.Drawing;
@@ -148,7 +149,9 @@ public class ExpenseDocument : IDocument
                 table.ExtendLastCellsToTableBottom();
 
                 table.Cell().LabelCell("Unterschrift");
-                table.Cell().ColumnSpan(1).AllValueCell().Height(30).Placeholder();
+                var base64Data = Regex.Match(_expense.Signature, @"data:image/(?<type>.+?),(?<data>.+)").Groups["data"].Value;
+                var stream = new MemoryStream(Convert.FromBase64String(base64Data));
+                table.Cell().ColumnSpan(1).AllValueCell().ScaleToFit().Height(50).Image(stream, ImageScaling.FitHeight);
             });
     }
 
@@ -166,7 +169,7 @@ public class ExpenseDocument : IDocument
                 });
             });
             c.Item().Element(ComposeSignature);
-            c.Item().PaddingLeft(158).Text("Tann, " + DateTime.Now.ToString("dd.MM.yyyy"))
+            c.Item().PaddingLeft(158).Text("online, " + DateTime.Now.ToString("dd.MM.yyyy"))
                 .FontSize(8).Thin().FontColor(Colors.Black);
         });
     }

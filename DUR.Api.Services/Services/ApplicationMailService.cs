@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Mail;
 using System.Text;
 using DUR.Api.Entities.Financial;
 using DUR.Api.Entities.Kool;
@@ -42,17 +43,17 @@ public class ApplicationMailService : IApplicationMailService
         return success;
     }
 
-    public bool InformAboutExpense(Expense expense)
+    public bool InformAboutExpense(Expense expense, Attachment attachment)
     {
         var subject = string.Format("Spesenrückerstattung vom " + DateTime.Now.ToString("dd.MM.yyyy"));
         var messageForRequester = GetExpenseMessage(expense, true);
         var messageForFinance = GetExpenseMessage(expense);
 
         var success = _mailService.SendMail(subject, messageForFinance, _generalSettings.ExpenseMail, "Spesen",
-            FooterType.GENERAL);
+            FooterType.GENERAL, attachment);
         if (success && !string.IsNullOrEmpty(expense.Mail))
             success = _mailService.SendMail(subject, messageForRequester, expense.Mail, "Spesen",
-                FooterType.GENERAL);
+                FooterType.GENERAL, attachment);
 
         return success;
     }
@@ -124,7 +125,7 @@ public class ApplicationMailService : IApplicationMailService
         if (requester)
             sb.AppendLine(
                 "Die Spesen liegen nun beim Finanzer zur Bearbeitung. Es wird diese bei Gelegenheit zurückzahlen und dir auf dein Konto vergütten. Bei Fragen wende dich direkt an ihn.");
-        sb.AppendLine("<p>Freundliche Grüsse<br/>Der Finanzer vom Cevi Dürnten</p>");
+        sb.AppendLine("<p>Freundliche Grüsse<br/>Die tüchtigen digitalen Wichtel vom Cevi Dürnten</p>");
         return sb.ToString();
     }
 }

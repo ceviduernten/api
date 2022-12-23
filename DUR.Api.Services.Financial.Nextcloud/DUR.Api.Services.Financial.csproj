@@ -4,14 +4,15 @@
         <TargetFramework>net6.0</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0"/>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0"/>
-        <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0"/>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
-        <PackageReference Include="QuestPDF" Version="2022.12.0"/>
+        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="QuestPDF" Version="2022.12.0" />
+        <PackageReference Include="WebDav.Client" Version="2.8.0" />
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\DUR.Api.Settings\DUR.Api.Settings.csproj"/>
-        <ProjectReference Include="..\DUR.Api.Entities\DUR.Api.Entities.csproj"/>
+        <ProjectReference Include="..\DUR.Api.Settings\DUR.Api.Settings.csproj" />
+        <ProjectReference Include="..\DUR.Api.Entities\DUR.Api.Entities.csproj" />
     </ItemGroup>
 </Project>
