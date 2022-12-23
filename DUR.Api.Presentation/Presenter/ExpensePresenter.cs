@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Threading.Tasks;
 using AutoMapper;
 using DUR.Api.Entities.Financial;
 using DUR.Api.Presentation.Interfaces.Presenter;
@@ -19,10 +20,10 @@ public class ExpensePresenter : BasePresenter<ExpenseRM, Expense>, IExpensePrese
         _mapper = mapper;
     }
 
-    public async Task<bool> Add(ExpenseRM entity)
+    public async Task<bool> Add(ExpenseRM entity, MemoryStream expenseImageStream)
     {
         var model = _mapper.Map<Expense>(entity);
-        await _expenseService.AddExpense(model);
+        await _expenseService.AddExpense(model, expenseImageStream);
         return true;
     }
 

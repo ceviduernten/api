@@ -5,5 +5,5 @@ namespace DUR.Api.Services.Financial.Interfaces;
 
 public interface IExpenseGenerator
 {
-    void GenerateExpensePdf(Expense expense, MemoryStream stream);
+    void GenerateExpensePdf(Expense expense, MemoryStream outputStream, MemoryStream expenseImageStream);
 }

@@ -14,10 +14,12 @@ namespace DUR.Api.Services.Financial.Documents;
 public class ExpenseDocument : IDocument
 {
     private readonly Expense _expense;
+    private readonly MemoryStream _expenseImageStream;
 
-    public ExpenseDocument(Expense expense)
+    public ExpenseDocument(Expense expense, MemoryStream stream)
     {
         _expense = expense;
+        _expenseImageStream = stream;
     }
 
     public DocumentMetadata GetMetadata()
@@ -32,9 +34,9 @@ public class ExpenseDocument : IDocument
             {
                 page.Size(PageSizes.A4);
                 page.Margin(40);
-                page.Header().Element(ComposeHeader);
+                page.Header().ShowOnce().Element(ComposeHeader);
                 page.Content().Element(ComposeContent);
-                page.Footer().Element(ComposeFooter);
+                page.Footer().ShowOnce().Element(ComposeFooter);
             });
     }
 
@@ -112,7 +114,7 @@ public class ExpenseDocument : IDocument
             });
     }
 
-    private void ComposeFinancialDepartmentInformation(IContainer container)
+    private static void ComposeFinancialDepartmentInformation(IContainer container)
     {
         container.MinimalBox()
             .Table(table =>
@@ -206,10 +208,12 @@ public class ExpenseDocument : IDocument
             column.Item().PaddingBottom(8).PaddingTop(8).Text("AUSGABEN").SectionTitle();
             column.Item().Element(ComposeExpenseInformation);
             column.Item().PaddingTop(16).Element(ComposeCreatorInformation);
+            column.Item().PageBreak();
+            column.Item().Element(ComposeExpenseImage);
         });
     }
 
-    private void ComposeFooter(IContainer container)
+    private static void ComposeFooter(IContainer container)
     {
         container.Row(row =>
         {
@@ -236,6 +240,15 @@ public class ExpenseDocument : IDocument
                     text.Span("Bei Fragen: 077 457 30 80 / finanzen@ceviduernten.ch").ThinText();
                 });
             });
+        });
+    }
+    
+    private void ComposeExpenseImage(IContainer container)
+    {
+        _expenseImageStream.Position = 0;
+        container.Column(c =>
+        {
+            c.Item().ScaleToFit().AlignCenter().Height(750).Width(500).Image(_expenseImageStream, ImageScaling.FitArea);
         });
     }
 

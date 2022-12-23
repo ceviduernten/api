@@ -8,9 +8,10 @@ namespace DUR.Api.Services.Financial.Services;
 
 public class ExpenseGenerator : IExpenseGenerator
 {
-    public void GenerateExpensePdf(Expense expense, MemoryStream stream)
+    public void GenerateExpensePdf(Expense expense, MemoryStream outputStream, MemoryStream expenseImageStream)
     {
-        var document = new ExpenseDocument(expense);
-        document.GeneratePdf(stream);
+        var document = new ExpenseDocument(expense, expenseImageStream);
+        document.GeneratePdf(outputStream);
+        expenseImageStream.Close();
     }
 }

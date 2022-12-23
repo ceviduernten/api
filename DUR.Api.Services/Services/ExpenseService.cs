@@ -28,18 +28,17 @@ public class ExpenseService : DatabaseServiceBase<Expense>, IExpenseService
     }
 
 
-    public async Task AddExpense(Expense expense)
+    public async Task AddExpense(Expense expense, MemoryStream expenseImageStream)
     {
         var pdfStream = new MemoryStream();
         var dbExpense = Add(expense);
         var fileName = BuildFileName(dbExpense);
-        _expenseGenerator.GenerateExpensePdf(dbExpense, pdfStream);
+        _expenseGenerator.GenerateExpensePdf(dbExpense, pdfStream, expenseImageStream);
         await _expenseUploader.UploadExpense(fileName, pdfStream);
         pdfStream.Position = 0;
         var attachment = new Attachment(pdfStream, new System.Net.Mime.ContentType("application/pdf"));
         attachment.ContentDisposition!.FileName = fileName;
         _applicationMailService.InformAboutExpense(expense, attachment);
-        pdfStream.Close();
     }
 
     private static string BuildFileName(Expense expense)

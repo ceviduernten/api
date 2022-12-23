@@ -20,8 +20,9 @@ public class ExpenseUploader : IExpenseUploader
     public async Task UploadExpense(string fileName, MemoryStream stream)
     {
         var uploadStream = new MemoryStream();
-        await stream.CopyToAsync(uploadStream);
         stream.Position = 0;
+        await stream.CopyToAsync(uploadStream);
+        uploadStream.Position = 0;
         var clientParams = new WebDavClientParams { BaseAddress = BuildUploadUrl(), Credentials = new NetworkCredential(_nextcloudInterfaceSettings.User, _nextcloudInterfaceSettings.Password) };
         using var client = new WebDavClient(clientParams);
         await client.PutFile(fileName, uploadStream);
