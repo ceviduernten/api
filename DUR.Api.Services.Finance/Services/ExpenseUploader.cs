@@ -23,9 +23,9 @@ public class ExpenseUploader : IExpenseUploader
         stream.Position = 0;
         await stream.CopyToAsync(uploadStream);
         uploadStream.Position = 0;
-        var clientParams = new WebDavClientParams { BaseAddress = BuildUploadUrl(), Credentials = new NetworkCredential(_nextcloudInterfaceSettings.User, _nextcloudInterfaceSettings.Password) };
+        var clientParams = new WebDavClientParams { UseProxy = false, UseDefaultCredentials = false, BaseAddress = BuildUploadUrl(), Credentials = new NetworkCredential(_nextcloudInterfaceSettings.User, _nextcloudInterfaceSettings.Password) };
         using var client = new WebDavClient(clientParams);
-        await client.PutFile(fileName, uploadStream);
+        var response = await client.PutFile(fileName, uploadStream);
     }
 
     private Uri BuildUploadUrl()

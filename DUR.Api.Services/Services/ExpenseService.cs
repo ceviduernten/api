@@ -43,6 +43,6 @@ public class ExpenseService : DatabaseServiceBase<Expense>, IExpenseService
 
     private static string BuildFileName(Expense expense)
     {
-        return expense.Id.ToString("N") + "_" + expense.LastName + "_" + expense.FirstName + "_" + DateTime.Now.ToShortDateString() + ".pdf";
+        return expense.Id.ToString("N") + "_" + expense.LastName + "_" + expense.FirstName + ".pdf";
     }
 }
