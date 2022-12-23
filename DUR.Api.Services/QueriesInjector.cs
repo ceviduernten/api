@@ -2,6 +2,7 @@
 using DUR.Api.Entities;
 using DUR.Api.Entities.Admin;
 using DUR.Api.Entities.Easter;
+using DUR.Api.Entities.Financial;
 using DUR.Api.Entities.Stuff;
 using DUR.Api.Services.Interfaces;
 using DUR.Api.Services.Queries;
@@ -23,5 +24,6 @@ public static class QueriesInjector
         container.RegisterType<HuntCityQueries>().As<IQueries<HuntCity>>();
         container.RegisterType<HuntLocationQueries>().As<IQueries<HuntLocation>>();
         container.RegisterType<AppointmentResponseQueries>().As<IQueries<AppointmentResponse>>();
+        container.RegisterType<ExpenseQueries>().As<IQueries<Expense>>();
     }
 }

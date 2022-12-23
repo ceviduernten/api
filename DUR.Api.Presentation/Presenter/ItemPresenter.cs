@@ -51,8 +51,8 @@ public class ItemPresenter : BasePresenter<ItemRM, Item>, IItemPresenter
     {
         var mappedItem = _mapper.Map<ItemRM, Item>(entity);
         Item db;
-        if (mappedItem.Box != null && mappedItem.Box.IdBox == new Guid() ||
-            mappedItem.Location != null && mappedItem.Location.IdStorageLocation == new Guid())
+        if ((mappedItem.Box != null && mappedItem.Box.IdBox == new Guid()) ||
+            (mappedItem.Location != null && mappedItem.Location.IdStorageLocation == new Guid()))
         {
             db = _itemService.GetById(entity.IdItem);
             db.Price = mappedItem.Price;

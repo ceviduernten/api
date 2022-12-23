@@ -4,23 +4,15 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:40404",
-      "sslPort": 44325
+      "applicationUrl": "http://localhost:44444",
+      "sslPort": 44444
     }
   },
   "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "weatherforecast",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
     "DUR.Api.Web": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://10.5.3.77:40404",
+      "applicationUrl": "http://10.16.11.22:44444",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

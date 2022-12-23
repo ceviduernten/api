@@ -5,11 +5,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Default\"/>
-        <Folder Include="Events\"/>
-        <Folder Include="Contacts\"/>
-        <Folder Include="Stuff\"/>
-        <Folder Include="Admin\"/>
-        <Folder Include="Easter\"/>
+        <Folder Include="Default\" />
+        <Folder Include="Events\" />
+        <Folder Include="Contacts\" />
+        <Folder Include="Stuff\" />
+        <Folder Include="Admin\" />
+        <Folder Include="Easter\" />
     </ItemGroup>
 </Project>

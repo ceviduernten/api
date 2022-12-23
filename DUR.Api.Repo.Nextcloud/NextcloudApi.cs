@@ -8,8 +8,8 @@ namespace DUR.Api.Repo.Nextcloud;
 
 public class NextcloudApi : INextcloudApi
 {
-    private HttpClient _httpClient;
     private readonly NextcloudInterfaceSettings _settings;
+    private HttpClient _httpClient;
 
     public NextcloudApi(NextcloudInterfaceSettings settings)
     {

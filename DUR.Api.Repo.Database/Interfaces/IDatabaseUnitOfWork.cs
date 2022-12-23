@@ -2,6 +2,7 @@
 using DUR.Api.Entities;
 using DUR.Api.Entities.Admin;
 using DUR.Api.Entities.Easter;
+using DUR.Api.Entities.Financial;
 using DUR.Api.Entities.Stuff;
 
 namespace DUR.Api.Repo.Database.Interfaces;
@@ -26,4 +27,5 @@ public interface IDatabaseUnitOfWork
     IRepository<HuntCity> HuntCityRepository();
     IRepository<HuntLocation> HuntLocationRepository();
     IRepository<AppointmentResponse> AppointmentResponseRepository();
+    IRepository<Expense> ExpenseRepository();
 }

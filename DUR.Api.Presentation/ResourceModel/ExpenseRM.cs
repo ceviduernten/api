@@ -1,0 +1,18 @@
+﻿using System;
+using DUR.Api.Entities.Admin;
+
+namespace DUR.Api.Presentation.ResourceModel;
+
+public class ExpenseRM : BaseRM
+{
+    public Guid IdUser { get; set; }
+    public string LoginName { get; set; }
+    public string FullName { get; set; }
+    public string Vulgo { get; set; }
+    public string Password { get; set; }
+    public string Mail { get; set; }
+    public Role Role { get; set; }
+    public string Token { get; set; }
+
+    public string RoleString => Role.ToString();
+}
