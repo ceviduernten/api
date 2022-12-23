@@ -20,6 +20,6 @@ public static class PresenterInjector
         container.RegisterType<UserPresenter>().As<IUserPresenter>();
         container.RegisterType<HuntLocationPresenter>().As<IHuntLocationPresenter>();
         container.RegisterType<HuntCityPresenter>().As<IHuntCityPresenter>();
-        container.RegisterType<ExportPresenter>().As<IExpensePresenter>();
+        container.RegisterType<ExpensePresenter>().As<IExpensePresenter>();
     }
 }

@@ -5,22 +5,22 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Interfaces\" />
-        <Folder Include="Queries\" />
-        <Folder Include="Services\" />
-        <Folder Include="Queries\Filters\" />
+        <Folder Include="Interfaces\"/>
+        <Folder Include="Queries\"/>
+        <Folder Include="Services\"/>
+        <Folder Include="Queries\Filters\"/>
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
-        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.16.0" />
+        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0"/>
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.16.0"/>
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\DUR.Api.Entities\DUR.Api.Entities.csproj" />
-        <ProjectReference Include="..\DUR.Api.Repo.Nextcloud\DUR.Api.Repo.Nextcloud.csproj" />
-        <ProjectReference Include="..\DUR.Api.Repo.Database\DUR.Api.Repo.Database.csproj" />
-        <ProjectReference Include="..\DUR.Api.Infrastructure\DUR.Api.Infrastructure.csproj" />
-        <ProjectReference Include="..\DUR.Api.Repo.Kool\DUR.Api.Repo.Kool.csproj" />
-        <ProjectReference Include="..\DUR.Api.Services.Financial.Nextcloud\DUR.Api.Services.Financial.csproj" />
+        <ProjectReference Include="..\DUR.Api.Entities\DUR.Api.Entities.csproj"/>
+        <ProjectReference Include="..\DUR.Api.Repo.Nextcloud\DUR.Api.Repo.Nextcloud.csproj"/>
+        <ProjectReference Include="..\DUR.Api.Repo.Database\DUR.Api.Repo.Database.csproj"/>
+        <ProjectReference Include="..\DUR.Api.Infrastructure\DUR.Api.Infrastructure.csproj"/>
+        <ProjectReference Include="..\DUR.Api.Repo.Kool\DUR.Api.Repo.Kool.csproj"/>
+        <ProjectReference Include="..\DUR.Api.Services.Financial.Nextcloud\DUR.Api.Services.Financial.csproj"/>
     </ItemGroup>
 </Project>

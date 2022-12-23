@@ -15,7 +15,7 @@ public class ExpensesController : DefaultController
     {
         _expensePresenter = expensePresenter;
     }
-    
+
     public JsonResult AddExpense(ExpenseRM expense)
     {
         var success = _expensePresenter.Add(expense);
