@@ -38,7 +38,8 @@ public class ExpenseService : DatabaseServiceBase<Expense>, IExpenseService
         pdfStream.Position = 0;
         var attachment = new Attachment(pdfStream, new System.Net.Mime.ContentType("application/pdf"));
         attachment.ContentDisposition!.FileName = fileName;
-        _applicationMailService.InformAboutExpense(dbExpense, attachment);
+        _applicationMailService.InformAboutExpense(expense, attachment);
+        pdfStream.Close();
     }
 
     private static string BuildFileName(Expense expense)
