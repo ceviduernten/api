@@ -124,7 +124,7 @@ public class ApplicationMailService : IApplicationMailService
         GetExpense(sb, expense);
         if (requester)
             sb.AppendLine(
-                "Die Spesen liegen nun beim Finanzer zur Bearbeitung. Es wird diese bei Gelegenheit zurückzahlen und dir auf dein Konto vergütten. Bei Fragen wende dich direkt an ihn.");
+                "Die Spesen liegen nun beim Finanzer zur Bearbeitung. Er wird diese bei Gelegenheit zurückzahlen und dir auf dein Konto vergüten. Bei Fragen wende dich direkt an ihn.");
         sb.AppendLine("<p>Freundliche Grüsse<br/>Die tüchtigen digitalen Wichtel vom Cevi Dürnten</p>");
         return sb.ToString();
     }
