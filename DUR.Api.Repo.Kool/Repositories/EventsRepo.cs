@@ -74,9 +74,23 @@ public class KoolEventsRepo : RepoBase, IKoolEventsRepo
 
     private KoolReservation ConvertToEvent(CalendarEvent element)
     {
-        var start = DateTime.ParseExact(element.Start.ToString(), "MM/dd/yyyy HH:mm:ss UTC",
-            CultureInfo.InvariantCulture);
-        var end = DateTime.ParseExact(element.End.ToString(), "MM/dd/yyyy HH:mm:ss UTC", CultureInfo.InvariantCulture);
+        DateTime start;
+        DateTime end;
+        try
+        {
+            start = DateTime.ParseExact(element.Start.ToString(), "MM/dd/yyyy HH:mm:ss UTC",
+                CultureInfo.InvariantCulture);
+            end = DateTime.ParseExact(element.End.ToString(), "MM/dd/yyyy HH:mm:ss UTC",
+                CultureInfo.InvariantCulture);
+        }
+        catch (Exception exception)
+        {
+            start = DateTime.ParseExact(element.Start.ToString(), "MM/dd/yyyy",
+                CultureInfo.InvariantCulture);
+            end = DateTime.ParseExact(element.End.ToString(), "MM/dd/yyyy",
+                CultureInfo.InvariantCulture);
+        }
+        
         var room = "";
         var location = "";
         var summary = element.Summary;
