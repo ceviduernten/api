@@ -49,7 +49,7 @@ public class UserService : DatabaseServiceBase<User>, IUserService
                     new(ClaimTypes.Name, user.LoginName),
                     new Claim(ClaimTypes.Role, success.Role.ToString())
                 }),
-                Expires = DateTime.UtcNow.AddDays(7),
+                Expires = DateTime.UtcNow.AddMonths(12),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature)
             };

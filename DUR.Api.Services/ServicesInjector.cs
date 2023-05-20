@@ -24,5 +24,6 @@ public static class ServicesInjector
         container.RegisterType<HuntLocationService>().As<IHuntLocationService>();
         container.RegisterType<HuntCityService>().As<IHuntCityService>();
         container.RegisterType<AppointmentResponseService>().As<IAppointmentResponseService>();
+        container.RegisterType<ExpenseService>().As<IExpenseService>();
     }
 }

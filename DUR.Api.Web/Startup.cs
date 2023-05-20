@@ -8,6 +8,7 @@ using DUR.Api.Repo.Database;
 using DUR.Api.Repo.Kool;
 using DUR.Api.Repo.Nextcloud;
 using DUR.Api.Services;
+using DUR.Api.Services.Financial;
 using DUR.Api.Settings;
 using DUR.Api.Web.Auth;
 using DUR.Api.Web.Config;
@@ -76,6 +77,7 @@ public class Startup
             {
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateLifetime = false,
                 ValidateIssuer = false,
                 ValidateAudience = false
             };
@@ -113,6 +115,7 @@ public class Startup
         KoolRepositoryInjector.RegisterModule(builder);
         DatabaseRepositoryInjector.RegisterModule(builder);
         InfrastructureInjector.RegisterModule(builder);
+        FinancialServicesInjector.RegisterModule(builder);
     }
 
     private static void UpdateDatabase(IApplicationBuilder app)

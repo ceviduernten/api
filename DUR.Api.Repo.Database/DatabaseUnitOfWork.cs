@@ -3,6 +3,7 @@ using System.Linq;
 using DUR.Api.Entities;
 using DUR.Api.Entities.Admin;
 using DUR.Api.Entities.Easter;
+using DUR.Api.Entities.Financial;
 using DUR.Api.Entities.Stuff;
 using DUR.Api.Repo.Database.Interfaces;
 using DUR.Api.Settings;
@@ -19,6 +20,7 @@ public class DatabaseUnitOfWork : Disposable, IDatabaseUnitOfWork
     private Repository<Box> _boxRepository;
     private Repository<Contact> _contactRepository;
     private RepositoryContext _dataContext;
+    private Repository<Expense> _expenseRepository;
 
     private Repository<Group> _groupRepository;
     private Repository<HuntCity> _huntCityRepository;
@@ -112,6 +114,12 @@ public class DatabaseUnitOfWork : Disposable, IDatabaseUnitOfWork
     {
         _userRepository ??= new Repository<User>(_dataContext);
         return _userRepository;
+    }
+
+    public IRepository<Expense> ExpenseRepository()
+    {
+        _expenseRepository ??= new Repository<Expense>(_dataContext);
+        return _expenseRepository;
     }
 
     public IRepository<HuntLocation> HuntLocationRepository()

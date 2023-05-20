@@ -1,8 +1,8 @@
 #!/bin/bash
 docker login -u $1 -p $2
-actual_version="2.4.2"
+actual_version="3.0.3"
 echo $actual_version
-docker build -f DUR.Api.Web/Dockerfile -t ceviduernten/api:$actual_version .
+docker build --platform linux/amd64 -f DUR.Api.Web/Dockerfile -t ceviduernten/api:$actual_version .
 docker push ceviduernten/api:$actual_version
 docker tag ceviduernten/api:$actual_version ceviduernten/api:latest
 docker push ceviduernten/api:latest

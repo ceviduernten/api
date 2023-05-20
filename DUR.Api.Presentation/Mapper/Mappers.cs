@@ -2,6 +2,7 @@
 using DUR.Api.Entities;
 using DUR.Api.Entities.Admin;
 using DUR.Api.Entities.Easter;
+using DUR.Api.Entities.Financial;
 using DUR.Api.Entities.Kool;
 using DUR.Api.Entities.Stuff;
 using DUR.Api.Presentation.ResourceModel;
@@ -39,6 +40,9 @@ public class Mappers : Profile
 
         CreateMap<User, UserRM>();
         CreateMap<UserRM, User>();
+
+        CreateMap<Expense, ExpenseRM>();
+        CreateMap<ExpenseRM, Expense>();
 
         CreateMap<Item, ItemRM>();
         CreateMap<ItemRM, Item>();

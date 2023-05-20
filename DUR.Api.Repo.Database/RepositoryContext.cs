@@ -31,6 +31,7 @@ public class RepositoryContext : DbContext
         modelBuilder.ApplyConfiguration(new UserConfiguration());
         modelBuilder.ApplyConfiguration(new EasterCityConfiguration());
         modelBuilder.ApplyConfiguration(new EasterLocationConfiguration());
+        modelBuilder.ApplyConfiguration(new ExpenseConfiguration());
         base.OnModelCreating(modelBuilder);
     }
 

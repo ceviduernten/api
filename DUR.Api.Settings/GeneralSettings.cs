@@ -9,4 +9,5 @@ public class GeneralSettings
     public string KoolUsername { get; set; }
     public string GroupName { get; set; }
     public string ReservationMail { get; set; }
+    public string ExpenseMail { get; set; }
 }

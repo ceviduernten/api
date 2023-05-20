@@ -7,8 +7,8 @@ namespace DUR.Api.Repo.Kool;
 
 public class KoolApi : IKoolApi
 {
-    private HttpClient _httpClient;
     private readonly KoolInterfaceSettings _settings;
+    private HttpClient _httpClient;
 
     public KoolApi(KoolInterfaceSettings settings)
     {

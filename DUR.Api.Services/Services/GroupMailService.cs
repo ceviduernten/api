@@ -133,10 +133,10 @@ public class GroupMailService : IGroupMailService
         sb.AppendLine("<p><b>Liebe Leiter und Leiterinnen</b></p>");
         if (response.Type == AppointmentResponseType.SIGNOFF)
             sb.AppendLine("<p>Eine Abmeldung von " + response.Name + " für das nächste Programm deiner Gruppe <b>" +
-                          @group.Name + "</b> am " + appointment.Date.ToString("dd.MM.yyyy") + " ist eingegangen.</p>");
+                          group.Name + "</b> am " + appointment.Date.ToString("dd.MM.yyyy") + " ist eingegangen.</p>");
         if (response.Type == AppointmentResponseType.SIGNON)
             sb.AppendLine("<p>Eine Anmeldung von " + response.Name + " für das nächste Programm deiner Gruppe <b>" +
-                          @group.Name + "</b> am " + appointment.Date.ToString("dd.MM.yyyy") + " ist eingegangen.</p>");
+                          group.Name + "</b> am " + appointment.Date.ToString("dd.MM.yyyy") + " ist eingegangen.</p>");
 
         sb.AppendLine("<p>" + response.Message + "</p><br/>");
         sb.AppendLine("<br/>");

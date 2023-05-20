@@ -1,8 +1,26 @@
-version: '3.4'
+version: '3.8'
+
+volumes:
+  pgdata: {}
 
 services:
   dur.api.web:
-    image: ${DOCKER_REGISTRY-}durapi
+    image: api-web
+    ports:
+      - "8080:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=development
     build:
       context: .
       dockerfile: DUR.Api.Web/Dockerfile
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: ufo
+      POSTGRES_DB: ufo
+      POSTGRES_USER: ufo
+    volumes:
+      - pgdata:/var/lib/postgresql/data    
